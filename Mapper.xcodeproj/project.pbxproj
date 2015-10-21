@@ -8,10 +8,19 @@
 
 /* Begin PBXBuildFile section */
 		C20174871BD5509D00E4FE18 /* Mapper.h in Headers */ = {isa = PBXBuildFile; fileRef = C20174861BD5509D00E4FE18 /* Mapper.h */; settings = {ATTRIBUTES = (Public, ); }; };
-		C201748E1BD5509D00E4FE18 /* Mapper.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C20174831BD5509D00E4FE18 /* Mapper.framework */; settings = {ASSET_TAGS = (); }; };
-		C20174931BD5509D00E4FE18 /* MapperTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = C20174921BD5509D00E4FE18 /* MapperTests.swift */; };
-		C201749E1BD550C200E4FE18 /* Mapper.swift in Sources */ = {isa = PBXBuildFile; fileRef = C201749D1BD550C200E4FE18 /* Mapper.swift */; settings = {ASSET_TAGS = (); }; };
-		C20174A01BD550F900E4FE18 /* Mappable.swift in Sources */ = {isa = PBXBuildFile; fileRef = C201749F1BD550F900E4FE18 /* Mappable.swift */; settings = {ASSET_TAGS = (); }; };
+		C201748E1BD5509D00E4FE18 /* Mapper.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C20174831BD5509D00E4FE18 /* Mapper.framework */; };
+		C201749E1BD550C200E4FE18 /* Mapper.swift in Sources */ = {isa = PBXBuildFile; fileRef = C201749D1BD550C200E4FE18 /* Mapper.swift */; };
+		C20174A01BD550F900E4FE18 /* Mappable.swift in Sources */ = {isa = PBXBuildFile; fileRef = C201749F1BD550F900E4FE18 /* Mappable.swift */; };
+		C21A55D11BE7F1D6006B12E8 /* InitializerTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = C21A55D01BE7F1D6006B12E8 /* InitializerTests.swift */; };
+		C233A2091BD98A870078125F /* Errors.swift in Sources */ = {isa = PBXBuildFile; fileRef = C233A2081BD98A870078125F /* Errors.swift */; };
+		C233A2571BD990140078125F /* Convertible.swift in Sources */ = {isa = PBXBuildFile; fileRef = C233A2561BD990140078125F /* Convertible.swift */; };
+		C233A25A1BD9903F0078125F /* NSURL+Convertible.swift in Sources */ = {isa = PBXBuildFile; fileRef = C233A2591BD9903F0078125F /* NSURL+Convertible.swift */; };
+		C266A0CE1BD81901002A641F /* NormalValueTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = C266A0CD1BD81901002A641F /* NormalValueTests.swift */; };
+		C266A0D01BD81908002A641F /* OptionalValueTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = C266A0CF1BD81908002A641F /* OptionalValueTests.swift */; };
+		C266A0D21BD8190F002A641F /* MappableValueTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = C266A0D11BD8190F002A641F /* MappableValueTests.swift */; };
+		C266A0D41BD81917002A641F /* ConvertibleValueTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = C266A0D31BD81917002A641F /* ConvertibleValueTests.swift */; };
+		C266A0D61BD81928002A641F /* RawRepresentibleValueTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = C266A0D51BD81928002A641F /* RawRepresentibleValueTests.swift */; };
+		C266A0D81BD81A62002A641F /* CustomTransformationTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = C266A0D71BD81A62002A641F /* CustomTransformationTests.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -29,10 +38,19 @@
 		C20174861BD5509D00E4FE18 /* Mapper.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = Mapper.h; sourceTree = "<group>"; };
 		C20174881BD5509D00E4FE18 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		C201748D1BD5509D00E4FE18 /* MapperTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = MapperTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
-		C20174921BD5509D00E4FE18 /* MapperTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MapperTests.swift; sourceTree = "<group>"; };
 		C20174941BD5509D00E4FE18 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		C201749D1BD550C200E4FE18 /* Mapper.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Mapper.swift; sourceTree = "<group>"; };
 		C201749F1BD550F900E4FE18 /* Mappable.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Mappable.swift; sourceTree = "<group>"; };
+		C21A55D01BE7F1D6006B12E8 /* InitializerTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = InitializerTests.swift; sourceTree = "<group>"; };
+		C233A2081BD98A870078125F /* Errors.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Errors.swift; sourceTree = "<group>"; };
+		C233A2561BD990140078125F /* Convertible.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Convertible.swift; sourceTree = "<group>"; };
+		C233A2591BD9903F0078125F /* NSURL+Convertible.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "NSURL+Convertible.swift"; sourceTree = "<group>"; };
+		C266A0CD1BD81901002A641F /* NormalValueTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NormalValueTests.swift; sourceTree = "<group>"; };
+		C266A0CF1BD81908002A641F /* OptionalValueTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = OptionalValueTests.swift; sourceTree = "<group>"; };
+		C266A0D11BD8190F002A641F /* MappableValueTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MappableValueTests.swift; sourceTree = "<group>"; };
+		C266A0D31BD81917002A641F /* ConvertibleValueTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ConvertibleValueTests.swift; sourceTree = "<group>"; };
+		C266A0D51BD81928002A641F /* RawRepresentibleValueTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RawRepresentibleValueTests.swift; sourceTree = "<group>"; };
+		C266A0D71BD81A62002A641F /* CustomTransformationTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CustomTransformationTests.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -75,10 +93,12 @@
 		C20174851BD5509D00E4FE18 /* Mapper */ = {
 			isa = PBXGroup;
 			children = (
-				C20174861BD5509D00E4FE18 /* Mapper.h */,
-				C201749D1BD550C200E4FE18 /* Mapper.swift */,
+				C233A2581BD990350078125F /* Convertibles */,
+				C266A0DA1BD81AC3002A641F /* Resources */,
+				C233A2561BD990140078125F /* Convertible.swift */,
+				C233A2081BD98A870078125F /* Errors.swift */,
 				C201749F1BD550F900E4FE18 /* Mappable.swift */,
-				C20174881BD5509D00E4FE18 /* Info.plist */,
+				C201749D1BD550C200E4FE18 /* Mapper.swift */,
 			);
 			path = Mapper;
 			sourceTree = "<group>";
@@ -86,10 +106,41 @@
 		C20174911BD5509D00E4FE18 /* MapperTests */ = {
 			isa = PBXGroup;
 			children = (
-				C20174921BD5509D00E4FE18 /* MapperTests.swift */,
-				C20174941BD5509D00E4FE18 /* Info.plist */,
+				C266A0D91BD81AA0002A641F /* Resources */,
+				C266A0D31BD81917002A641F /* ConvertibleValueTests.swift */,
+				C266A0D71BD81A62002A641F /* CustomTransformationTests.swift */,
+				C266A0D11BD8190F002A641F /* MappableValueTests.swift */,
+				C21A55D01BE7F1D6006B12E8 /* InitializerTests.swift */,
+				C266A0CD1BD81901002A641F /* NormalValueTests.swift */,
+				C266A0CF1BD81908002A641F /* OptionalValueTests.swift */,
+				C266A0D51BD81928002A641F /* RawRepresentibleValueTests.swift */,
 			);
 			path = MapperTests;
+			sourceTree = "<group>";
+		};
+		C233A2581BD990350078125F /* Convertibles */ = {
+			isa = PBXGroup;
+			children = (
+				C233A2591BD9903F0078125F /* NSURL+Convertible.swift */,
+			);
+			path = Convertibles;
+			sourceTree = "<group>";
+		};
+		C266A0D91BD81AA0002A641F /* Resources */ = {
+			isa = PBXGroup;
+			children = (
+				C20174941BD5509D00E4FE18 /* Info.plist */,
+			);
+			path = Resources;
+			sourceTree = "<group>";
+		};
+		C266A0DA1BD81AC3002A641F /* Resources */ = {
+			isa = PBXGroup;
+			children = (
+				C20174881BD5509D00E4FE18 /* Info.plist */,
+				C20174861BD5509D00E4FE18 /* Mapper.h */,
+			);
+			path = Resources;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -200,7 +251,10 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				C233A25A1BD9903F0078125F /* NSURL+Convertible.swift in Sources */,
 				C201749E1BD550C200E4FE18 /* Mapper.swift in Sources */,
+				C233A2571BD990140078125F /* Convertible.swift in Sources */,
+				C233A2091BD98A870078125F /* Errors.swift in Sources */,
 				C20174A01BD550F900E4FE18 /* Mappable.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -209,7 +263,13 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				C20174931BD5509D00E4FE18 /* MapperTests.swift in Sources */,
+				C266A0D01BD81908002A641F /* OptionalValueTests.swift in Sources */,
+				C266A0D61BD81928002A641F /* RawRepresentibleValueTests.swift in Sources */,
+				C266A0CE1BD81901002A641F /* NormalValueTests.swift in Sources */,
+				C266A0D21BD8190F002A641F /* MappableValueTests.swift in Sources */,
+				C21A55D11BE7F1D6006B12E8 /* InitializerTests.swift in Sources */,
+				C266A0D41BD81917002A641F /* ConvertibleValueTests.swift in Sources */,
+				C266A0D81BD81A62002A641F /* CustomTransformationTests.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -321,7 +381,7 @@
 				DYLIB_COMPATIBILITY_VERSION = 1;
 				DYLIB_CURRENT_VERSION = 1;
 				DYLIB_INSTALL_NAME_BASE = "@rpath";
-				INFOPLIST_FILE = Mapper/Info.plist;
+				INFOPLIST_FILE = Mapper/Resources/Info.plist;
 				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.Lyft.Mapper;
@@ -339,7 +399,7 @@
 				DYLIB_COMPATIBILITY_VERSION = 1;
 				DYLIB_CURRENT_VERSION = 1;
 				DYLIB_INSTALL_NAME_BASE = "@rpath";
-				INFOPLIST_FILE = Mapper/Info.plist;
+				INFOPLIST_FILE = Mapper/Resources/Info.plist;
 				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.Lyft.Mapper;
@@ -351,7 +411,7 @@
 		C201749B1BD5509D00E4FE18 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
-				INFOPLIST_FILE = MapperTests/Info.plist;
+				INFOPLIST_FILE = MapperTests/Resources/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.Lyft.MapperTests;
 				PRODUCT_NAME = "$(TARGET_NAME)";
@@ -361,7 +421,7 @@
 		C201749C1BD5509D00E4FE18 /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
-				INFOPLIST_FILE = MapperTests/Info.plist;
+				INFOPLIST_FILE = MapperTests/Resources/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.Lyft.MapperTests;
 				PRODUCT_NAME = "$(TARGET_NAME)";
@@ -387,6 +447,7 @@
 				C20174991BD5509D00E4FE18 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 		C201749A1BD5509D00E4FE18 /* Build configuration list for PBXNativeTarget "MapperTests" */ = {
 			isa = XCConfigurationList;
@@ -395,6 +456,7 @@
 				C201749C1BD5509D00E4FE18 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};
