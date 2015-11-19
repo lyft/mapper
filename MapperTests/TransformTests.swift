@@ -9,7 +9,7 @@ private struct Example: Mappable, Equatable {
         self.key = key
         self.value = value
     }
-    
+
     init(map: Mapper) throws {
         try key = map.from("string")
         try value = map.from("value")
