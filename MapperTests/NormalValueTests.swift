@@ -74,4 +74,16 @@ final class NormalValueTests: XCTestCase {
         let test = try! Test(map: Mapper(JSON: ["foo": ["bar": "baz"]]))
         XCTAssertTrue(test.string == "baz")
     }
+
+    func testPartiallyInvalidArrayOfValues() {
+        struct Test: Mappable {
+            let strings: [String]
+            init(map: Mapper) throws {
+                try self.strings = map.from("strings")
+            }
+        }
+
+        let test = try? Test(map: Mapper(JSON: ["strings": ["hi", 1]]))
+        XCTAssertNil(test)
+    }
 }
