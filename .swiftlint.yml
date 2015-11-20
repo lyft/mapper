@@ -1,0 +1,9 @@
+line_length:
+  - 110
+disabled_rules:
+  - force_cast
+  - force_try
+  - nesting
+  - opening_brace
+  - type_body_length
+  - variable_name

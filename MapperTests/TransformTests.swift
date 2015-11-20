@@ -16,7 +16,7 @@ private struct Example: Mappable, Equatable {
     }
 }
 
-private func ==(lhs: Example, rhs: Example) -> Bool {
+private func == (lhs: Example, rhs: Example) -> Bool {
     return lhs.key == rhs.key && lhs.value == rhs.value
 }
 
