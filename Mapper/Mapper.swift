@@ -1,3 +1,5 @@
+import Foundation
+
 /**
  Mapper creates strongly typed objects from a given NSDictionary based on the mapping provided by implementing
  the Mappable protocol (see `Mappable` for an example).

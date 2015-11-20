@@ -16,7 +16,7 @@
                BuildableIdentifier = "primary"
                BlueprintIdentifier = "C20174821BD5509D00E4FE18"
                BuildableName = "Mapper.framework"
-               BlueprintName = "Mapper"
+               BlueprintName = "Mapper-iOS"
                ReferencedContainer = "container:Mapper.xcodeproj">
             </BuildableReference>
          </BuildActionEntry>
@@ -45,7 +45,7 @@
             BuildableIdentifier = "primary"
             BlueprintIdentifier = "C20174821BD5509D00E4FE18"
             BuildableName = "Mapper.framework"
-            BlueprintName = "Mapper"
+            BlueprintName = "Mapper-iOS"
             ReferencedContainer = "container:Mapper.xcodeproj">
          </BuildableReference>
       </MacroExpansion>
@@ -67,7 +67,7 @@
             BuildableIdentifier = "primary"
             BlueprintIdentifier = "C20174821BD5509D00E4FE18"
             BuildableName = "Mapper.framework"
-            BlueprintName = "Mapper"
+            BlueprintName = "Mapper-iOS"
             ReferencedContainer = "container:Mapper.xcodeproj">
          </BuildableReference>
       </MacroExpansion>
@@ -85,7 +85,7 @@
             BuildableIdentifier = "primary"
             BlueprintIdentifier = "C20174821BD5509D00E4FE18"
             BuildableName = "Mapper.framework"
-            BlueprintName = "Mapper"
+            BlueprintName = "Mapper-iOS"
             ReferencedContainer = "container:Mapper.xcodeproj">
          </BuildableReference>
       </MacroExpansion>

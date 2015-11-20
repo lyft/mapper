@@ -1,3 +1,5 @@
+import Foundation
+
 public extension Transform {
     /**
      A provided transformation function (see Transform and Mapper for uses) in order to create a dictionary

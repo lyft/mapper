@@ -1,3 +1,5 @@
+import Foundation
+
 /**
  NSURL Convertible implementation
 

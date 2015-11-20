@@ -1,3 +1,5 @@
+import Foundation
+
 /**
  The Mappable protocol defines how to create a custom object from a Mapper
 
