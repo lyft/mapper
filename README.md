@@ -29,7 +29,7 @@ import Mapper
 // Conform to the Mappable protocol
 struct User: Mappable {
   let id: String
-  let photoURL: NSURL
+  let photoURL: NSURL?
 
   // Implement this initializer
   init(map: Mapper) throws {
