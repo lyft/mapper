@@ -184,6 +184,8 @@ These radars have affected the current implementation of Mapper
   Using the `??` operator many times is unsustainable.
 - [rdar://23697280](http://www.openradar.me/radar?id=5049833333194752)
   Lazy collection elements can be evaluated multiple times.
+- [rdar://23718307](http://www.openradar.me/radar?id=4926133845884928)
+  Non final class with protocol extensions returning `Self` don't work
 
 ## License
 
