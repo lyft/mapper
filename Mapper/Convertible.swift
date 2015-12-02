@@ -41,3 +41,23 @@ public protocol Convertible {
      */
     static func fromMap(value: AnyObject?) throws -> ConvertedType
 }
+
+/**
+ This extension allows us to easily make native JSON types conform to Convertible.
+ */
+extension Convertible {
+    public static func fromMap(object: AnyObject?) throws -> ConvertedType {
+        guard let objectValue = object as? ConvertedType else {
+            throw MapperError()
+        }
+        return objectValue
+    }
+}
+
+// JSON native types
+extension String: Convertible {}
+extension Int: Convertible {}
+extension UInt: Convertible {}
+extension Float: Convertible {}
+extension Double: Convertible {}
+extension Bool: Convertible {}

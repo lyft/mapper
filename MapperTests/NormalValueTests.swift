@@ -50,19 +50,6 @@ final class NormalValueTests: XCTestCase {
         XCTAssertTrue(test.strings.count == 2)
     }
 
-    func testEmptyStringJSON() {
-        struct Test: Mappable {
-            let JSON: AnyObject
-            init(map: Mapper) throws {
-                try self.JSON = map.from("")
-            }
-        }
-
-        let JSON = ["a": "b", "c": "d"]
-        let test = try! Test(map: Mapper(JSON: JSON))
-        XCTAssertTrue((test.JSON as! [String: String]) == JSON)
-    }
-
     func testKeyPath() {
         struct Test: Mappable {
             let string: String
