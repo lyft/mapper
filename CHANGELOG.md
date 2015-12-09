@@ -10,6 +10,20 @@
 
 ## Bug Fixes
 
+- None
+
+# 1.0.1
+
+## Breaking
+
+- None
+
+## Enhancements
+
+- None
+
+## Bug Fixes
+
 - Fixed issue where `optionalFrom` with an array of keys was not
   implemented for `Convertible` or other types.
   [Keith Smiley](https://github.com/keith)
