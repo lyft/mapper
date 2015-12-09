@@ -97,4 +97,20 @@ final class RawRepresentibleValueTests: XCTestCase {
         let test = try! Test(map: Mapper(JSON: ["value": "not an int"]))
         XCTAssertNil(test.value)
     }
+
+    func testRawRepresentableArrayOfKeys() {
+        struct Test: Mappable {
+            let value: Value?
+            init(map: Mapper) throws {
+                self.value = map.optionalFrom(["a", "b"])
+            }
+        }
+
+        enum Value: String {
+            case First = "hi"
+        }
+
+        let test = try! Test(map: Mapper(JSON: ["a": "nope", "b": "hi"]))
+        XCTAssertTrue(test.value == .First)
+    }
 }
