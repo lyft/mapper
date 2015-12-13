@@ -7,6 +7,22 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		45CB2F271C1E09A9000AF5F2 /* NSURL+Convertible.swift in Sources */ = {isa = PBXBuildFile; fileRef = C233A2591BD9903F0078125F /* NSURL+Convertible.swift */; };
+		45CB2F281C1E09A9000AF5F2 /* Mapper.swift in Sources */ = {isa = PBXBuildFile; fileRef = C201749D1BD550C200E4FE18 /* Mapper.swift */; };
+		45CB2F291C1E09A9000AF5F2 /* Transform+Dictionary.swift in Sources */ = {isa = PBXBuildFile; fileRef = C2569A141BF3E88400A7CF10 /* Transform+Dictionary.swift */; };
+		45CB2F2A1C1E09A9000AF5F2 /* Convertible.swift in Sources */ = {isa = PBXBuildFile; fileRef = C233A2561BD990140078125F /* Convertible.swift */; };
+		45CB2F2B1C1E09A9000AF5F2 /* Errors.swift in Sources */ = {isa = PBXBuildFile; fileRef = C233A2081BD98A870078125F /* Errors.swift */; };
+		45CB2F2C1C1E09A9000AF5F2 /* Transform.swift in Sources */ = {isa = PBXBuildFile; fileRef = C2569A121BF3E87100A7CF10 /* Transform.swift */; };
+		45CB2F2D1C1E09A9000AF5F2 /* Mappable.swift in Sources */ = {isa = PBXBuildFile; fileRef = C201749F1BD550F900E4FE18 /* Mappable.swift */; };
+		45CB2F4E1C1E0BBD000AF5F2 /* OptionalValueTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = C266A0CF1BD81908002A641F /* OptionalValueTests.swift */; };
+		45CB2F4F1C1E0BBD000AF5F2 /* RawRepresentibleValueTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = C266A0D51BD81928002A641F /* RawRepresentibleValueTests.swift */; };
+		45CB2F501C1E0BBD000AF5F2 /* NormalValueTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = C266A0CD1BD81901002A641F /* NormalValueTests.swift */; };
+		45CB2F511C1E0BBD000AF5F2 /* MappableValueTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = C266A0D11BD8190F002A641F /* MappableValueTests.swift */; };
+		45CB2F521C1E0BBD000AF5F2 /* InitializerTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = C21A55D01BE7F1D6006B12E8 /* InitializerTests.swift */; };
+		45CB2F531C1E0BBD000AF5F2 /* ConvertibleValueTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = C266A0D31BD81917002A641F /* ConvertibleValueTests.swift */; };
+		45CB2F541C1E0BBD000AF5F2 /* TransformTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = C2569A161BF3E8AB00A7CF10 /* TransformTests.swift */; };
+		45CB2F551C1E0BBD000AF5F2 /* CustomTransformationTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = C266A0D71BD81A62002A641F /* CustomTransformationTests.swift */; };
+		45CB2F571C1E0BBD000AF5F2 /* Mapper.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C20174831BD5509D00E4FE18 /* Mapper.framework */; };
 		C201748E1BD5509D00E4FE18 /* Mapper.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C20174831BD5509D00E4FE18 /* Mapper.framework */; };
 		C201749E1BD550C200E4FE18 /* Mapper.swift in Sources */ = {isa = PBXBuildFile; fileRef = C201749D1BD550C200E4FE18 /* Mapper.swift */; };
 		C20174A01BD550F900E4FE18 /* Mappable.swift in Sources */ = {isa = PBXBuildFile; fileRef = C201749F1BD550F900E4FE18 /* Mappable.swift */; };
@@ -42,6 +58,13 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
+		45CB2F5E1C1E0D98000AF5F2 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = C201747A1BD5509D00E4FE18 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 45CB2F251C1E09A9000AF5F2;
+			remoteInfo = "Mapper-tvOS";
+		};
 		C201748F1BD5509D00E4FE18 /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
 			containerPortal = C201747A1BD5509D00E4FE18 /* Project object */;
@@ -59,6 +82,8 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		45CB2F341C1E09A9000AF5F2 /* Mapper.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Mapper.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		45CB2F5C1C1E0BBD000AF5F2 /* MapperTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = MapperTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		C20174831BD5509D00E4FE18 /* Mapper.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Mapper.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		C20174881BD5509D00E4FE18 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		C201748D1BD5509D00E4FE18 /* MapperTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = MapperTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -83,6 +108,21 @@
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
+		45CB2F2E1C1E09A9000AF5F2 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		45CB2F561C1E0BBD000AF5F2 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				45CB2F571C1E0BBD000AF5F2 /* Mapper.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		C201747F1BD5509D00E4FE18 /* Frameworks */ = {
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
@@ -132,6 +172,8 @@
 				C201748D1BD5509D00E4FE18 /* MapperTests.xctest */,
 				C2FC78AE1BFFA008006ACF2E /* Mapper.framework */,
 				C2FC78B71BFFA008006ACF2E /* MapperTests.xctest */,
+				45CB2F341C1E09A9000AF5F2 /* Mapper.framework */,
+				45CB2F5C1C1E0BBD000AF5F2 /* MapperTests.xctest */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -202,6 +244,13 @@
 /* End PBXGroup section */
 
 /* Begin PBXHeadersBuildPhase section */
+		45CB2F2F1C1E09A9000AF5F2 /* Headers */ = {
+			isa = PBXHeadersBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		C20174801BD5509D00E4FE18 /* Headers */ = {
 			isa = PBXHeadersBuildPhase;
 			buildActionMask = 2147483647;
@@ -219,6 +268,42 @@
 /* End PBXHeadersBuildPhase section */
 
 /* Begin PBXNativeTarget section */
+		45CB2F251C1E09A9000AF5F2 /* Mapper-tvOS */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 45CB2F311C1E09A9000AF5F2 /* Build configuration list for PBXNativeTarget "Mapper-tvOS" */;
+			buildPhases = (
+				45CB2F261C1E09A9000AF5F2 /* Sources */,
+				45CB2F2E1C1E09A9000AF5F2 /* Frameworks */,
+				45CB2F2F1C1E09A9000AF5F2 /* Headers */,
+				45CB2F301C1E09A9000AF5F2 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = "Mapper-tvOS";
+			productName = Mapper;
+			productReference = 45CB2F341C1E09A9000AF5F2 /* Mapper.framework */;
+			productType = "com.apple.product-type.framework";
+		};
+		45CB2F4A1C1E0BBD000AF5F2 /* Mapper-tvOSTests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 45CB2F591C1E0BBD000AF5F2 /* Build configuration list for PBXNativeTarget "Mapper-tvOSTests" */;
+			buildPhases = (
+				45CB2F4D1C1E0BBD000AF5F2 /* Sources */,
+				45CB2F561C1E0BBD000AF5F2 /* Frameworks */,
+				45CB2F581C1E0BBD000AF5F2 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				45CB2F5F1C1E0D98000AF5F2 /* PBXTargetDependency */,
+			);
+			name = "Mapper-tvOSTests";
+			productName = MapperTests;
+			productReference = 45CB2F5C1C1E0BBD000AF5F2 /* MapperTests.xctest */;
+			productType = "com.apple.product-type.bundle.unit-test";
+		};
 		C20174821BD5509D00E4FE18 /* Mapper-iOS */ = {
 			isa = PBXNativeTarget;
 			buildConfigurationList = C20174971BD5509D00E4FE18 /* Build configuration list for PBXNativeTarget "Mapper-iOS" */;
@@ -331,11 +416,27 @@
 				C201748C1BD5509D00E4FE18 /* MapperTests */,
 				C2FC78AD1BFFA008006ACF2E /* Mapper-OSX */,
 				C2FC78B61BFFA008006ACF2E /* Mapper-OSXTests */,
+				45CB2F251C1E09A9000AF5F2 /* Mapper-tvOS */,
+				45CB2F4A1C1E0BBD000AF5F2 /* Mapper-tvOSTests */,
 			);
 		};
 /* End PBXProject section */
 
 /* Begin PBXResourcesBuildPhase section */
+		45CB2F301C1E09A9000AF5F2 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		45CB2F581C1E0BBD000AF5F2 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		C20174811BD5509D00E4FE18 /* Resources */ = {
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
@@ -367,6 +468,35 @@
 /* End PBXResourcesBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
+		45CB2F261C1E09A9000AF5F2 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				45CB2F271C1E09A9000AF5F2 /* NSURL+Convertible.swift in Sources */,
+				45CB2F281C1E09A9000AF5F2 /* Mapper.swift in Sources */,
+				45CB2F291C1E09A9000AF5F2 /* Transform+Dictionary.swift in Sources */,
+				45CB2F2A1C1E09A9000AF5F2 /* Convertible.swift in Sources */,
+				45CB2F2B1C1E09A9000AF5F2 /* Errors.swift in Sources */,
+				45CB2F2C1C1E09A9000AF5F2 /* Transform.swift in Sources */,
+				45CB2F2D1C1E09A9000AF5F2 /* Mappable.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		45CB2F4D1C1E0BBD000AF5F2 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				45CB2F4E1C1E0BBD000AF5F2 /* OptionalValueTests.swift in Sources */,
+				45CB2F4F1C1E0BBD000AF5F2 /* RawRepresentibleValueTests.swift in Sources */,
+				45CB2F501C1E0BBD000AF5F2 /* NormalValueTests.swift in Sources */,
+				45CB2F511C1E0BBD000AF5F2 /* MappableValueTests.swift in Sources */,
+				45CB2F521C1E0BBD000AF5F2 /* InitializerTests.swift in Sources */,
+				45CB2F531C1E0BBD000AF5F2 /* ConvertibleValueTests.swift in Sources */,
+				45CB2F541C1E0BBD000AF5F2 /* TransformTests.swift in Sources */,
+				45CB2F551C1E0BBD000AF5F2 /* CustomTransformationTests.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		C201747E1BD5509D00E4FE18 /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
@@ -428,6 +558,11 @@
 /* End PBXSourcesBuildPhase section */
 
 /* Begin PBXTargetDependency section */
+		45CB2F5F1C1E0D98000AF5F2 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 45CB2F251C1E09A9000AF5F2 /* Mapper-tvOS */;
+			targetProxy = 45CB2F5E1C1E0D98000AF5F2 /* PBXContainerItemProxy */;
+		};
 		C20174901BD5509D00E4FE18 /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
 			target = C20174821BD5509D00E4FE18 /* Mapper-iOS */;
@@ -441,6 +576,73 @@
 /* End PBXTargetDependency section */
 
 /* Begin XCBuildConfiguration section */
+		45CB2F321C1E09A9000AF5F2 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CLANG_ENABLE_MODULES = YES;
+				DEFINES_MODULE = YES;
+				DYLIB_COMPATIBILITY_VERSION = 1;
+				DYLIB_CURRENT_VERSION = 1;
+				DYLIB_INSTALL_NAME_BASE = "@rpath";
+				INFOPLIST_FILE = Mapper/Resources/Info.plist;
+				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
+				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = com.Lyft.Mapper;
+				PRODUCT_NAME = Mapper;
+				SDKROOT = appletvos;
+				SKIP_INSTALL = YES;
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
+				TARGETED_DEVICE_FAMILY = 3;
+				TVOS_DEPLOYMENT_TARGET = 9.0;
+			};
+			name = Debug;
+		};
+		45CB2F331C1E09A9000AF5F2 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CLANG_ENABLE_MODULES = YES;
+				DEFINES_MODULE = YES;
+				DYLIB_COMPATIBILITY_VERSION = 1;
+				DYLIB_CURRENT_VERSION = 1;
+				DYLIB_INSTALL_NAME_BASE = "@rpath";
+				INFOPLIST_FILE = Mapper/Resources/Info.plist;
+				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
+				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = com.Lyft.Mapper;
+				PRODUCT_NAME = Mapper;
+				SDKROOT = appletvos;
+				SKIP_INSTALL = YES;
+				TARGETED_DEVICE_FAMILY = 3;
+				TVOS_DEPLOYMENT_TARGET = 9.0;
+			};
+			name = Release;
+		};
+		45CB2F5A1C1E0BBD000AF5F2 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				INFOPLIST_FILE = MapperTests/Resources/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = com.Lyft.MapperTests;
+				PRODUCT_NAME = MapperTests;
+				SDKROOT = appletvos;
+				TARGETED_DEVICE_FAMILY = 3;
+			};
+			name = Debug;
+		};
+		45CB2F5B1C1E0BBD000AF5F2 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				INFOPLIST_FILE = MapperTests/Resources/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = com.Lyft.MapperTests;
+				PRODUCT_NAME = MapperTests;
+				SDKROOT = appletvos;
+				TARGETED_DEVICE_FAMILY = 3;
+			};
+			name = Release;
+		};
 		C20174951BD5509D00E4FE18 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
@@ -658,6 +860,24 @@
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
+		45CB2F311C1E09A9000AF5F2 /* Build configuration list for PBXNativeTarget "Mapper-tvOS" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				45CB2F321C1E09A9000AF5F2 /* Debug */,
+				45CB2F331C1E09A9000AF5F2 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		45CB2F591C1E0BBD000AF5F2 /* Build configuration list for PBXNativeTarget "Mapper-tvOSTests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				45CB2F5A1C1E0BBD000AF5F2 /* Debug */,
+				45CB2F5B1C1E0BBD000AF5F2 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
 		C201747D1BD5509D00E4FE18 /* Build configuration list for PBXProject "Mapper" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
