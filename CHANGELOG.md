@@ -11,7 +11,8 @@
 
 ## Bug Fixes
 
-- None
+- Fix OS X framework bundle identifier
+  [Keith Smiley](https://github.com/keith)
 
 # 1.0.1
 
