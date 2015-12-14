@@ -19,3 +19,12 @@ test-OSX:
 		-scheme Mapper-OSX \
 		test \
 		| xcpretty -ct
+
+test-tvOS:
+	set -o pipefail && \
+		xcodebuild \
+		-project Mapper.xcodeproj \
+		-scheme Mapper-tvOS \
+		-destination "platform=tvOS Simulator,name=Apple TV 1080p" \
+		test \
+		| xcpretty -ct

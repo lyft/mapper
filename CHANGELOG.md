@@ -6,7 +6,8 @@
 
 ## Enhancements
 
-- None
+- Add tvOS support. [Ostap Taran](https://github.com/Austinate)
+  [#12](https://github.com/lyft/mapper/pull/12)
 
 ## Bug Fixes
 

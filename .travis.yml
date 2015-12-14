@@ -4,6 +4,7 @@ env:
   - ACTION=lint
   - ACTION=test-iOS
   - ACTION=test-OSX
+  - ACTION=test-tvOS
 
 script:
   - make $ACTION
