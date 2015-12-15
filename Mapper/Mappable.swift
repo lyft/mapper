@@ -34,10 +34,23 @@ public protocol Mappable {
      - returns: The object if it could be created, nil if creating the object threw an error
      */
     static func from(JSON: NSDictionary) -> Self?
+    
+    /**
+     Convenience method for creating Mappable objects from NSDictionaries
+     
+     - parameter JSON: The JSON to create the object from
+     
+     - returns: The object if it could be created, error if it throws internally
+     */
+    static func fromThrowable(JSON: NSDictionary) throws -> Self
 }
 
 public extension Mappable {
     public static func from(JSON: NSDictionary) -> Self? {
         return try? self.init(map: Mapper(JSON: JSON))
+    }
+    
+    public static func fromThrowable(JSON: NSDictionary) throws -> Self {
+        return try self.init(map: Mapper(JSON: JSON))
     }
 }
