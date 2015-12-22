@@ -24,6 +24,7 @@ public protocol Mappable {
     /**
      Define how your custom object is created from a Mapper object
      */
+    @warn_unused_result
     init(map: Mapper) throws
 
     /**
@@ -33,10 +34,12 @@ public protocol Mappable {
 
      - returns: The object if it could be created, nil if creating the object threw an error
      */
+    @warn_unused_result
     static func from(JSON: NSDictionary) -> Self?
 }
 
 public extension Mappable {
+    @warn_unused_result
     public static func from(JSON: NSDictionary) -> Self? {
         return try? self.init(map: Mapper(JSON: JSON))
     }
