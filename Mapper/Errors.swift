@@ -5,5 +5,6 @@
  Custom implementations of Mappable, Convertible, or transformation functions can throw any error they desire
  */
 public struct MapperError: ErrorType {
+    @warn_unused_result
     public init() {}
 }
