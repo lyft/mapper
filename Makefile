@@ -6,9 +6,8 @@ test-iOS:
 	set -o pipefail && \
 		xcodebuild \
 		-project Mapper.xcodeproj \
-		-scheme Mapper-iOS \
-		-sdk iphonesimulator \
-		-destination "name=iPhone 6" \
+		-scheme Mapper \
+		-destination "name=iPhone 6s" \
 		test \
 		| xcpretty -ct
 
@@ -16,7 +15,7 @@ test-OSX:
 	set -o pipefail && \
 		xcodebuild \
 		-project Mapper.xcodeproj \
-		-scheme Mapper-OSX \
+		-scheme Mapper \
 		test \
 		| xcpretty -ct
 
@@ -24,7 +23,16 @@ test-tvOS:
 	set -o pipefail && \
 		xcodebuild \
 		-project Mapper.xcodeproj \
-		-scheme Mapper-tvOS \
-		-destination "platform=tvOS Simulator,name=Apple TV 1080p" \
+		-scheme Mapper \
+		-destination "name=Apple TV 1080p" \
 		test \
 		| xcpretty -ct
+
+test-carthage:
+	brew rm carthage || true
+	brew install https://raw.githubusercontent.com/Homebrew/homebrew/96664cb3befd42f933de07d9fc0f61e8756d86c3/Library/Formula/carthage.rb
+	carthage build --no-skip-current
+	ls Carthage/build/Mac/Mapper.framework
+	ls Carthage/build/iOS/Mapper.framework
+	ls Carthage/build/tvOS/Mapper.framework
+	ls Carthage/build/watchOS/Mapper.framework

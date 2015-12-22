@@ -5,6 +5,7 @@ env:
   - ACTION=test-iOS
   - ACTION=test-OSX
   - ACTION=test-tvOS
+  - ACTION=test-carthage
 
 script:
   - make $ACTION
