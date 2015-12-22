@@ -46,6 +46,7 @@ public extension Transform {
      - returns: A dictionary of [U: T] where the keys U are produced from the passed `key` function and the
                 values T are the objects
      */
+    @warn_unused_result
     public static func toDictionary<T, U where T: Mappable, U: Hashable>(key getKey: T -> U)
         (object: AnyObject?) throws -> [U: T]
     {

@@ -6,6 +6,8 @@
 
 ## Enhancements
 
+- Added @warn_unused_result to functions declarations. [Ostap Taran](https://github.com/Austinate)
+  [#19](https://github.com/lyft/mapper/pull/19)
 - Add tvOS support. [Ostap Taran](https://github.com/Austinate)
   [#12](https://github.com/lyft/mapper/pull/12)
 
