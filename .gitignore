@@ -13,10 +13,12 @@
 *.xcuserstate
 ._*
 .AppleDouble
+.build/
 .DS_Store
 .LSOverride
 build/
 Carthage/Build
 DerivedData
 Icon
+run-tests
 xcuserdata

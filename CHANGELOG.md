@@ -14,6 +14,9 @@
 - Add universal framework support. This also adds watchOS support.
   [Keith Smiley](https://github.com/keith)
   [#20](https://github.com/lyft/mapper/pull/20)
+- Add Swift package manager support
+  [Keith Smiley](https://github.com/keith)
+  [#22](https://github.com/lyft/mapper/pull/22)
 
 ## Bug Fixes
 
