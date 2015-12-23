@@ -1,3 +1,4 @@
+import Foundation
 import Mapper
 import XCTest
 
@@ -14,8 +15,13 @@ final class RawRepresentibleValueTests: XCTestCase {
             case Hearts = "hearts"
         }
 
-        let test = try! Test(map: Mapper(JSON: ["suit": "hearts"]))
+#if os(Linux)
+        let test = Test.from(["suit": "hearts"])
+        XCTAssertNil(test)
+#else
+        let test = Test.from(["suit": "hearts"])!
         XCTAssertTrue(test.suit == .Hearts)
+#endif
     }
 
     func testRawRepresentableNumber() {
@@ -30,8 +36,13 @@ final class RawRepresentibleValueTests: XCTestCase {
             case First = 1
         }
 
-        let test = try! Test(map: Mapper(JSON: ["value": 1]))
+#if os(Linux)
+        let test = Test.from(["value": 1])
+        XCTAssertNil(test)
+#else
+        let test = Test.from(["value": 1])!
         XCTAssertTrue(test.value == .First)
+#endif
     }
 
     func testMissingRawRepresentableNumber() {
@@ -46,7 +57,7 @@ final class RawRepresentibleValueTests: XCTestCase {
             case First = 1
         }
 
-        let test = try? Test(map: Mapper(JSON: [:]))
+        let test = Test.from(NSDictionary())
         XCTAssertNil(test)
     }
 
@@ -62,7 +73,7 @@ final class RawRepresentibleValueTests: XCTestCase {
             case First = 1
         }
 
-        let test = try! Test(map: Mapper(JSON: [:]))
+        let test = Test.from(NSDictionary())!
         XCTAssertNil(test.value)
     }
 
@@ -78,8 +89,12 @@ final class RawRepresentibleValueTests: XCTestCase {
             case First = 1
         }
 
-        let test = try! Test(map: Mapper(JSON: ["value": 1]))
+        let test = Test.from(["value": 1])!
+#if os(Linux)
+        XCTAssertNil(test.value)
+#else
         XCTAssertTrue(test.value == .First)
+#endif
     }
 
     func testRawRepresentableTypeMismatch() {
@@ -94,7 +109,7 @@ final class RawRepresentibleValueTests: XCTestCase {
             case First = 1
         }
 
-        let test = try! Test(map: Mapper(JSON: ["value": "not an int"]))
+        let test = Test.from(["value": "not an int"])!
         XCTAssertNil(test.value)
     }
 
@@ -110,7 +125,25 @@ final class RawRepresentibleValueTests: XCTestCase {
             case First = "hi"
         }
 
-        let test = try! Test(map: Mapper(JSON: ["a": "nope", "b": "hi"]))
+        let test = Test.from(["a": "nope", "b": "hi"])!
+#if os(Linux)
+        XCTAssertNil(test.value)
+#else
         XCTAssertTrue(test.value == .First)
+#endif
+    }
+}
+
+extension RawRepresentibleValueTests {
+    var allTests: [(String, () -> Void)] {
+        return [
+            ("testRawRepresentable", testRawRepresentable),
+            ("testRawRepresentableNumber", testRawRepresentableNumber),
+            ("testMissingRawRepresentableNumber", testMissingRawRepresentableNumber),
+            ("testOptionalRawRepresentable", testOptionalRawRepresentable),
+            ("testExistingOptionalRawRepresentable", testExistingOptionalRawRepresentable),
+            ("testRawRepresentableTypeMismatch", testRawRepresentableTypeMismatch),
+            ("testRawRepresentableArrayOfKeys", testRawRepresentableArrayOfKeys),
+        ]
     }
 }

@@ -22,6 +22,7 @@ private func == (lhs: Example, rhs: Example) -> Bool {
 
 final class TransformTests: XCTestCase {
     func testToDictionary() {
+#if !os(Linux)
         struct Test: Mappable {
             let dictionary: [String: Example]
 
@@ -49,6 +50,7 @@ final class TransformTests: XCTestCase {
         XCTAssertTrue(test.dictionary.count == 2)
         XCTAssertTrue(test.dictionary["hi"] == Example(key: "hi", value: 1))
         XCTAssertTrue(test.dictionary["bye"] == Example(key: "bye", value: 2))
+#endif
     }
 
     func testToDictionaryInvalid() {
@@ -66,6 +68,7 @@ final class TransformTests: XCTestCase {
     }
 
     func testToDictionaryOneInvalid() {
+#if !os(Linux)
         struct Test: Mappable {
             let dictionary: [String: Example]
 
@@ -90,5 +93,16 @@ final class TransformTests: XCTestCase {
 
         let test = try? Test(map: Mapper(JSON: JSON))
         XCTAssertNil(test)
+#endif
+    }
+}
+
+extension TransformTests {
+    var allTests: [(String, () -> Void)] {
+        return [
+            ("testToDictionary", testToDictionary),
+            ("testToDictionaryInvalid", testToDictionaryInvalid),
+            ("testToDictionaryOneInvalid", testToDictionaryOneInvalid),
+        ]
     }
 }

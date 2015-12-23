@@ -1,5 +1,12 @@
 # Install Tasks
 
+TEST_SRCS=$(wildcard Tests/*.swift)
+TEST_COMMAND=swiftc \
+		-o run-tests \
+		-I.build/debug \
+		-Xlinker .build/debug/Mapper.a \
+		$(TEST_SRCS) \
+
 install-iOS:
 	true
 
@@ -59,3 +66,18 @@ test-carthage:
 
 test-oss-osx:
 	. ~/.swiftenv/init && swift build
+
+test-linux: $(TEST_SRCS)
+	swift build && \
+		$(TEST_COMMAND) && \
+		./run-tests
+
+BUILT_PRODUCTS_DIR=/Users/ksmiley/dev/oss-swift/swift-corelibs-xctest/.build/debug
+test-oss-osx: $(TEST_SRCS)
+	swift build && \
+		$(TEST_COMMAND) \
+		-sdk "$(shell xcrun --sdk macosx --show-sdk-path)" \
+		-target x86_64-apple-macosx10.11 \
+		-I$(BUILT_PRODUCTS_DIR) \
+		-Xlinker $(BUILT_PRODUCTS_DIR)/XCTest.a && \
+		./run-tests

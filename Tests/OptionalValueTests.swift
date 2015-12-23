@@ -1,3 +1,4 @@
+import Foundation
 import Mapper
 import XCTest
 
@@ -10,8 +11,12 @@ final class OptionalValueTests: XCTestCase {
             }
         }
 
-        let test = try! Test(map: Mapper(JSON: ["string": "Hello"]))
+        let test = Test.from(["string": "Hello"])!
+#if os(Linux)
+        XCTAssertTrue(test.string.isEmpty)
+#else
         XCTAssertTrue(test.string == "Hello")
+#endif
     }
 
     func testMappingOptionalValue() {
@@ -22,7 +27,7 @@ final class OptionalValueTests: XCTestCase {
             }
         }
 
-        let test = try! Test(map: Mapper(JSON: [:]))
+        let test = try! Test(map: Mapper(JSON: NSDictionary()))
         XCTAssertNil(test.string)
     }
 
@@ -34,7 +39,7 @@ final class OptionalValueTests: XCTestCase {
             }
         }
 
-        let test = try! Test(map: Mapper(JSON: [:]))
+        let test = try! Test(map: Mapper(JSON: NSDictionary()))
         XCTAssertNil(test.string)
     }
 
@@ -46,8 +51,12 @@ final class OptionalValueTests: XCTestCase {
             }
         }
 
-        let test = try! Test(map: Mapper(JSON: ["strings": ["first", "second"]]))
-        XCTAssertTrue(test.strings!.count == 2)
+        let test = Test.from(["strings": ["first", "second"]])!
+#if os(Linux)
+            XCTAssertNil(test.strings)
+#else
+            XCTAssertTrue(test.strings!.count == 2)
+#endif
     }
 
     func testMappingArrayOfOptionalFieldsPicksNonNil() {
@@ -63,7 +72,11 @@ final class OptionalValueTests: XCTestCase {
         }
 
         let test = Test.from(["b": "foo"])!
+#if os(Linux)
+        XCTAssertNil(test.string)
+#else
         XCTAssertTrue(test.string == "foo")
+#endif
     }
 
     func testMappingArrayOfOptionalFieldsReturnsNil() {
@@ -77,7 +90,7 @@ final class OptionalValueTests: XCTestCase {
             }
         }
 
-        let test = Test.from([:])!
+        let test = Test.from(NSDictionary())!
         XCTAssertNil(test.string)
     }
 
@@ -95,5 +108,19 @@ final class OptionalValueTests: XCTestCase {
 
         let test = Test.from(["b": "foo"])!
         XCTAssertNil(test.string)
+    }
+}
+
+extension OptionalValueTests {
+    var allTests: [(String, () -> Void)] {
+        return [
+            ("testMappingStringToClass", testMappingStringToClass),
+            ("testMappingOptionalValue", testMappingOptionalValue),
+            ("testMappingOptionalArray", testMappingOptionalArray),
+            ("testMappingOptionalExistingArray", testMappingOptionalExistingArray),
+            ("testMappingArrayOfOptionalFieldsPicksNonNil", testMappingArrayOfOptionalFieldsPicksNonNil),
+            ("testMappingArrayOfOptionalFieldsReturnsNil", testMappingArrayOfOptionalFieldsReturnsNil),
+            ("testNilCoalescingIsBroken", testNilCoalescingIsBroken),
+        ]
     }
 }

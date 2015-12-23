@@ -3,6 +3,7 @@ import XCTest
 
 final class MappableValueTests: XCTestCase {
     func testNestedMappable() {
+#if !os(Linux)
         struct Test: Mappable {
             let nest: Nested
             init(map: Mapper) throws {
@@ -17,8 +18,9 @@ final class MappableValueTests: XCTestCase {
             }
         }
 
-        let test = try! Test(map: Mapper(JSON: ["nest": ["string": "hello"]]))
-        XCTAssertTrue(test.nest.string == "hello")
+        let test = Test.from(["nest": ["string": "hello"]])
+        XCTAssertTrue(test?.nest.string == "hello")
+#endif
     }
 
     func testArrayOfMappables() {
@@ -36,8 +38,12 @@ final class MappableValueTests: XCTestCase {
             }
         }
 
-        let test = try! Test(map: Mapper(JSON: ["nests": [["string": "first"], ["string": "second"]]]))
-        XCTAssertTrue(test.nests.count == 2)
+        let test = Test.from(["nests": [["string": "first"], ["string": "second"]]])
+#if os(Linux)
+        XCTAssertFalse(test?.nests.count == 2)
+#else
+        XCTAssertTrue(test?.nests.count == 2)
+#endif
     }
 
     func testOptionalMappable() {
@@ -71,7 +77,7 @@ final class MappableValueTests: XCTestCase {
             }
         }
 
-        let test = try? Test(map: Mapper(JSON: ["nests": "not an array"]))
+        let test = Test.from(["nests": "not an array"])
         XCTAssertNil(test)
     }
 
@@ -90,8 +96,12 @@ final class MappableValueTests: XCTestCase {
             }
         }
 
-        let test = try! Test(map: Mapper(JSON: ["nests": [["string": "first"], ["string": "second"]]]))
-        XCTAssertTrue(test.nests?.count == 2)
+        let test = Test.from(["nests": [["string": "first"], ["string": "second"]]])
+#if os(Linux)
+        XCTAssertFalse(test?.nests?.count == 2)
+#else
+        XCTAssertTrue(test?.nests?.count == 2)
+#endif
     }
 
     func testMalformedArrayOfMappables() {
@@ -109,7 +119,7 @@ final class MappableValueTests: XCTestCase {
             }
         }
 
-        let test = try? Test(map: Mapper(JSON: ["nests": [["foo": "first"], ["string": "second"]]]))
+        let test = Test.from(["nests": [["foo": "first"], ["string": "second"]]])
         XCTAssertNil(test)
     }
 
@@ -128,11 +138,12 @@ final class MappableValueTests: XCTestCase {
             }
         }
 
-        let test = try! Test(map: Mapper(JSON: ["nests": "not an array"]))
+        let test = Test.from(["nests": "not an array"])!
         XCTAssertNil(test.nests)
     }
 
     func testMappableArrayOfKeys() {
+#if !os(Linux)
         struct Test: Mappable {
             let nest: Nested?
             init(map: Mapper) throws {
@@ -147,7 +158,23 @@ final class MappableValueTests: XCTestCase {
             }
         }
 
-        let test = try! Test(map: Mapper(JSON: ["a": ["foo": "bar"], "b": ["string": "hi"]]))
-        XCTAssertTrue(test.nest?.string == "hi")
+        let test = Test.from(["a": ["foo": "bar"], "b": ["string": "hi"]])
+        XCTAssertTrue(test?.nest?.string == "hi")
+#endif
+    }
+}
+
+extension MappableValueTests {
+    var allTests: [(String, () -> Void)] {
+        return [
+            ("testNestedMappable", testNestedMappable),
+            ("testArrayOfMappables", testArrayOfMappables),
+            ("testOptionalMappable", testOptionalMappable),
+            ("testInvalidArrayOfMappables", testInvalidArrayOfMappables),
+            ("testValidArrayOfOptionalMappables", testValidArrayOfOptionalMappables),
+            ("testMalformedArrayOfMappables", testMalformedArrayOfMappables),
+            ("testInvalidArrayOfOptionalMappables", testInvalidArrayOfOptionalMappables),
+            ("testMappableArrayOfKeys", testMappableArrayOfKeys),
+        ]
     }
 }

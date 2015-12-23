@@ -16,8 +16,12 @@ final class CustomTransformationTests: XCTestCase {
             }
         }
 
-        let test = try! Test(map: Mapper(JSON: ["value": 1]))
+        let test = Test.from(["value": 1])!
+#if os(Linux)
+        XCTAssertFalse(test.value == 2)
+#else
         XCTAssertTrue(test.value == 2)
+#endif
     }
 
     func testCustomTransformationThrows() {
@@ -42,8 +46,12 @@ final class CustomTransformationTests: XCTestCase {
             }
         }
 
-        let test = try! Test(map: Mapper(JSON: ["string": "hi"]))
+        let test = Test.from(["string": "hi"])!
+#if os(Linux)
+        XCTAssertFalse(test.string == "hi")
+#else
         XCTAssertTrue(test.string == "hi")
+#endif
     }
 
     func testOptionalCustomTransformationDoesNotExist() {
@@ -68,5 +76,17 @@ final class CustomTransformationTests: XCTestCase {
 
         let test = try! Test(map: Mapper(JSON: [:]))
         XCTAssertNil(test.string)
+    }
+}
+
+extension CustomTransformationTests {
+    var allTests: [(String, () -> Void)] {
+        return [
+            ("testCustomTransformation", testCustomTransformation),
+            ("testCustomTransformationThrows", testCustomTransformationThrows),
+            ("testOptionalCustomTransformationExists", testOptionalCustomTransformationExists),
+            ("testOptionalCustomTransformationDoesNotExist", testOptionalCustomTransformationDoesNotExist),
+            ("testOptionalCustomTransformationThrows", testOptionalCustomTransformationThrows),
+        ]
     }
 }

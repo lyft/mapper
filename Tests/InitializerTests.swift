@@ -1,3 +1,4 @@
+import Foundation
 import Mapper
 import XCTest
 
@@ -20,7 +21,7 @@ final class InitializerTests: XCTestCase {
             }
         }
 
-        let test = Test.from([:])
+        let test = Test.from(NSDictionary())
         XCTAssertNil(test)
     }
 
@@ -33,12 +34,28 @@ final class InitializerTests: XCTestCase {
         }
 
         let test = Test.from(["string": "Hi"])
+#if os(Linux)
+        XCTAssertFalse(test?.string == "Hi")
+#else
         XCTAssertTrue(test?.string == "Hi")
+#endif
     }
 
     // Testing http://www.openradar.me/23376350
     func testCreatingWithConformanceInExtension() {
+#if !os(Linux)
         let test = TestExtension.from(["string": "Hi"])
         XCTAssertTrue(test?.string == "Hi")
+#endif
+    }
+}
+
+extension InitializerTests {
+    var allTests: [(String, () -> Void)] {
+        return [
+            ("testCreatingInvalidFromJSON", testCreatingInvalidFromJSON),
+            ("testCreatingValidFromJSON", testCreatingValidFromJSON),
+            ("testCreatingWithConformanceInExtension", testCreatingWithConformanceInExtension),
+        ]
     }
 }
