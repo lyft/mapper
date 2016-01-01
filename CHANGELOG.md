@@ -11,6 +11,9 @@
   [#19](https://github.com/lyft/mapper/pull/19)
 - Add tvOS support. [Ostap Taran](https://github.com/Austinate)
   [#12](https://github.com/lyft/mapper/pull/12)
+- Add universal framework support. This also adds watchOS support.
+  [Keith Smiley](https://github.com/keith)
+  [#20](https://github.com/lyft/mapper/pull/20)
 
 ## Bug Fixes
 
