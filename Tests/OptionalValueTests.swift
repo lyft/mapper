@@ -1,4 +1,3 @@
-import Foundation
 import Mapper
 import XCTest
 
@@ -27,7 +26,7 @@ final class OptionalValueTests: XCTestCase {
             }
         }
 
-        let test = try! Test(map: Mapper(JSON: NSDictionary()))
+        let test = try! Test(map: Mapper(JSON: [:]))
         XCTAssertNil(test.string)
     }
 
@@ -39,7 +38,7 @@ final class OptionalValueTests: XCTestCase {
             }
         }
 
-        let test = try! Test(map: Mapper(JSON: NSDictionary()))
+        let test = try! Test(map: Mapper(JSON: [:]))
         XCTAssertNil(test.string)
     }
 
@@ -90,7 +89,7 @@ final class OptionalValueTests: XCTestCase {
             }
         }
 
-        let test = Test.from(NSDictionary())!
+        let test = try! Test(map: Mapper(JSON: [:]))
         XCTAssertNil(test.string)
     }
 

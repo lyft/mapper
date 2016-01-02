@@ -1,4 +1,3 @@
-import Foundation
 import Mapper
 import XCTest
 
@@ -21,7 +20,7 @@ final class InitializerTests: XCTestCase {
             }
         }
 
-        let test = Test.from(NSDictionary())
+        let test = try? Test(map: Mapper(JSON: [:]))
         XCTAssertNil(test)
     }
 

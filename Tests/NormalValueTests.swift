@@ -1,5 +1,4 @@
 import Mapper
-import Foundation
 import XCTest
 
 final class NormalValueTests: XCTestCase {
@@ -27,7 +26,8 @@ final class NormalValueTests: XCTestCase {
             }
         }
 
-        XCTAssertNil(Test.from(NSDictionary()))
+        let test = try? Test(map: Mapper(JSON: [:]))
+        XCTAssertNil(test)
     }
 
     func testFallbackMissingKey() {
@@ -38,7 +38,7 @@ final class NormalValueTests: XCTestCase {
             }
         }
 
-        let test = Test.from(NSDictionary())
+        let test = try? Test(map: Mapper(JSON: [:]))
         XCTAssertTrue(test?.string == "Hello")
     }
 

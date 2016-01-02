@@ -1,4 +1,3 @@
-import Foundation
 import Mapper
 import XCTest
 
@@ -57,7 +56,7 @@ final class RawRepresentibleValueTests: XCTestCase {
             case First = 1
         }
 
-        let test = Test.from(NSDictionary())
+        let test = try? Test(map: Mapper(JSON: [:]))
         XCTAssertNil(test)
     }
 
@@ -73,7 +72,7 @@ final class RawRepresentibleValueTests: XCTestCase {
             case First = 1
         }
 
-        let test = Test.from(NSDictionary())!
+        let test = try! Test(map: Mapper(JSON: [:]))
         XCTAssertNil(test.value)
     }
 
