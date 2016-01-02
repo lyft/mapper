@@ -1,9 +1,8 @@
 import Foundation
+import Mapper
 import XCTest
 
 #if os(Linux)
-import Mapper
-
 XCTMain([
     ConvertibleValueTests(),
     CustomTransformationTests(),
