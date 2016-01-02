@@ -46,7 +46,7 @@ extension Mappable {
 }
 #else
 public protocol XCTestCaseProvider {
-    var allTests : [(String, () -> Void)] { get }
+    var allTests: [(String, () -> Void)] { get }
 }
 
 extension XCTestCase {
