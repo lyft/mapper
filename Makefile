@@ -76,12 +76,12 @@ test-linux: $(TEST_SRCS)
 		$(TEST_COMMAND) && \
 		./run-tests
 
-BUILT_PRODUCTS_DIR=/Users/ksmiley/dev/oss-swift/swift-corelibs-xctest/.build/debug
-test-oss-osx: $(TEST_SRCS)
-	swift build && \
-		$(TEST_COMMAND) \
-		-sdk "$(shell xcrun --sdk macosx --show-sdk-path)" \
-		-target x86_64-apple-macosx10.11 \
-		-I$(BUILT_PRODUCTS_DIR) \
-		-Xlinker $(BUILT_PRODUCTS_DIR)/XCTest.a && \
-		./run-tests
+# BUILT_PRODUCTS_DIR=/Users/ksmiley/dev/oss-swift/swift-corelibs-xctest/.build/debug
+# test-oss-osx: $(TEST_SRCS)
+# 	swift build && \
+# 		$(TEST_COMMAND) \
+# 		-sdk "$(shell xcrun --sdk macosx --show-sdk-path)" \
+# 		-target x86_64-apple-macosx10.11 \
+# 		-I$(BUILT_PRODUCTS_DIR) \
+# 		-Xlinker $(BUILT_PRODUCTS_DIR)/XCTest.a && \
+# 		./run-tests
