@@ -23,8 +23,11 @@ install-carthage:
 	brew rm carthage || true
 	brew install https://raw.githubusercontent.com/Homebrew/homebrew/96664cb3befd42f933de07d9fc0f61e8756d86c3/Library/Formula/carthage.rb
 
-install-oss-osx:
+install-swiftenv:
 	curl -sL https://gist.githubusercontent.com/kylef/5c0475ff02b7c7671d2a/raw/b07054552689910f79b3496221f7421a811f9f70/swiftenv-install.sh | bash
+
+install-oss-osx: install-swiftenv
+install-linux: install-swiftenv
 
 # Run Tasks
 
@@ -64,11 +67,12 @@ test-carthage:
 	ls Carthage/build/tvOS/Mapper.framework
 	ls Carthage/build/watchOS/Mapper.framework
 
-test-oss-osx:
+test-oss-osx: $(TEST_SRCS)
 	. ~/.swiftenv/init && swift build
 
 test-linux: $(TEST_SRCS)
-	swift build && \
+	. ~/.swiftenv/init && \
+		swift build && \
 		$(TEST_COMMAND) && \
 		./run-tests
 
