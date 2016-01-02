@@ -38,10 +38,12 @@ extension Mappable {
         for (key, array) in JSON {
             let items = NSMutableArray()
             for string in array {
-                    items.addObject(string.bridge())
+                items.addObject(string.bridge())
             }
+
             dictionary[key.bridge()] = items
         }
+
         return self.from(dictionary)
     }
 }
