@@ -79,7 +79,7 @@ final class CustomTransformationTests: XCTestCase {
     }
 }
 
-extension CustomTransformationTests {
+extension CustomTransformationTests: XCTestCaseProvider {
     var allTests: [(String, () -> Void)] {
         return [
             ("testCustomTransformation", testCustomTransformation),

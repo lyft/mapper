@@ -102,7 +102,7 @@ final class NormalValueTests: XCTestCase {
     }
 }
 
-extension NormalValueTests {
+extension NormalValueTests: XCTestCaseProvider {
     var allTests: [(String, () -> Void)] {
         return [
             ("testMappingString", testMappingString),

@@ -164,7 +164,7 @@ final class MappableValueTests: XCTestCase {
     }
 }
 
-extension MappableValueTests {
+extension MappableValueTests: XCTestCaseProvider {
     var allTests: [(String, () -> Void)] {
         return [
             ("testNestedMappable", testNestedMappable),

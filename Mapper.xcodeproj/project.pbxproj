@@ -8,6 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		C201748E1BD5509D00E4FE18 /* Mapper.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C20174831BD5509D00E4FE18 /* Mapper.framework */; };
+		C2A990101C37C78F005E1763 /* main.swift in Sources */ = {isa = PBXBuildFile; fileRef = C2A9900E1C37C722005E1763 /* main.swift */; };
 		C2C036FA1C2B1A0B003FB853 /* Convertible.swift in Sources */ = {isa = PBXBuildFile; fileRef = C2C036F31C2B1A0B003FB853 /* Convertible.swift */; };
 		C2C036FB1C2B1A0B003FB853 /* Errors.swift in Sources */ = {isa = PBXBuildFile; fileRef = C2C036F41C2B1A0B003FB853 /* Errors.swift */; };
 		C2C036FC1C2B1A0B003FB853 /* Mappable.swift in Sources */ = {isa = PBXBuildFile; fileRef = C2C036F51C2B1A0B003FB853 /* Mappable.swift */; };
@@ -38,6 +39,7 @@
 /* Begin PBXFileReference section */
 		C20174831BD5509D00E4FE18 /* Mapper.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Mapper.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		C201748D1BD5509D00E4FE18 /* MapperTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = MapperTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		C2A9900E1C37C722005E1763 /* main.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = main.swift; sourceTree = "<group>"; };
 		C2C036D11C2B180D003FB853 /* Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		C2C036D41C2B180D003FB853 /* UniversalFramework_Base.xcconfig */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xcconfig; path = UniversalFramework_Base.xcconfig; sourceTree = "<group>"; };
 		C2C036D51C2B180D003FB853 /* UniversalFramework_Framework.xcconfig */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xcconfig; path = UniversalFramework_Framework.xcconfig; sourceTree = "<group>"; };
@@ -129,6 +131,7 @@
 				C2C037021C2B1A14003FB853 /* ConvertibleValueTests.swift */,
 				C2C037031C2B1A14003FB853 /* CustomTransformationTests.swift */,
 				C2C037041C2B1A14003FB853 /* InitializerTests.swift */,
+				C2A9900E1C37C722005E1763 /* main.swift */,
 				C2C037051C2B1A14003FB853 /* MappableValueTests.swift */,
 				C2C037061C2B1A14003FB853 /* NormalValueTests.swift */,
 				C2C037071C2B1A14003FB853 /* OptionalValueTests.swift */,
@@ -230,6 +233,7 @@
 			files = (
 				C2C0370C1C2B1A14003FB853 /* InitializerTests.swift in Sources */,
 				C2C0370D1C2B1A14003FB853 /* MappableValueTests.swift in Sources */,
+				C2A990101C37C78F005E1763 /* main.swift in Sources */,
 				C2C037101C2B1A14003FB853 /* RawRepresentibleValueTests.swift in Sources */,
 				C2C0370A1C2B1A14003FB853 /* ConvertibleValueTests.swift in Sources */,
 				C2C0370E1C2B1A14003FB853 /* NormalValueTests.swift in Sources */,

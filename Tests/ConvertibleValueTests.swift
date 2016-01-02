@@ -132,7 +132,7 @@ final class ConvertibleValueTests: XCTestCase {
     }
 }
 
-extension ConvertibleValueTests {
+extension ConvertibleValueTests: XCTestCaseProvider {
     var allTests: [(String, () -> Void)] {
         return [
             ("testCreatingURL", testCreatingURL),

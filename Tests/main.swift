@@ -1,7 +1,7 @@
 import Foundation
-import Mapper
 import XCTest
 
+#if os(Linux)
 XCTMain([
     ConvertibleValueTests(),
     CustomTransformationTests(),
@@ -13,7 +13,6 @@ XCTMain([
     TransformTests(),
 ])
 
-#if os(Linux)
 extension Mappable {
     public static func from<T, U>(JSON: [T: U]) -> Self? {
         return self.from(JSON.bridge())
@@ -43,6 +42,32 @@ extension Mappable {
             dictionary[key.bridge()] = items
         }
         return self.from(dictionary)
+    }
+}
+#else
+public protocol XCTestCaseProvider {
+    var allTests : [(String, () -> Void)] { get }
+}
+
+extension XCTestCase {
+    override public func tearDown() {
+        if let provider = self as? XCTestCaseProvider {
+            provider.assertContainsTest(invocation!.selector.description)
+        } else {
+            XCTFail("XCTestCase must conform to XCTestCaseProvider")
+        }
+
+        super.tearDown()
+    }
+}
+
+extension XCTestCaseProvider {
+    private func assertContainsTest(name: String) {
+        let contains = self.allTests.contains({ test in
+            return test.0 == name
+        })
+
+        XCTAssert(contains, "Test '\(name)' is missing from the allTests array")
     }
 }
 #endif

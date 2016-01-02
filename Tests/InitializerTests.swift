@@ -50,7 +50,7 @@ final class InitializerTests: XCTestCase {
     }
 }
 
-extension InitializerTests {
+extension InitializerTests: XCTestCaseProvider {
     var allTests: [(String, () -> Void)] {
         return [
             ("testCreatingInvalidFromJSON", testCreatingInvalidFromJSON),

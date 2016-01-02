@@ -97,7 +97,7 @@ final class TransformTests: XCTestCase {
     }
 }
 
-extension TransformTests {
+extension TransformTests: XCTestCaseProvider {
     var allTests: [(String, () -> Void)] {
         return [
             ("testToDictionary", testToDictionary),

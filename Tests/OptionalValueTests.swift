@@ -111,7 +111,7 @@ final class OptionalValueTests: XCTestCase {
     }
 }
 
-extension OptionalValueTests {
+extension OptionalValueTests: XCTestCaseProvider {
     var allTests: [(String, () -> Void)] {
         return [
             ("testMappingStringToClass", testMappingStringToClass),

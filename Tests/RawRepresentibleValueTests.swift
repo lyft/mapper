@@ -134,7 +134,7 @@ final class RawRepresentibleValueTests: XCTestCase {
     }
 }
 
-extension RawRepresentibleValueTests {
+extension RawRepresentibleValueTests: XCTestCaseProvider {
     var allTests: [(String, () -> Void)] {
         return [
             ("testRawRepresentable", testRawRepresentable),
