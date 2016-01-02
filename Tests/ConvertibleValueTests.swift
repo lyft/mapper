@@ -1,3 +1,4 @@
+import Foundation
 import Mapper
 import XCTest
 
