@@ -351,6 +351,7 @@
 				PRODUCT_NAME = Mapper;
 				SKIP_INSTALL = YES;
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
+				TVOS_DEPLOYMENT_TARGET = 9.0;
 			};
 			name = Debug;
 		};
@@ -370,6 +371,7 @@
 				PRODUCT_BUNDLE_IDENTIFIER = com.Lyft.Mapper;
 				PRODUCT_NAME = Mapper;
 				SKIP_INSTALL = YES;
+				TVOS_DEPLOYMENT_TARGET = 9.0;
 			};
 			name = Release;
 		};
