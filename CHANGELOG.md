@@ -17,6 +17,9 @@
 - Add Swift package manager support
   [Keith Smiley](https://github.com/keith)
   [#22](https://github.com/lyft/mapper/pull/22)
+- Changed tvOS target from 9.1 to 9.0 
+  [Ostap Taran](https://github.com/Austinate)
+  [#24](https://github.com/lyft/mapper/pull/24)
 
 ## Bug Fixes
 
