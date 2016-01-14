@@ -150,4 +150,20 @@ final class MappableValueTests: XCTestCase {
         let test = try! Test(map: Mapper(JSON: ["a": ["foo": "bar"], "b": ["string": "hi"]]))
         XCTAssertTrue(test.nest?.string == "hi")
     }
+
+    func testMappableArrayOfKeysReturningNil() {
+        struct Test: Mappable {
+            let nest: Nested?
+            init(map: Mapper) throws {
+                self.nest = map.optionalFrom(["a", "b"])
+            }
+        }
+
+        struct Nested: Mappable {
+            init(map: Mapper) throws {}
+        }
+
+        let test = Test.from([:])!
+        XCTAssertNil(test.nest)
+    }
 }

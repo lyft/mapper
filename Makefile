@@ -16,6 +16,9 @@ install-carthage:
 	brew rm carthage || true
 	brew install https://raw.githubusercontent.com/Homebrew/homebrew/96664cb3befd42f933de07d9fc0f61e8756d86c3/Library/Formula/carthage.rb
 
+install-coverage:
+	true
+
 install-oss-osx:
 	curl -sL https://gist.githubusercontent.com/kylef/5c0475ff02b7c7671d2a/raw/b07054552689910f79b3496221f7421a811f9f70/swiftenv-install.sh | bash
 
@@ -56,6 +59,19 @@ test-carthage:
 	ls Carthage/build/iOS/Mapper.framework
 	ls Carthage/build/tvOS/Mapper.framework
 	ls Carthage/build/watchOS/Mapper.framework
+
+test-coverage:
+	set -o pipefail && \
+		xcodebuild \
+		-project Mapper.xcodeproj \
+		-scheme Mapper \
+		-derivedDataPath build \
+		-enableCodeCoverage YES \
+		test \
+		| xcpretty -ct
+	rm -f coverage.txt
+	Resources/coverage.sh build/Build/Intermediates/CodeCoverage/Mapper/Coverage.profdata build
+	! grep -C 10 "^\s*0" coverage.txt
 
 test-oss-osx:
 	. ~/.swiftenv/init && swift build

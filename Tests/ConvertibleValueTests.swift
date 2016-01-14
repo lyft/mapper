@@ -109,4 +109,16 @@ final class ConvertibleValueTests: XCTestCase {
         let test = try! Test(map: Mapper(JSON: ["a": "##", "b": "example.com"]))
         XCTAssertTrue(test.URL?.absoluteString == "example.com")
     }
+
+    func testConvertibleArrayOfKeysReturnsNil() {
+        struct Test: Mappable {
+            let URL: NSURL?
+            init(map: Mapper) throws {
+                self.URL = map.optionalFrom(["a", "b"])
+            }
+        }
+
+        let test = try! Test(map: Mapper(JSON: [:]))
+        XCTAssertNil(test.URL)
+    }
 }

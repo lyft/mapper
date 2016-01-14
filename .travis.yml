@@ -11,6 +11,8 @@ matrix:
     - os: osx
       env: ACTION=carthage
     - os: osx
+      env: ACTION=coverage
+    - os: osx
       env: ACTION=oss-osx
 
 language: objective-c
