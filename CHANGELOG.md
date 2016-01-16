@@ -6,6 +6,20 @@
 
 ## Enhancements
 
+- None
+
+## Bug Fixes
+
+- None
+
+# 1.0.2
+
+## Breaking
+
+- None
+
+## Enhancements
+
 - Added `@warn_unused_result` to functions declarations.
   [Ostap Taran](https://github.com/Austinate)
   [#19](https://github.com/lyft/mapper/pull/19)
