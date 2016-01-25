@@ -6,6 +6,20 @@
 
 ## Enhancements
 
+- None
+
+## Bug Fixes
+
+- None
+
+# 1.0.3
+
+## Breaking
+
+- None
+
+## Enhancements
+
 - Add function for creating `Mappable`s from a `NSArray`
   [Keith Smiley](https://github.com/keith)
   [#27](https://github.com/lyft/mapper/pull/27)
