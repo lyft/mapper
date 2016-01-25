@@ -338,6 +338,7 @@
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = C2C036D51C2B180D003FB853 /* UniversalFramework_Framework.xcconfig */;
 			buildSettings = {
+				APPLICATION_EXTENSION_API_ONLY = YES;
 				CLANG_ENABLE_MODULES = YES;
 				DEFINES_MODULE = YES;
 				DYLIB_COMPATIBILITY_VERSION = 1;
@@ -359,6 +360,7 @@
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = C2C036D51C2B180D003FB853 /* UniversalFramework_Framework.xcconfig */;
 			buildSettings = {
+				APPLICATION_EXTENSION_API_ONLY = YES;
 				CLANG_ENABLE_MODULES = YES;
 				DEFINES_MODULE = YES;
 				DYLIB_COMPATIBILITY_VERSION = 1;

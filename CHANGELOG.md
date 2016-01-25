@@ -12,7 +12,9 @@
 
 ## Bug Fixes
 
-- None
+- Use extension safe API to fix warning
+  [Keith Smiley](https://github.com/keith)
+  [#29](https://github.com/lyft/mapper/pull/29)
 
 # 1.0.2
 
