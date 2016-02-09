@@ -39,7 +39,7 @@ final class InitializerTests: XCTestCase {
         XCTAssertTrue(test?.string == "Hi")
     }
 
-    // MARK: from NSArray
+    // MARK: from NSArray as Optional
 
     func testCreatingFromArrayOfJSON() {
         struct Test: Mappable {
@@ -49,7 +49,7 @@ final class InitializerTests: XCTestCase {
             }
         }
 
-        let tests = Test.from([["string": "Hi"], ["string": "Bye"]])
+        let tests: [Test]? = Test.from([["string": "Hi"], ["string": "Bye"]])
         XCTAssertTrue(tests?.count == 2)
     }
 
@@ -61,7 +61,7 @@ final class InitializerTests: XCTestCase {
             }
         }
 
-        let tests = Test.from([["string": "Hi"], ["nope": "Bye"]])
+        let tests: [Test]? = Test.from([["string": "Hi"], ["nope": "Bye"]])
         XCTAssertNil(tests)
     }
 
@@ -73,8 +73,46 @@ final class InitializerTests: XCTestCase {
             }
         }
 
-        let tests = Test.from(["hi"])
+        let tests: [Test]? = Test.from(["hi"])
         XCTAssertNil(tests)
+    }
+    
+    // MARK: from NSArray as non-Optional
+    
+    func testCreatingNonOptionalFromArrayOfJSON() {
+        struct Test: Mappable {
+            let string: String
+            init(map: Mapper) throws {
+                try self.string = map.from("string")
+            }
+        }
+        
+        let tests: [Test] = Test.from([["string": "Hi"], ["string": "Bye"]])
+        XCTAssertTrue(tests.count == 2)
+    }
+    
+    func testCreatingNonOptionalFromPartiallyInvalidArrayOfJSON() {
+        struct Test: Mappable {
+            let string: String
+            init(map: Mapper) throws {
+                try self.string = map.from("string")
+            }
+        }
+        
+        let tests: [Test] = Test.from([["string": "Hi"], ["nope": "Bye"]])
+        XCTAssertTrue(tests.count == 1)
+    }
+    
+    func testCreatingNonOptionalFromInvalidArray() {
+        struct Test: Mappable {
+            let string: String
+            init(map: Mapper) throws {
+                try self.string = map.from("string")
+            }
+        }
+        
+        let tests: [Test] = Test.from(["hi"])
+        XCTAssertTrue(tests.count == 0)
     }
 
     // MARK: Testing http://www.openradar.me/23376350

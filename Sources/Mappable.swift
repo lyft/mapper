@@ -46,6 +46,17 @@ public protocol Mappable {
      */
     @warn_unused_result
     static func from(JSON: NSArray) -> [Self]?
+    
+    /**
+     Convenience method for creating Mappable objects from a NSArray. 
+     This method uses flatMap to ignore objects that throw.
+     
+     - parameter JSON: The JSON to create the objects from
+     
+     - returns: An array of the created objects, or [] if unable to create from the NSArray
+     */
+    @warn_unused_result
+    static func from(JSON: NSArray) -> [Self]
 }
 
 public extension Mappable {
@@ -61,5 +72,14 @@ public extension Mappable {
         }
 
         return nil
+    }
+    
+    @warn_unused_result
+    public static func from(JSON: NSArray) -> [Self] {
+        if let array = JSON as? [NSDictionary] {
+            return array.flatMap { try? self.init(map: Mapper(JSON: $0)) }
+        }
+        
+        return []
     }
 }
