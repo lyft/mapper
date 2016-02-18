@@ -134,7 +134,7 @@ public struct Mapper {
 
      This allows you to transparently have  arrays of RawRepresntable values
 
-     Note: If any value in the array is invalid (not convertible to the enum's raw representation ), the 
+     Note: If any value in the array is invalid (not convertible to the enum's raw representation ), the
      value is set to nil.
 
      - parameter key: The key to retrieve from the source data, can be an empty string to return the entire
