@@ -134,8 +134,8 @@ public struct Mapper {
 
      This allows you to transparently have  arrays of RawRepresntable values
 
-     Note: If any value in the array is invalid (convertible to the enum's raw representation ), this method
-     throws
+     Note: If any value in the array is invalid (not convertible to the enum's raw representation ), the 
+     value is set to nil.
 
      - parameter key: The key to retrieve from the source data, can be an empty string to return the entire
      data set
@@ -146,11 +146,14 @@ public struct Mapper {
      - returns: The value for the given key, if it can be converted to the expected type [T]
      */
     @warn_unused_result
-    public func from<T: RawRepresentable>(field: String) throws -> [T] {
-        if let JSON = self.JSONFromField(field) as? [T.RawValue] {
-            return try JSON.map {
-                guard let value = T(rawValue: $0) else  { throw MapperError() }
-                return value
+    public func from<T: RawRepresentable>(field: String) throws -> [T?] {
+        if let JSON = self.JSONFromField(field) as? [AnyObject] {
+            return JSON.map { value in
+                if let value = value as? T.RawValue {
+                    return T(rawValue: value)
+                } else {
+                    return nil
+                }
             }
         }
 
