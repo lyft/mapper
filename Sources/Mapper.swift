@@ -129,6 +129,37 @@ public struct Mapper {
         return nil
     }
 
+    /**
+     Get an array of RawRepresntable values from the given key in the source data
+
+     This allows you to transparently have  arrays of RawRepresntable values
+
+     Note: If any value in the array is invalid (not convertible to the enum's raw representation ), the
+     value is set to nil.
+
+     - parameter key: The key to retrieve from the source data, can be an empty string to return the entire
+     data set
+
+     - throws: `MapperError` if the value for the given key doesn't exist or cannot be converted to [T]
+     this mean Mapper throws if the given value is also not an array of values that can be used to intialize T
+
+     - returns: The value for the given key, if it can be converted to the expected type [T]
+     */
+    @warn_unused_result
+    public func from<T: RawRepresentable>(field: String) throws -> [T?] {
+        if let JSON = self.JSONFromField(field) as? [AnyObject] {
+            return JSON.map { value in
+                if let value = value as? T.RawValue {
+                    return T(rawValue: value)
+                } else {
+                    return nil
+                }
+            }
+        }
+
+        throw MapperError()
+    }
+
     // MARK: - T: Mappable
 
     /**
