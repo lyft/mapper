@@ -129,4 +129,45 @@ final class RawRepresentibleValueTests: XCTestCase {
         let test = try! Test(map: Mapper(JSON: [:]))
         XCTAssertNil(test.value)
     }
+
+    func testRawRepresentableArray() {
+        struct Test: Mappable {
+            let values: [Value]
+            init(map: Mapper) throws {
+                self.values = try map.from("values")
+            }
+        }
+        enum Value: String {
+            case ValueA = "a"
+            case ValueB = "b"
+            case ValueC = "c"
+        }
+        let json: NSDictionary = ["values": ["a", "b", "c", "a"]]
+
+        let test = try! Test(map: Mapper(JSON: json))
+        XCTAssert(test.values[0] == Value.ValueA)
+        XCTAssert(test.values[1] == Value.ValueB)
+        XCTAssert(test.values[2] == Value.ValueC)
+        XCTAssert(test.values[3] == Value.ValueA)
+    }
+
+    func testRawRepresentableInvalidArray() {
+        struct Test: Mappable {
+            let values: [Value]
+            init(map: Mapper) throws {
+                self.values = try map.from("values")
+            }
+        }
+        enum Value: String {
+            case ValueA = "a"
+            case ValueB = "b"
+            case ValueC = "c"
+        }
+        let json: NSDictionary = ["values": ["a", 1, "c", "a"]]
+
+        do {
+            let _ = try Test(map: Mapper(JSON: json))
+            XCTFail("Expecting Failure")
+        } catch { }
+    }
 }
