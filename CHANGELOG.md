@@ -2,6 +2,9 @@
 
 ## Breaking
 
+- Require types to be `Convertible` in order to use them.
+  [Keith Smiley](https://github.com/keith)
+  [#59](https://github.com/lyft/mapper/pull/59)
 - Allow transformations to throw when the field is missing
   [Keith Smiley](https://github.com/keith)
   [#52](https://github.com/lyft/mapper/pull/52)

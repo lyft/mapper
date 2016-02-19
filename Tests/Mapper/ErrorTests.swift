@@ -3,14 +3,18 @@ import XCTest
 
 final class ErrorTests: XCTestCase {
     func testTypeMismatch() {
+        struct Test: Mappable {
+            init(map: Mapper) throws {}
+        }
+
         do {
             let map = Mapper(JSON: ["field": 1])
-            let _: String = try map.from("field")
+            let _: Test = try map.from("field")
             XCTFail()
         } catch MapperError.TypeMismatchError(let field, let value, let type) {
             XCTAssert(field == "field")
             XCTAssert(value as? Int == 1)
-            XCTAssert(type == String.self)
+            XCTAssert(type == NSDictionary.self)
         } catch {
             XCTFail()
         }

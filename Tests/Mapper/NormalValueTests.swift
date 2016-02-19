@@ -14,6 +14,18 @@ final class NormalValueTests: XCTestCase {
         XCTAssertTrue(test.string == "Hello")
     }
 
+    func testMappingTimeInterval() {
+        struct Test: Mappable {
+            let string: NSTimeInterval
+            init(map: Mapper) throws {
+                try self.string = map.from("time")
+            }
+        }
+
+        let test = try! Test(map: Mapper(JSON: ["time": 123]))
+        XCTAssertTrue(test.string == 123)
+    }
+
     func testMappingMissingKey() {
         struct Test: Mappable {
             let string: String
@@ -52,7 +64,7 @@ final class NormalValueTests: XCTestCase {
 
     func testEmptyStringJSON() {
         struct Test: Mappable {
-            let JSON: AnyObject
+            let JSON: NSDictionary
             init(map: Mapper) throws {
                 try self.JSON = map.from("")
             }
@@ -85,5 +97,17 @@ final class NormalValueTests: XCTestCase {
 
         let test = try? Test(map: Mapper(JSON: ["strings": ["hi", 1]]))
         XCTAssertNil(test)
+    }
+
+    func testOptionalPropertyWithFrom() {
+        struct Test: Mappable {
+            let string: String?
+            init(map: Mapper) throws {
+                try self.string = map.from("string")
+            }
+        }
+
+        let test = try? Test(map: Mapper(JSON: ["string": "hi"]))
+        XCTAssertEqual(test?.string, "hi")
     }
 }

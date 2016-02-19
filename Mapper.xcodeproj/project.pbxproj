@@ -8,6 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		C201748E1BD5509D00E4FE18 /* Mapper.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C20174831BD5509D00E4FE18 /* Mapper.framework */; };
+		C20586EC1CDEAD9900658A67 /* DefaultConvertible.swift in Sources */ = {isa = PBXBuildFile; fileRef = C20586EB1CDEAD9900658A67 /* DefaultConvertible.swift */; };
 		C2B977A91CCD7AD800FDA451 /* ErrorTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = C2B977A71CCD7AB200FDA451 /* ErrorTests.swift */; };
 		C2C036FA1C2B1A0B003FB853 /* Convertible.swift in Sources */ = {isa = PBXBuildFile; fileRef = C2C036F31C2B1A0B003FB853 /* Convertible.swift */; };
 		C2C036FB1C2B1A0B003FB853 /* MapperError.swift in Sources */ = {isa = PBXBuildFile; fileRef = C2C036F41C2B1A0B003FB853 /* MapperError.swift */; };
@@ -39,6 +40,7 @@
 /* Begin PBXFileReference section */
 		C20174831BD5509D00E4FE18 /* Mapper.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Mapper.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		C201748D1BD5509D00E4FE18 /* MapperTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = MapperTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		C20586EB1CDEAD9900658A67 /* DefaultConvertible.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DefaultConvertible.swift; sourceTree = "<group>"; };
 		C2B977A71CCD7AB200FDA451 /* ErrorTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ErrorTests.swift; sourceTree = "<group>"; };
 		C2C036D11C2B180D003FB853 /* Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		C2C036D41C2B180D003FB853 /* UniversalFramework_Base.xcconfig */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xcconfig; path = UniversalFramework_Base.xcconfig; sourceTree = "<group>"; };
@@ -115,6 +117,7 @@
 			isa = PBXGroup;
 			children = (
 				C2C036F31C2B1A0B003FB853 /* Convertible.swift */,
+				C20586EB1CDEAD9900658A67 /* DefaultConvertible.swift */,
 				C2C036F51C2B1A0B003FB853 /* Mappable.swift */,
 				C2C036F61C2B1A0B003FB853 /* Mapper.swift */,
 				C2C036F41C2B1A0B003FB853 /* MapperError.swift */,
@@ -230,6 +233,7 @@
 				C2C036FD1C2B1A0B003FB853 /* Mapper.swift in Sources */,
 				C2C037001C2B1A0B003FB853 /* Transform.swift in Sources */,
 				C2C036FB1C2B1A0B003FB853 /* MapperError.swift in Sources */,
+				C20586EC1CDEAD9900658A67 /* DefaultConvertible.swift in Sources */,
 				C2C036FC1C2B1A0B003FB853 /* Mappable.swift in Sources */,
 				C2C036FA1C2B1A0B003FB853 /* Convertible.swift in Sources */,
 			);

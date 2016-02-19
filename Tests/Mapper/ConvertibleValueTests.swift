@@ -1,6 +1,12 @@
 import Mapper
 import XCTest
 
+private struct Foo: Convertible {
+    static func fromMap(value: AnyObject?) throws -> Foo {
+        return Foo()
+    }
+}
+
 final class ConvertibleValueTests: XCTestCase {
     func testCreatingURL() {
         struct Test: Mappable {
@@ -120,5 +126,83 @@ final class ConvertibleValueTests: XCTestCase {
 
         let test = try! Test(map: Mapper(JSON: [:]))
         XCTAssertNil(test.URL)
+    }
+
+    func testDictionaryConvertible() {
+        struct Test: Mappable {
+            let dictionary: [String: Int]
+
+            init(map: Mapper) throws {
+                try self.dictionary = map.from("foo")
+            }
+        }
+
+        let test = Test.from(["foo": ["key": 1]])!
+        XCTAssertTrue(test.dictionary["key"] == 1)
+    }
+
+    func testOptionalDictionaryConvertible() {
+        struct Test: Mappable {
+            let dictionary: [String: Int]?
+
+            init(map: Mapper) throws {
+                self.dictionary = map.optionalFrom("foo")
+            }
+        }
+
+        let test = Test.from(["foo": ["key": 1]])!
+        XCTAssertTrue(test.dictionary?["key"] == 1)
+    }
+
+    func testDictionaryOfConvertibles() {
+        struct Test: Mappable {
+            let dictionary: [String: Foo]
+
+            init(map: Mapper) throws {
+                try self.dictionary = map.from("foo")
+            }
+        }
+
+        let test = Test.from(["foo": ["key": "value"]])
+        XCTAssertTrue(test?.dictionary.count > 0)
+    }
+
+    func testOptionalDictionaryConvertibleNil() {
+        struct Test: Mappable {
+            let dictionary: [String: Int]?
+
+            init(map: Mapper) throws {
+                self.dictionary = map.optionalFrom("foo")
+            }
+        }
+
+        let test = Test.from(["foo": ["key": "not int"]])!
+        XCTAssertNil(test.dictionary)
+    }
+
+    func testDictionaryConvertibleSingleInvalid() {
+        struct Test: Mappable {
+            let dictionary: [String: Int]
+
+            init(map: Mapper) throws {
+                try self.dictionary = map.from("foo")
+            }
+        }
+
+        let test = Test.from(["foo": ["key": 1, "key2": "not int"]])
+        XCTAssertNil(test)
+    }
+
+    func testDictionaryButInvalidJSON() {
+        struct Test: Mappable {
+            let dictionary: [String: Int]
+
+            init(map: Mapper) throws {
+                try self.dictionary = map.from("foo")
+            }
+        }
+
+        let test = Test.from(["foo": "not a dictionary"])
+        XCTAssertNil(test)
     }
 }
