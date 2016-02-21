@@ -74,4 +74,9 @@ test-coverage:
 	! grep -C 10 "^\s*0" coverage.txt
 
 test-oss-osx:
-	. ~/.swiftenv/init && swift build
+	git clone https://github.com/apple/swift-package-manager
+	cd swift-package-manager && git checkout 6b8ec91
+	. ~/.swiftenv/init && \
+		swift-package-manager/Utilities/bootstrap && \
+		$(PWD)/swift-package-manager/.build/debug/swift-build && \
+		$(PWD)/swift-package-manager/.build/debug/swift-test
