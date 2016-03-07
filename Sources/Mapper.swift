@@ -31,11 +31,11 @@ public struct Mapper {
      */
     @warn_unused_result
     public func from<T>(field: String) throws -> T {
-        if let value = self.JSONFromField(field) as? T {
-            return value
+        guard let value = self.JSONFromField(field) as? T else {
+            throw MapperError()
         }
-
-        throw MapperError()
+        
+        return value
     }
 
     /**
@@ -86,13 +86,13 @@ public struct Mapper {
      */
     @warn_unused_result
     public func from<T: RawRepresentable>(field: String) throws -> T {
-        if let rawValue = self.JSONFromField(field) as? T.RawValue,
-            let value = T(rawValue: rawValue)
+        guard let rawValue = self.JSONFromField(field) as? T.RawValue,
+            let value = T(rawValue: rawValue) else
         {
-            return value
+            throw MapperError()
         }
 
-        throw MapperError()
+        return value
     }
 
     /**
@@ -145,11 +145,11 @@ public struct Mapper {
      */
     @warn_unused_result
     public func from<T: Mappable>(field: String) throws -> T {
-        if let JSON = self.JSONFromField(field) as? NSDictionary {
-            return try T(map: Mapper(JSON: JSON))
+        guard let JSON = self.JSONFromField(field) as? NSDictionary else {
+            throw MapperError()
         }
-
-        throw MapperError()
+        
+        return try T(map: Mapper(JSON: JSON))
     }
 
     /**
@@ -169,11 +169,11 @@ public struct Mapper {
      */
     @warn_unused_result
     public func from<T: Mappable>(field: String) throws -> [T] {
-        if let JSON = self.JSONFromField(field) as? [NSDictionary] {
-            return try JSON.map { try T(map: Mapper(JSON: $0)) }
+        guard let JSON = self.JSONFromField(field) as? [NSDictionary] else {
+            throw MapperError()
         }
-
-        throw MapperError()
+        
+        return try JSON.map { try T(map: Mapper(JSON: $0)) }
     }
 
     /**
@@ -260,11 +260,11 @@ public struct Mapper {
      */
     @warn_unused_result
     public func from<T: Convertible where T == T.ConvertedType>(field: String) throws -> [T] {
-        if let JSON = self.JSONFromField(field) as? [AnyObject] {
-            return try JSON.map(T.fromMap)
+        guard let JSON = self.JSONFromField(field) as? [AnyObject] else {
+            throw MapperError()
         }
 
-        throw MapperError()
+        return try JSON.map(T.fromMap)
     }
 
     /**

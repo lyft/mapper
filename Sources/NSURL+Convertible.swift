@@ -9,10 +9,10 @@ import Foundation
 extension NSURL: Convertible {
     @warn_unused_result
     public static func fromMap(value: AnyObject?) throws -> NSURL {
-        if let string = value as? String, let URL = NSURL(string: string) {
-            return URL
+        guard let string = value as? String, let URL = NSURL(string: string) else {
+            throw MapperError()
         }
 
-        throw MapperError()
+        return URL
     }
 }

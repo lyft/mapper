@@ -56,10 +56,10 @@ public extension Mappable {
 
     @warn_unused_result
     public static func from(JSON: NSArray) -> [Self]? {
-        if let array = JSON as? [NSDictionary] {
-            return try? array.map { try self.init(map: Mapper(JSON: $0)) }
+        guard let array = JSON as? [NSDictionary] else {
+            return nil
         }
-
-        return nil
+        
+        return try? array.map { try self.init(map: Mapper(JSON: $0)) }
     }
 }
