@@ -48,7 +48,7 @@ public struct Mapper {
      */
     @warn_unused_result
     public func optionalFrom<T>(field: String) -> T? {
-        return try? self.from(field)
+        return try_(try self.from(field))
     }
 
     /**
@@ -62,7 +62,7 @@ public struct Mapper {
     @warn_unused_result
     public func optionalFrom<T>(fields: [String]) -> T? {
         for field in fields {
-            if let value: T = try? self.from(field) {
+            if let value: T = try_(try self.from(field)) {
                 return value
             }
         }
@@ -107,7 +107,7 @@ public struct Mapper {
      */
     @warn_unused_result
     public func optionalFrom<T: RawRepresentable>(field: String) -> T? {
-        return try? self.from(field)
+        return try_(try self.from(field))
     }
 
     /**
@@ -121,7 +121,7 @@ public struct Mapper {
     @warn_unused_result
     public func optionalFrom<T: RawRepresentable>(fields: [String]) -> T? {
         for field in fields {
-            if let value: T = try? self.from(field) {
+            if let value: T = try_(try self.from(field)) {
                 return value
             }
         }
@@ -188,7 +188,7 @@ public struct Mapper {
      */
     @warn_unused_result
     public func optionalFrom<T: Mappable>(field: String) -> T? {
-        return try? self.from(field)
+        return try_(try self.from(field))
     }
 
     /**
@@ -205,7 +205,7 @@ public struct Mapper {
      */
     @warn_unused_result
     public func optionalFrom<T: Mappable>(field: String) -> [T]? {
-        return try? self.from(field)
+        return try_(try self.from(field))
     }
 
     /**
@@ -219,7 +219,7 @@ public struct Mapper {
     @warn_unused_result
     public func optionalFrom<T: Mappable>(fields: [String]) -> T? {
         for field in fields {
-            if let value: T = try? self.from(field) {
+            if let value: T = try_(try self.from(field)) {
                 return value
             }
         }
@@ -279,7 +279,7 @@ public struct Mapper {
      */
     @warn_unused_result
     public func optionalFrom<T: Convertible where T == T.ConvertedType>(field: String) -> T? {
-        return try? self.from(field, transformation: T.fromMap)
+        return try_(try self.from(field, transformation: T.fromMap))
     }
 
     /**
@@ -294,7 +294,7 @@ public struct Mapper {
      */
     @warn_unused_result
     public func optionalFrom<T: Convertible where T == T.ConvertedType>(field: String) -> [T]? {
-        return try? self.from(field)
+        return try_(try self.from(field))
     }
 
     /**
@@ -308,7 +308,7 @@ public struct Mapper {
     @warn_unused_result
     public func optionalFrom<T: Convertible where T == T.ConvertedType>(fields: [String]) -> T? {
         for field in fields {
-            if let value: T = try? self.from(field) {
+            if let value: T = try_(try self.from(field)) {
                 return value
             }
         }
@@ -347,7 +347,7 @@ public struct Mapper {
      */
     @warn_unused_result
     public func optionalFrom<T>(field: String, transformation: AnyObject? throws -> T?) -> T? {
-        return (try? transformation(self.JSONFromField(field))).flatMap { $0 }
+        return try_(try transformation(self.JSONFromField(field))).flatMap { $0 }
     }
 
     // MARK: - Private
@@ -363,5 +363,20 @@ public struct Mapper {
      */
     private func JSONFromField(field: String) -> AnyObject? {
         return field.isEmpty ? self.JSON : self.JSON.valueForKeyPath(field)
+    }
+}
+
+/**
+ This is our custom implementation of `try?` until the memory leak in Swift itself is fixed
+
+ - parameter closure: The throwing closure to execute
+
+ - returns: The value returned from executing the closure, or nil if it threw
+ */
+internal func try_<T>(@autoclosure closure: () throws -> T) -> T? {
+    do {
+        return try closure()
+    } catch {
+        return nil
     }
 }

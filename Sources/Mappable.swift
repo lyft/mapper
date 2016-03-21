@@ -51,13 +51,13 @@ public protocol Mappable {
 public extension Mappable {
     @warn_unused_result
     public static func from(JSON: NSDictionary) -> Self? {
-        return try? self.init(map: Mapper(JSON: JSON))
+        return try_(try self.init(map: Mapper(JSON: JSON)))
     }
 
     @warn_unused_result
     public static func from(JSON: NSArray) -> [Self]? {
         if let array = JSON as? [NSDictionary] {
-            return try? array.map { try self.init(map: Mapper(JSON: $0)) }
+            return try_(try array.map { try self.init(map: Mapper(JSON: $0)) })
         }
 
         return nil
