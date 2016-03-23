@@ -10,6 +10,20 @@
 
 ## Bug Fixes
 
+- None
+
+# 1.0.4
+
+## Breaking
+
+- None
+
+## Enhancements
+
+- None
+
+## Bug Fixes
+
 - Fix `try?` memory leak by removing uses of it
   [Keith Smiley](https://github.com/keith)
   [#39](https://github.com/lyft/mapper/pull/39)
