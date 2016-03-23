@@ -6,7 +6,9 @@
 
 ## Enhancements
 
-- None
+- Update for Swift 2.2
+  [Keith Smiley](https://github.com/keith)
+  [#41](https://github.com/lyft/mapper/pull/41)
 
 ## Bug Fixes
 

@@ -25,7 +25,7 @@
 public protocol Convertible {
     /// This typealias allows us to enforce the returned value is of type Self, without requiring
     /// implementations to return a value using `self.init`
-    typealias ConvertedType = Self
+    associatedtype ConvertedType = Self
 
     /**
      `fromMap` returns the expected value based off the provided input, this allows you to attempt
