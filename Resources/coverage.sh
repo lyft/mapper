@@ -2,7 +2,7 @@
 
 set -e
 
-profdata="$1"
-coverage_dir="$2"
-framework=$(find "$coverage_dir" -name "*.framework" | head -1)
-xcrun llvm-cov show -instr-profile "$profdata" "$framework/Mapper" > "coverage.txt"
+coverage_dir="$1"
+profdata=$(find "$coverage_dir" -name "*.profdata" | head -1)
+executable=$(find "$coverage_dir" -type f -name "Mapper" | head -1)
+xcrun llvm-cov show -instr-profile "$profdata" "$executable" > "coverage.txt"

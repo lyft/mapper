@@ -70,7 +70,7 @@ test-coverage:
 		test \
 		| xcpretty -ct
 	rm -f coverage.txt
-	Resources/coverage.sh build/Build/Intermediates/CodeCoverage/Mapper/Coverage.profdata build
+	Resources/coverage.sh build
 	! grep -C 10 "^\s*0" coverage.txt || true
 
 test-oss-osx:
