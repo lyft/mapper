@@ -35,7 +35,7 @@ public struct Mapper {
             return value
         }
 
-        throw MapperError()
+        throw MapperError(message: "Can't convert value of field '\(field)' to \(T.self)")
     }
 
     /**
@@ -92,7 +92,7 @@ public struct Mapper {
             return value
         }
 
-        throw MapperError()
+        throw MapperError(message: "Can't convert value of field '\(field)' to \(T.self)")
     }
 
     /**
@@ -149,7 +149,7 @@ public struct Mapper {
             return try T(map: Mapper(JSON: JSON))
         }
 
-        throw MapperError()
+        throw MapperError(message: "Can't convert value of field '\(field)' to \(T.self)")
     }
 
     /**
@@ -173,7 +173,7 @@ public struct Mapper {
             return try JSON.map { try T(map: Mapper(JSON: $0)) }
         }
 
-        throw MapperError()
+        throw MapperError(message: "Can't convert value of field '\(field)' to [\(T.self)]")
     }
 
     /**
@@ -264,7 +264,7 @@ public struct Mapper {
             return try JSON.map(T.fromMap)
         }
 
-        throw MapperError()
+        throw MapperError(message: "Can't convert value of field '\(field)' to [\(T.self)]")
     }
 
     /**

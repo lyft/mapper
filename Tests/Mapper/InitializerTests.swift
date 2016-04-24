@@ -83,4 +83,29 @@ final class InitializerTests: XCTestCase {
         let test = TestExtension.from(["string": "Hi"])
         XCTAssertTrue(test?.string == "Hi")
     }
+    
+    func testThrowingMapErrorForMissingField() {
+        struct Test: Mappable {
+            let field1: String
+            let field2: String
+            let field3: String
+            
+            init(map: Mapper) throws {
+                try self.field1 = map.from("field1")
+                try self.field2 = map.from("field2")
+                try self.field3 = map.from("field3")
+            }
+        }
+        
+        let mapper = Mapper(JSON: ["field1": "Hi", "field3": "Yes"])
+        
+        
+        do {
+            let _ = try Test(map: mapper)
+        } catch MapperError.MapError(let message) {
+            XCTAssertEqual(message, "Can't convert value of field 'field2' to String")
+        } catch {
+            XCTFail("Catched error \"\(error)\", but not the expected: \"\(MapperError.MapError)\"")
+        }
+    }
 }

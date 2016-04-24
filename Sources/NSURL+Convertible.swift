@@ -13,6 +13,6 @@ extension NSURL: Convertible {
             return URL
         }
 
-        throw MapperError()
+        throw MapperError(message: "Can't convert value '\(value)' to \(NSURL.self)")
     }
 }

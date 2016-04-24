@@ -52,7 +52,7 @@ public extension Transform {
     {
         return { object in
             guard let objects = object as? [NSDictionary] else {
-                throw MapperError()
+                throw MapperError(message: "Can't cast '\(object)' to [NSDictionary]")
             }
 
             var dictionary: [U: T] = [:]
