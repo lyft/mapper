@@ -71,7 +71,7 @@ test-coverage:
 		| xcpretty -ct
 	rm -f coverage.txt
 	Resources/coverage.sh build
-	! grep -C 10 "^\s*0" coverage.txt || true
+	! grep -C 10 "^\s*0" coverage.txt
 
 test-oss-osx:
 	git clone https://github.com/apple/swift-package-manager
