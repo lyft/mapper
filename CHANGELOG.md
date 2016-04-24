@@ -6,7 +6,9 @@
 
 ## Enhancements
 
-- None
+- Add custom `MapperError`s
+  [Keith Smiley](https://github.com/keith)
+  [#48](https://github.com/lyft/mapper/pull/48)
 
 ## Bug Fixes
 

@@ -25,17 +25,19 @@ public struct Mapper {
      - parameter key: The key to retrieve from the source data, can be an empty string to return the entire
                       data set
 
-     - throws: `MapperError` if the value for the given key doesn't exist or cannot be converted to T
+     - throws: MapperError.MissingFieldError if the field doesn't exist
+     - throws: MapperError.TypeMismatchError if the value exists with the incorrect type
 
      - returns: The value for the given key, if it can be converted to the expected type T
      */
     @warn_unused_result
     public func from<T>(field: String) throws -> T {
-        if let value = self.JSONFromField(field) as? T {
+        let value = try self.JSONFromField(field)
+        if let value = value as? T {
             return value
         }
 
-        throw MapperError()
+        throw MapperError.TypeMismatchError(field: field, value: value, type: T.self)
     }
 
     /**
@@ -80,19 +82,25 @@ public struct Mapper {
      - parameter key: The key to retrieve from the source data, can be an empty string to return the entire
                       data set
 
-     - throws: `MapperError` if the value for the given key doesn't exist or cannot be converted to T
+     - throws: MapperError.MissingFieldError    if the field doesn't exist
+     - throws: MapperError.TypeMismatchError    if the value exists but doesn't match the type of the RawValue
+     - throws: MapperError.InvalidRawValueError if the value exists with the correct type, but the type's
+                                                initializer fails with the passed rawValue
 
      - returns: The value for the given key, if it can be converted to the expected type T
      */
     @warn_unused_result
     public func from<T: RawRepresentable>(field: String) throws -> T {
-        if let rawValue = self.JSONFromField(field) as? T.RawValue,
-            let value = T(rawValue: rawValue)
-        {
-            return value
+        let object = try self.JSONFromField(field)
+        guard let rawValue = object as? T.RawValue else {
+            throw MapperError.TypeMismatchError(field: field, value: object, type: T.RawValue.self)
         }
 
-        throw MapperError()
+        guard let value = T(rawValue: rawValue) else {
+            throw MapperError.InvalidRawValueError(field: field, value: rawValue, type: T.self)
+        }
+
+        return value
     }
 
     /**
@@ -139,17 +147,19 @@ public struct Mapper {
      - parameter key: The key to retrieve from the source data, can be an empty string to return the entire
                       data set
 
-     - throws: `MapperError` if the value for the given key doesn't exist or cannot be converted to T
+     - throws: MapperError.MissingFieldError if the field doesn't exist
+     - throws: MapperError.TypeMismatchError if the field exists but isn't an NSDictionary
 
      - returns: The value for the given key, if it can be converted to the expected type T
      */
     @warn_unused_result
     public func from<T: Mappable>(field: String) throws -> T {
-        if let JSON = self.JSONFromField(field) as? NSDictionary {
+        let value = try self.JSONFromField(field)
+        if let JSON = value as? NSDictionary {
             return try T(map: Mapper(JSON: JSON))
         }
 
-        throw MapperError()
+        throw MapperError.TypeMismatchError(field: field, value: value, type: NSDictionary.self)
     }
 
     /**
@@ -162,18 +172,20 @@ public struct Mapper {
      - parameter key: The key to retrieve from the source data, can be an empty string to return the entire
                       data set
 
-     - throws: `MapperError` if the value for the given key doesn't exist or cannot be converted to [T]
-               this mean Mapper throws if the given value is also not an array of NSDictionaries
+     - throws: MapperError.MissingFieldError if the field doesn't exist
+     - throws: MapperError.TypeMismatchError if the field exists but isn't an array of NSDictionarys
+     - throws: Any errors produced by the subsequent Mappable initializers
 
      - returns: The value for the given key, if it can be converted to the expected type [T]
      */
     @warn_unused_result
     public func from<T: Mappable>(field: String) throws -> [T] {
-        if let JSON = self.JSONFromField(field) as? [NSDictionary] {
+        let value = try self.JSONFromField(field)
+        if let JSON = value as? [NSDictionary] {
             return try JSON.map { try T(map: Mapper(JSON: $0)) }
         }
 
-        throw MapperError()
+        throw MapperError.TypeMismatchError(field: field, value: value, type: [NSDictionary].self)
     }
 
     /**
@@ -237,7 +249,7 @@ public struct Mapper {
      - parameter key: The key to retrieve from the source data, can be an empty string to return the entire
                       data set
 
-     - throws: `MapperError` if the value for the given key doesn't exist or cannot be converted to T
+     - throws: Any error produced by the custom Convertible implementation
 
      - returns: The value for the given key, if it can be converted to the expected type T
      */
@@ -254,17 +266,20 @@ public struct Mapper {
      - parameter key: The key to retrieve from the source data, can be an empty string to return the entire
                       data set
 
-     - throws: `MapperError` if the value for the given key doesn't exist or cannot be converted to [T]
+     - throws: MapperError.MissingFieldError if the field doesn't exist
+     - throws: MapperError.TypeMismatchError if the field exists but isn't an array of AnyObject
+     - throws: Any error produced by the subsequent Convertible implementations
 
      - returns: The value for the given key, if it can be converted to the expected type [T]
      */
     @warn_unused_result
     public func from<T: Convertible where T == T.ConvertedType>(field: String) throws -> [T] {
-        if let JSON = self.JSONFromField(field) as? [AnyObject] {
+        let value = try self.JSONFromField(field)
+        if let JSON = value as? [AnyObject] {
             return try JSON.map(T.fromMap)
         }
 
-        throw MapperError()
+        throw MapperError.TypeMismatchError(field: field, value: value, type: [AnyObject].self)
     }
 
     /**
@@ -332,7 +347,7 @@ public struct Mapper {
      */
     @warn_unused_result
     public func from<T>(field: String, transformation: AnyObject? throws -> T) rethrows -> T {
-        return try transformation(self.JSONFromField(field))
+        return try transformation(try? self.JSONFromField(field))
     }
 
     /**
@@ -347,21 +362,27 @@ public struct Mapper {
      */
     @warn_unused_result
     public func optionalFrom<T>(field: String, transformation: AnyObject? throws -> T?) -> T? {
-        return (try? transformation(self.JSONFromField(field))).flatMap { $0 }
+        return (try? transformation(try? self.JSONFromField(field))).flatMap { $0 }
     }
 
     // MARK: - Private
 
     /**
-     Get the AnyObject? for a given key. If an empty string is passed, return the entire data source. This
+     Get the object for a given key. If an empty string is passed, return the entire data source. This
      allows users to create objects from multiple fields in the top level of the data source
 
      - parameter field: The key to extract from the data source, can be an empty string to return the entire
                         data source
 
+     - throws: MapperError.MissingFieldError if the field doesn't exist
+
      - returns: The object for the given key
      */
-    private func JSONFromField(field: String) -> AnyObject? {
-        return field.isEmpty ? self.JSON : self.JSON.valueForKeyPath(field)
+    private func JSONFromField(field: String) throws -> AnyObject {
+        if let value = field.isEmpty ? self.JSON : self.JSON.valueForKeyPath(field) {
+            return value
+        }
+
+        throw MapperError.MissingFieldError(field: field)
     }
 }

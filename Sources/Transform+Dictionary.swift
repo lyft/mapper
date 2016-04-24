@@ -37,11 +37,10 @@ public extension Transform {
      }
 
      - parameter key:    A function to extract the key U from an instance of the Mappable object T
-     - parameter object: The AnyObject? to attempt to produce the objects and dictionary from, this is
-                         AnyObject? to allow uses with transformations (see Mapper), if it is not an array of
-                         NSDictionaries a `MapperError` is thrown
+     - parameter object: The object to attempt to produce the objects and dictionary from, this is
+                         AnyObject? to allow uses with transformations (see Mapper)
 
-     - throws: `MapperError` if the given `object` is not an array of NSDictionaries
+     - throws: MapperError.ConvertibleError if the given object is not an array of NSDictionarys
 
      - returns: A dictionary of [U: T] where the keys U are produced from the passed `key` function and the
                 values T are the objects
@@ -52,7 +51,7 @@ public extension Transform {
     {
         return { object in
             guard let objects = object as? [NSDictionary] else {
-                throw MapperError()
+                throw MapperError.ConvertibleError(value: object, type: [NSDictionary].self)
             }
 
             var dictionary: [U: T] = [:]
