@@ -10,6 +10,20 @@
 
 ## Bug Fixes
 
+- None
+
+# 2.0.1
+
+## Breaking
+
+- None
+
+## Enhancements
+
+- None
+
+## Bug Fixes
+
 - Remove `try?` workaround which was fixed with Swift 2.2.1
   [Keith Smiley](https://github.com/keith)
   [#47](https://github.com/lyft/mapper/pull/47)
