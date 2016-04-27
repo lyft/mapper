@@ -32,10 +32,10 @@ public protocol Convertible {
      to cast the value to anything you'd like, and perform any manipulation on it (don't use this as a
      conversion mechanism, instead see Transform)
 
-     - parameter value: Any value (probably from the data source's value for the given key) to create
+     - parameter value: Any value (probably from the data source's value for the given field) to create
                         the expected object with
 
-     - throws: Any error from your custom implementation, `MapperError` is recommended
+     - throws: Any error from your custom implementation, MapperError.ConvertibleError is recommended
 
      - returns: The successfully created value from the given input
      */
