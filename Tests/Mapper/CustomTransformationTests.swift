@@ -6,7 +6,7 @@ final class CustomTransformationTests: XCTestCase {
         struct Test: Mappable {
             let value: Int
             init(map: Mapper) throws {
-                value = map.from("value", transformation: { thing in
+                value = try map.from("value", transformation: { thing in
                     if let a = thing as? Int {
                         return a + 1
                     } else {

@@ -61,7 +61,7 @@ final class ErrorTests: XCTestCase {
 
     func testCustomError() {
         do {
-            let map = Mapper(JSON: [:])
+            let map = Mapper(JSON: ["string": "hi"])
             _ = try map.from("string", transformation: { _ in
                 throw MapperError.CustomError(field: "string", message: "hi")
             })
@@ -77,7 +77,7 @@ final class ErrorTests: XCTestCase {
 
     func testDeprecatedInitializer() {
         do {
-            let map = Mapper(JSON: [:])
+            let map = Mapper(JSON: ["string": 1])
             _ = try map.from("string", transformation: { _ in throw MapperError() })
             XCTFail()
         } catch MapperError.CustomError(let field, let message) {

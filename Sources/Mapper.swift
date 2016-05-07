@@ -340,14 +340,15 @@ public struct Mapper {
                                  the entire data set
      - parameter transformation: The transformation function used to create the expected value
 
+     - throws: MapperError.MissingFieldError if the field doesn't exist
      - throws: Any exception thrown by the transformation function, if you're implementing the transformation
                function you should use `MapperError`, see the documentation there for more info
 
-     - returns: The value of type T for the given field, if the transformation function doesn't throw
+     - returns: The value of type T for the given field
      */
     @warn_unused_result
-    public func from<T>(field: String, transformation: AnyObject? throws -> T) rethrows -> T {
-        return try transformation(try? self.JSONFromField(field))
+    public func from<T>(field: String, transformation: AnyObject? throws -> T) throws -> T {
+        return try transformation(try self.JSONFromField(field))
     }
 
     /**

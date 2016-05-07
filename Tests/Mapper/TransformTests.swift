@@ -61,8 +61,15 @@ final class TransformTests: XCTestCase {
             }
         }
 
-        let test = try? Test(map: Mapper(JSON: [:]))
-        XCTAssertNil(test)
+        do {
+            _ = try Test(map: Mapper(JSON: ["examples": 1]))
+            XCTFail()
+        } catch MapperError.ConvertibleError(let value, let type) {
+            XCTAssert(value as? Int == 1)
+            XCTAssert(type == [NSDictionary].self)
+        } catch {
+            XCTFail()
+        }
     }
 
     func testToDictionaryOneInvalid() {
@@ -90,5 +97,17 @@ final class TransformTests: XCTestCase {
 
         let test = try? Test(map: Mapper(JSON: JSON))
         XCTAssertNil(test)
+    }
+
+    func testMissingFieldErrorFromTransformation() {
+        do {
+            let map = Mapper(JSON: [:])
+            let _: String = try map.from("foo", transformation: { _ in return "hi" })
+            XCTFail()
+        } catch MapperError.MissingFieldError(let field) {
+            XCTAssert(field == "foo")
+        } catch {
+            XCTFail()
+        }
     }
 }

@@ -2,7 +2,9 @@
 
 ## Breaking
 
-- None
+- Allow transformations to throw when the field is missing
+  [Keith Smiley](https://github.com/keith)
+  [#52](https://github.com/lyft/mapper/pull/52)
 
 ## Enhancements
 
