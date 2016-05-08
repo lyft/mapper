@@ -74,17 +74,4 @@ final class ErrorTests: XCTestCase {
             XCTFail()
         }
     }
-
-    func testDeprecatedInitializer() {
-        do {
-            let map = Mapper(JSON: ["string": 1])
-            _ = try map.from("string", transformation: { _ in throw MapperError() })
-            XCTFail()
-        } catch MapperError.CustomError(let field, let message) {
-            XCTAssertNil(field)
-            XCTAssertFalse(message.isEmpty)
-        } catch {
-            XCTFail()
-        }
-    }
 }

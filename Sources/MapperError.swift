@@ -16,10 +16,4 @@ public enum MapperError: ErrorType {
     case InvalidRawValueError(field: String, value: Any, type: Any.Type)
     case MissingFieldError(field: String)
     case TypeMismatchError(field: String, value: AnyObject, type: Any.Type)
-
-    @available(*, deprecated, message="MapperError initializer is deprecated. Use an enum case directly.")
-    @warn_unused_result
-    public init() {
-        self = .CustomError(field: nil, message: "Legacy MapperError initializer")
-    }
 }

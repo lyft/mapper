@@ -5,6 +5,9 @@
 - Allow transformations to throw when the field is missing
   [Keith Smiley](https://github.com/keith)
   [#52](https://github.com/lyft/mapper/pull/52)
+- Remove the `MapperError` initializer
+  [Keith Smiley](https://github.com/keith)
+  [#53](https://github.com/lyft/mapper/pull/53)
 
 ## Enhancements
 
