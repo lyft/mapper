@@ -14,7 +14,9 @@
 
 ## Enhancements
 
-- None
+- Add `@noescape` to transformation closures
+  [Keith Smiley](https://github.com/keith)
+  [#60](https://github.com/lyft/mapper/pull/60)
 
 ## Bug Fixes
 

@@ -359,7 +359,7 @@ public struct Mapper {
      - returns: The value of type T for the given field
      */
     @warn_unused_result
-    public func from<T>(field: String, transformation: AnyObject? throws -> T) throws -> T {
+    public func from<T>(field: String, @noescape transformation: AnyObject? throws -> T) throws -> T {
         return try transformation(try self.JSONFromField(field))
     }
 
@@ -374,7 +374,7 @@ public struct Mapper {
                 otherwise nil
      */
     @warn_unused_result
-    public func optionalFrom<T>(field: String, transformation: AnyObject? throws -> T?) -> T? {
+    public func optionalFrom<T>(field: String, @noescape transformation: AnyObject? throws -> T?) -> T? {
         return (try? transformation(try? self.JSONFromField(field))).flatMap { $0 }
     }
 
