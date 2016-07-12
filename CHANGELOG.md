@@ -17,6 +17,9 @@
 - Add `@noescape` to transformation closures
   [Keith Smiley](https://github.com/keith)
   [#60](https://github.com/lyft/mapper/pull/60)
+- Add `from` for arrays of `RawRepresentable`s
+  [Keith Smiley](https://github.com/keith)
+  [#61](https://github.com/lyft/mapper/pull/61)
 
 ## Bug Fixes
 

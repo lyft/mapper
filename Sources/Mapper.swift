@@ -82,6 +82,33 @@ public struct Mapper {
         return nil
     }
 
+    /**
+     Get an array of RawRepresentable values from a field in the the source data.
+
+     - note: If T.init(rawValue:) fails given the T.RawValue from the array of source data, that value will be
+             replaced by the passed defaultValue, which defaults to nil. The resulting array is flatMapped and
+             all nils are removed. This means that any unrecognized values will be removed or replaced with a
+             default. This ensures backwards compatibility if your source data has keys that your mapping
+             layer doesn't know about yet.
+
+     - parameter field:        The field to use from the source data
+     - parameter defaultValue: The value to use if the rawValue initializer fails
+
+     - returns: An array of the RawRepresentable value, with all nils removed
+     */
+    @warn_unused_result
+    public func from<T: RawRepresentable where T.RawValue: Convertible,
+        T.RawValue == T.RawValue.ConvertedType>(field: String, defaultValue: T? = nil) throws -> [T]
+    {
+        let value = try self.JSONFromField(field)
+        guard let array = value as? [AnyObject] else {
+            throw MapperError.TypeMismatchError(field: field, value: value, type: [AnyObject].self)
+        }
+
+        let rawValues = try array.map { try T.RawValue.fromMap($0) }
+        return rawValues.flatMap { T(rawValue: $0) ?? defaultValue }
+    }
+
     // MARK: - T: Mappable
 
     /**
@@ -112,7 +139,7 @@ public struct Mapper {
 
      This allows you to transparently have nested arrays of Mappable values
 
-     Note: If any value in the array of NSDictionaries is invalid, this method throws
+     - note: If any value in the array of NSDictionaries is invalid, this method throws
 
      - parameter field: The field to retrieve from the source data, can be an empty string to return the
                         entire data set
@@ -153,7 +180,7 @@ public struct Mapper {
 
      This allows you to transparently have nested arrays of Mappable values
 
-     Note: If any value in the provided array of NSDictionaries is invalid, this method returns nil
+     - note: If any value in the provided array of NSDictionaries is invalid, this method returns nil
 
      - parameter field: The field to retrieve from the source data, can be an empty string to return the
                         entire data set

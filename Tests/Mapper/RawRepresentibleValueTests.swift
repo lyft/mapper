@@ -129,4 +129,115 @@ final class RawRepresentibleValueTests: XCTestCase {
         let test = try! Test(map: Mapper(JSON: [:]))
         XCTAssertNil(test.value)
     }
+
+    func testArrayOfValuesWithMissingKey() {
+        struct Test: Mappable {
+            let value: [Value]
+            init(map: Mapper) throws {
+                self.value = try map.from("a")
+            }
+        }
+
+        enum Value: String {
+            case First = "hi"
+        }
+
+        do {
+            _ = try Test(map: Mapper(JSON: [:]))
+            XCTFail("Expected initialization to fail")
+        } catch MapperError.MissingFieldError(let field) {
+            XCTAssertEqual(field, "a")
+        } catch let error {
+            XCTFail("Expected only missing field error, got \(error)")
+        }
+    }
+
+    func testArrayOfValuesInvalidArray() {
+        struct Test: Mappable {
+            let values: [Value]
+            init(map: Mapper) throws {
+                self.values = try map.from("a")
+            }
+        }
+
+        enum Value: String {
+            case First = "hi"
+        }
+
+        do {
+            _ = try Test(map: Mapper(JSON: ["a": 1]))
+            XCTFail("Expected initialization to fail")
+        } catch MapperError.TypeMismatchError(let field, let value, let type) {
+            XCTAssertEqual(field, "a")
+            XCTAssertEqual(value as? Int, 1)
+            XCTAssert(type == [AnyObject].self)
+        } catch let error {
+            XCTFail("Expected only missing field error, got \(error)")
+        }
+    }
+
+    func testArrayOfValuesFailedConvertible() {
+        struct Test: Mappable {
+            let values: [Value]
+            init(map: Mapper) throws {
+                self.values = try map.from("a")
+            }
+        }
+
+        enum Value: String {
+            case First = "hi"
+        }
+
+        do {
+            _ = try Test(map: Mapper(JSON: ["a": [1]]))
+            XCTFail("Expected initialization to fail")
+        } catch MapperError.ConvertibleError(let value, let type) {
+            XCTAssertEqual(value as? Int, 1)
+            XCTAssert(type == String.self)
+        } catch let error {
+            XCTFail("Expected only missing field error, got \(error)")
+        }
+    }
+
+    func testArrayOfValuesFiltersNilsWithoutDefault() {
+        struct Test: Mappable {
+            let values: [Value]
+            init(map: Mapper) throws {
+                self.values = try map.from("a")
+            }
+        }
+
+        enum Value: String {
+            case First = "hi"
+        }
+
+        do {
+            let test = try Test(map: Mapper(JSON: ["a": ["hi", "invalid"]]))
+            XCTAssertEqual(test.values.count, 1)
+            XCTAssert(test.values.contains(.First))
+        } catch let error {
+            XCTFail("Expected no errors, got \(error)")
+        }
+    }
+
+    func testArrayOfValuesInsertsDefault() {
+        struct Test: Mappable {
+            let values: [Value]
+            init(map: Mapper) throws {
+                self.values = try map.from("a", defaultValue: .First)
+            }
+        }
+
+        enum Value: String {
+            case First = "hi"
+        }
+
+        do {
+            let test = try Test(map: Mapper(JSON: ["a": ["invalid"]]))
+            XCTAssertEqual(test.values.count, 1)
+            XCTAssert(test.values.contains(.First))
+        } catch let error {
+            XCTFail("Expected no errors, got \(error)")
+        }
+    }
 }
