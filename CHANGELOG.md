@@ -2,6 +2,20 @@
 
 ## Breaking
 
+- None
+
+## Enhancements
+
+- None
+
+## Bug Fixes
+
+- None
+
+# 3.0.0
+
+## Breaking
+
 - Require types to be `Convertible` in order to use them.
   [Keith Smiley](https://github.com/keith)
   [#59](https://github.com/lyft/mapper/pull/59)
