@@ -2,7 +2,9 @@
 
 ## Breaking
 
-- None
+- Swift 2.3 support
+  [Keith Smiley](https://github.com/keith)
+  [#73](https://github.com/lyft/mapper/pull/73)
 
 ## Enhancements
 
