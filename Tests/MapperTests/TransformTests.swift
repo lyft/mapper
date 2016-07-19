@@ -64,7 +64,7 @@ final class TransformTests: XCTestCase {
         do {
             _ = try Test(map: Mapper(JSON: ["examples": 1]))
             XCTFail()
-        } catch MapperError.ConvertibleError(let value, let type) {
+        } catch MapperError.convertibleError(let value, let type) {
             XCTAssert(value as? Int == 1)
             XCTAssert(type == [NSDictionary].self)
         } catch {
@@ -104,7 +104,7 @@ final class TransformTests: XCTestCase {
             let map = Mapper(JSON: [:])
             let _: String = try map.from("foo", transformation: { _ in return "hi" })
             XCTFail()
-        } catch MapperError.MissingFieldError(let field) {
+        } catch MapperError.missingFieldError(let field) {
             XCTAssert(field == "foo")
         } catch {
             XCTFail()

@@ -25,7 +25,7 @@ final class CustomTransformationTests: XCTestCase {
             let value: Int
             init(map: Mapper) throws {
                 try value = map.from("foo", transformation: { object in
-                    throw MapperError.CustomError(field: nil, message: "")
+                    throw MapperError.customError(field: nil, message: "")
                 })
             }
         }
@@ -63,7 +63,7 @@ final class CustomTransformationTests: XCTestCase {
             let string: String?
             init(map: Mapper) throws {
                 string = map.optionalFrom("foo", transformation: { _ in
-                    throw MapperError.CustomError(field: nil, message: "")
+                    throw MapperError.customError(field: nil, message: "")
                 })
             }
         }
