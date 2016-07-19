@@ -2,9 +2,13 @@
 
 ## Breaking
 
-- Swift 2.3 support
+- Swift 3.0 support
   [Keith Smiley](https://github.com/keith)
-  [#73](https://github.com/lyft/mapper/pull/73)
+  [#76](https://github.com/lyft/mapper/pull/76)
+
+- Update transformation function to take `Any`
+  [Keith Smiley](https://github.com/keith)
+  [#76](https://github.com/lyft/mapper/pull/76)
 
 ## Enhancements
 

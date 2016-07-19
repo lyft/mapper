@@ -11,12 +11,12 @@
 public protocol DefaultConvertible: Convertible {}
 
 extension DefaultConvertible {
-    public static func fromMap(value: AnyObject?) throws -> ConvertedType {
+    public static func fromMap(_ value: Any) throws -> ConvertedType {
         if let object = value as? ConvertedType {
             return object
         }
 
-        throw MapperError.ConvertibleError(value: value, type: ConvertedType.self)
+        throw MapperError.convertibleError(value: value, type: ConvertedType.self)
     }
 }
 

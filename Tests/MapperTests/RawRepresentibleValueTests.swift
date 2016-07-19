@@ -27,11 +27,11 @@ final class RawRepresentibleValueTests: XCTestCase {
         }
 
         enum Value: Int {
-            case First = 1
+            case first = 1
         }
 
         let test = try? Test(map: Mapper(JSON: ["value": 1]))
-        XCTAssertTrue(test?.value == .First)
+        XCTAssertTrue(test?.value == .first)
     }
 
     func testMissingRawRepresentableNumber() {
@@ -43,7 +43,7 @@ final class RawRepresentibleValueTests: XCTestCase {
         }
 
         enum Value: Int {
-            case First = 1
+            case first = 1
         }
 
         let test = try? Test(map: Mapper(JSON: [:]))
@@ -59,7 +59,7 @@ final class RawRepresentibleValueTests: XCTestCase {
         }
 
         enum Value: Int {
-            case First = 1
+            case first = 1
         }
 
         let test = Test(map: Mapper(JSON: [:]))
@@ -75,11 +75,11 @@ final class RawRepresentibleValueTests: XCTestCase {
         }
 
         enum Value: Int {
-            case First = 1
+            case first = 1
         }
 
         let test = Test(map: Mapper(JSON: ["value": 1]))
-        XCTAssertTrue(test.value == .First)
+        XCTAssertTrue(test.value == .first)
     }
 
     func testRawRepresentableTypeMismatch() {
@@ -91,7 +91,7 @@ final class RawRepresentibleValueTests: XCTestCase {
         }
 
         enum Value: Int {
-            case First = 1
+            case first = 1
         }
 
         let test = Test(map: Mapper(JSON: ["value": "not an int"]))
@@ -145,7 +145,7 @@ final class RawRepresentibleValueTests: XCTestCase {
         do {
             _ = try Test(map: Mapper(JSON: [:]))
             XCTFail("Expected initialization to fail")
-        } catch MapperError.MissingFieldError(let field) {
+        } catch MapperError.missingFieldError(let field) {
             XCTAssertEqual(field, "a")
         } catch let error {
             XCTFail("Expected only missing field error, got \(error)")
@@ -167,10 +167,10 @@ final class RawRepresentibleValueTests: XCTestCase {
         do {
             _ = try Test(map: Mapper(JSON: ["a": 1]))
             XCTFail("Expected initialization to fail")
-        } catch MapperError.TypeMismatchError(let field, let value, let type) {
+        } catch MapperError.typeMismatchError(let field, let value, let type) {
             XCTAssertEqual(field, "a")
             XCTAssertEqual(value as? Int, 1)
-            XCTAssert(type == [AnyObject].self)
+            XCTAssert(type == [Any].self)
         } catch let error {
             XCTFail("Expected only missing field error, got \(error)")
         }
@@ -191,7 +191,7 @@ final class RawRepresentibleValueTests: XCTestCase {
         do {
             _ = try Test(map: Mapper(JSON: ["a": [1]]))
             XCTFail("Expected initialization to fail")
-        } catch MapperError.ConvertibleError(let value, let type) {
+        } catch MapperError.convertibleError(let value, let type) {
             XCTAssertEqual(value as? Int, 1)
             XCTAssert(type == String.self)
         } catch let error {

@@ -16,7 +16,7 @@ final class NormalValueTests: XCTestCase {
 
     func testMappingTimeInterval() {
         struct Test: Mappable {
-            let string: NSTimeInterval
+            let string: TimeInterval
             init(map: Mapper) throws {
                 try self.string = map.from("time")
             }
@@ -71,7 +71,7 @@ final class NormalValueTests: XCTestCase {
         }
 
         let JSON = ["a": "b", "c": "d"]
-        let test = try? Test(map: Mapper(JSON: JSON))
+        let test = try? Test(map: Mapper(JSON: JSON as NSDictionary))
         let parsedJSON = test?.JSON as? [String: String] ?? [:]
         XCTAssertTrue(parsedJSON == JSON)
     }
