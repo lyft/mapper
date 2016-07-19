@@ -64,7 +64,7 @@ final class ConvertibleValueTests: XCTestCase {
             }
         }
 
-        let test = try Test(map: Mapper(JSON: [:]))
+        let test = Test(map: Mapper(JSON: [:]))
         XCTAssertNil(test.URLs)
     }
 

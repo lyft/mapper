@@ -94,6 +94,9 @@ public struct Mapper {
      - parameter field:        The field to use from the source data
      - parameter defaultValue: The value to use if the rawValue initializer fails
 
+     - throws: MapperError.TypeMismatchError when the value for the key is not an array of AnyObject
+     - throws: Any other error produced by a Convertible implementation
+
      - returns: An array of the RawRepresentable value, with all nils removed
      */
     @warn_unused_result
