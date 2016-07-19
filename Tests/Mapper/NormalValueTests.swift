@@ -16,7 +16,7 @@ final class NormalValueTests: XCTestCase {
 
     func testMappingTimeInterval() {
         struct Test: Mappable {
-            let string: NSTimeInterval
+            let string: TimeInterval
             init(map: Mapper) throws {
                 try self.string = map.from("time")
             }

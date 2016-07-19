@@ -29,7 +29,7 @@ import Mapper
 // Conform to the Mappable protocol
 struct User: Mappable {
   let id: String
-  let photoURL: NSURL?
+  let photoURL: URL?
 
   // Implement this initializer
   init(map: Mapper) throws {
@@ -95,7 +95,7 @@ extension CLLocationCoordinate2D: Convertible {
       let latitude = location["lat"] as? Double,
       let longitude = location["lng"] as? Double else
       {
-         throw MapperError.ConvertibleError(value: value, type: [String: Double].self)
+         throw MapperError.convertibleError(value: value, type: [String: Double].self)
       }
 
       return CLLocationCoordinate2D(latitude: latitude, longitude: longitude)
@@ -128,7 +128,7 @@ let place = Place.from(JSON)
 ```swift
 private func extractFirstName(object: AnyObject?) throws -> String {
   guard let fullName = object as? String else {
-    throw MapperError.ConvertibleError(value: object, type: String.self)
+    throw MapperError.convertibleError(value: object, type: String.self)
   }
 
   let parts = fullName.characters.split { $0 == " " }.map(String.init)
@@ -136,7 +136,7 @@ private func extractFirstName(object: AnyObject?) throws -> String {
     return firstName
   }
 
-  throw MapperError.CustomError(field: nil, message: "Couldn't split the string!")
+  throw MapperError.customError(field: nil, message: "Couldn't split the string!")
 }
 
 struct User: Mappable {

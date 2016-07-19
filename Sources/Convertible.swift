@@ -3,7 +3,7 @@
  this differs from the Mappable protocol because the creation function is passed
  an AnyObject, allowing your definition to accept any data, and convert it as seen fit
 
- NSURL's Convertible implementation is provided by default, assuming the passed value
+ URL's Convertible implementation is provided by default, assuming the passed value
  is a String
 
  Example:
@@ -35,10 +35,9 @@ public protocol Convertible {
      - parameter value: Any value (probably from the data source's value for the given field) to create
                         the expected object with
 
-     - throws: Any error from your custom implementation, MapperError.ConvertibleError is recommended
+     - throws: Any error from your custom implementation, MapperError.convertibleError is recommended
 
      - returns: The successfully created value from the given input
      */
-    @warn_unused_result
-    static func fromMap(value: AnyObject?) throws -> ConvertedType
+    static func fromMap(_ value: AnyObject?) throws -> ConvertedType
 }

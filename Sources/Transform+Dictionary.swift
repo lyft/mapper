@@ -40,18 +40,17 @@ public extension Transform {
      - parameter object: The object to attempt to produce the objects and dictionary from, this is
                          AnyObject? to allow uses with transformations (see Mapper)
 
-     - throws: MapperError.ConvertibleError if the given object is not an array of NSDictionarys
+     - throws: MapperError.convertibleError if the given object is not an array of NSDictionarys
 
      - returns: A dictionary of [U: T] where the keys U are produced from the passed `key` function and the
                 values T are the objects
      */
-    @warn_unused_result
-    public static func toDictionary<T, U where T: Mappable, U: Hashable>(key getKey: T -> U) ->
+    public static func toDictionary<T, U where T: Mappable, U: Hashable>(key getKey: (T) -> U) ->
         (object: AnyObject?) throws -> [U: T]
     {
         return { object in
             guard let objects = object as? [NSDictionary] else {
-                throw MapperError.ConvertibleError(value: object, type: [NSDictionary].self)
+                throw MapperError.convertibleError(value: object, type: [NSDictionary].self)
             }
 
             var dictionary: [U: T] = [:]
