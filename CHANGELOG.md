@@ -20,6 +20,9 @@
 - Add `from` for arrays of `RawRepresentable`s
   [Keith Smiley](https://github.com/keith)
   [#61](https://github.com/lyft/mapper/pull/61)
+- Remove force trys and casts from tests
+  [Keith Smiley](https://github.com/keith)
+  [#62](https://github.com/lyft/mapper/pull/62)
 
 ## Bug Fixes
 

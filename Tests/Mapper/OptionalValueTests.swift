@@ -5,49 +5,49 @@ final class OptionalValueTests: XCTestCase {
     func testMappingStringToClass() {
         final class Test: Mappable {
             let string: String
-            required init(map: Mapper) throws {
+            required init(map: Mapper) {
                 self.string = map.optionalFrom("string") ?? ""
             }
         }
 
-        let test = try! Test(map: Mapper(JSON: ["string": "Hello"]))
+        let test = Test(map: Mapper(JSON: ["string": "Hello"]))
         XCTAssertTrue(test.string == "Hello")
     }
 
     func testMappingOptionalValue() {
         struct Test: Mappable {
             let string: String?
-            init(map: Mapper) throws {
+            init(map: Mapper) {
                 self.string = map.optionalFrom("foo")
             }
         }
 
-        let test = try! Test(map: Mapper(JSON: [:]))
+        let test = Test(map: Mapper(JSON: [:]))
         XCTAssertNil(test.string)
     }
 
     func testMappingOptionalArray() {
         struct Test: Mappable {
             let string: [String]?
-            init(map: Mapper) throws {
+            init(map: Mapper) {
                 self.string = map.optionalFrom("foo")
             }
         }
 
-        let test = try! Test(map: Mapper(JSON: [:]))
+        let test = Test(map: Mapper(JSON: [:]))
         XCTAssertNil(test.string)
     }
 
     func testMappingOptionalExistingArray() {
         struct Test: Mappable {
             let strings: [String]?
-            init(map: Mapper) throws {
+            init(map: Mapper) {
                 self.strings = map.optionalFrom("strings")
             }
         }
 
-        let test = try! Test(map: Mapper(JSON: ["strings": ["first", "second"]]))
-        XCTAssertTrue(test.strings!.count == 2)
+        let test = Test(map: Mapper(JSON: ["strings": ["first", "second"]]))
+        XCTAssertTrue(test.strings?.count == 2)
     }
 
     func testMappingArrayOfOptionalFieldsPicksNonNil() {
@@ -62,19 +62,19 @@ final class OptionalValueTests: XCTestCase {
             }
         }
 
-        let test = Test.from(["b": "foo"])!
-        XCTAssertTrue(test.string == "foo")
+        let test = Test.from(["b": "foo"])
+        XCTAssertTrue(test?.string == "foo")
     }
 
     func testMappingArrayOfOptionalFieldsReturnsNil() {
         struct Test: Mappable {
             let string: String?
-            init(map: Mapper) throws {
+            init(map: Mapper) {
                 self.string = map.optionalFrom(["a", "b"])
             }
         }
 
-        let test = Test.from([:])!
+        let test = Test(map: Mapper(JSON: [:]))
         XCTAssertNil(test.string)
     }
 }

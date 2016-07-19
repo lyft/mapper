@@ -10,8 +10,8 @@ final class NormalValueTests: XCTestCase {
             }
         }
 
-        let test = try! Test(map: Mapper(JSON: ["string": "Hello"]))
-        XCTAssertTrue(test.string == "Hello")
+        let test = try? Test(map: Mapper(JSON: ["string": "Hello"]))
+        XCTAssertTrue(test?.string == "Hello")
     }
 
     func testMappingTimeInterval() {
@@ -22,8 +22,8 @@ final class NormalValueTests: XCTestCase {
             }
         }
 
-        let test = try! Test(map: Mapper(JSON: ["time": 123]))
-        XCTAssertTrue(test.string == 123)
+        let test = try? Test(map: Mapper(JSON: ["time": 123]))
+        XCTAssertTrue(test?.string == 123)
     }
 
     func testMappingMissingKey() {
@@ -41,12 +41,12 @@ final class NormalValueTests: XCTestCase {
     func testFallbackMissingKey() {
         struct Test: Mappable {
             let string: String
-            init(map: Mapper) throws {
+            init(map: Mapper) {
                 self.string = map.optionalFrom("foo") ?? "Hello"
             }
         }
 
-        let test = try! Test(map: Mapper(JSON: [:]))
+        let test = Test(map: Mapper(JSON: [:]))
         XCTAssertTrue(test.string == "Hello")
     }
 
@@ -58,8 +58,8 @@ final class NormalValueTests: XCTestCase {
             }
         }
 
-        let test = try! Test(map: Mapper(JSON: ["strings": ["first", "second"]]))
-        XCTAssertTrue(test.strings.count == 2)
+        let test = try? Test(map: Mapper(JSON: ["strings": ["first", "second"]]))
+        XCTAssertTrue(test?.strings.count == 2)
     }
 
     func testEmptyStringJSON() {
@@ -71,8 +71,9 @@ final class NormalValueTests: XCTestCase {
         }
 
         let JSON = ["a": "b", "c": "d"]
-        let test = try! Test(map: Mapper(JSON: JSON))
-        XCTAssertTrue((test.JSON as! [String: String]) == JSON)
+        let test = try? Test(map: Mapper(JSON: JSON))
+        let parsedJSON = test?.JSON as? [String: String] ?? [:]
+        XCTAssertTrue(parsedJSON == JSON)
     }
 
     func testKeyPath() {
@@ -83,8 +84,8 @@ final class NormalValueTests: XCTestCase {
             }
         }
 
-        let test = try! Test(map: Mapper(JSON: ["foo": ["bar": "baz"]]))
-        XCTAssertTrue(test.string == "baz")
+        let test = try? Test(map: Mapper(JSON: ["foo": ["bar": "baz"]]))
+        XCTAssertTrue(test?.string == "baz")
     }
 
     func testPartiallyInvalidArrayOfValues() {

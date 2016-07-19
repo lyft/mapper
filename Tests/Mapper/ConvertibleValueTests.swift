@@ -16,31 +16,31 @@ final class ConvertibleValueTests: XCTestCase {
             }
         }
 
-        let test = try! Test(map: Mapper(JSON: ["url": "https://google.com"]))
-        XCTAssertTrue(test.URL.host == "google.com")
+        let test = try? Test(map: Mapper(JSON: ["url": "https://google.com"]))
+        XCTAssertTrue(test?.URL.host == "google.com")
     }
 
     func testOptionalURL() {
         struct Test: Mappable {
             let URL: NSURL?
-            init(map: Mapper) throws {
+            init(map: Mapper) {
                 self.URL = map.optionalFrom("url")
             }
         }
 
-        let test = try! Test(map: Mapper(JSON: ["url": "https://google.com"]))
+        let test = Test(map: Mapper(JSON: ["url": "https://google.com"]))
         XCTAssertTrue(test.URL?.host == "google.com")
     }
 
     func testInvalidURL() {
         struct Test: Mappable {
             let URL: NSURL?
-            init(map: Mapper) throws {
+            init(map: Mapper) {
                 self.URL = map.optionalFrom("url")
             }
         }
 
-        let test = try! Test(map: Mapper(JSON: ["url": "##"]))
+        let test = Test(map: Mapper(JSON: ["url": "##"]))
         XCTAssertNil(test.URL)
     }
 
@@ -52,31 +52,31 @@ final class ConvertibleValueTests: XCTestCase {
             }
         }
 
-        let test = try! Test(map: Mapper(JSON: ["urls": ["https://google.com", "example.com"]]))
-        XCTAssertTrue(test.URLs.count == 2)
+        let test = try? Test(map: Mapper(JSON: ["urls": ["https://google.com", "example.com"]]))
+        XCTAssertTrue(test?.URLs.count == 2)
     }
 
     func testOptionalArrayOfConvertibles() {
         struct Test: Mappable {
             let URLs: [NSURL]?
-            init(map: Mapper) throws {
+            init(map: Mapper) {
                 self.URLs = map.optionalFrom("urls")
             }
         }
 
-        let test = try! Test(map: Mapper(JSON: [:]))
+        let test = try Test(map: Mapper(JSON: [:]))
         XCTAssertNil(test.URLs)
     }
 
     func testExistingOptionalArrayOfConvertibles() {
         struct Test: Mappable {
             let URLs: [NSURL]?
-            init(map: Mapper) throws {
+            init(map: Mapper) {
                 self.URLs = map.optionalFrom("urls")
             }
         }
 
-        let test = try! Test(map: Mapper(JSON: ["urls": ["https://google.com", "example.com"]]))
+        let test = Test(map: Mapper(JSON: ["urls": ["https://google.com", "example.com"]]))
         XCTAssertTrue(test.URLs?.count == 2)
     }
 
@@ -95,36 +95,36 @@ final class ConvertibleValueTests: XCTestCase {
     func testInvalidArrayOfOptionalConvertibles() {
         struct Test: Mappable {
             let URLs: [NSURL]?
-            init(map: Mapper) throws {
+            init(map: Mapper) {
                 self.URLs = map.optionalFrom("urls")
             }
         }
 
-        let test = try! Test(map: Mapper(JSON: ["urls": "not an array"]))
+        let test = Test(map: Mapper(JSON: ["urls": "not an array"]))
         XCTAssertNil(test.URLs)
     }
 
     func testConvertibleArrayOfKeys() {
         struct Test: Mappable {
             let URL: NSURL?
-            init(map: Mapper) throws {
+            init(map: Mapper) {
                 self.URL = map.optionalFrom(["a", "b"])
             }
         }
 
-        let test = try! Test(map: Mapper(JSON: ["a": "##", "b": "example.com"]))
+        let test = Test(map: Mapper(JSON: ["a": "##", "b": "example.com"]))
         XCTAssertTrue(test.URL?.absoluteString == "example.com")
     }
 
     func testConvertibleArrayOfKeysReturnsNil() {
         struct Test: Mappable {
             let URL: NSURL?
-            init(map: Mapper) throws {
+            init(map: Mapper) {
                 self.URL = map.optionalFrom(["a", "b"])
             }
         }
 
-        let test = try! Test(map: Mapper(JSON: [:]))
+        let test = Test(map: Mapper(JSON: [:]))
         XCTAssertNil(test.URL)
     }
 
@@ -137,8 +137,8 @@ final class ConvertibleValueTests: XCTestCase {
             }
         }
 
-        let test = Test.from(["foo": ["key": 1]])!
-        XCTAssertTrue(test.dictionary["key"] == 1)
+        let test = Test.from(["foo": ["key": 1]])
+        XCTAssertTrue(test?.dictionary["key"] == 1)
     }
 
     func testOptionalDictionaryConvertible() {
@@ -150,8 +150,8 @@ final class ConvertibleValueTests: XCTestCase {
             }
         }
 
-        let test = Test.from(["foo": ["key": 1]])!
-        XCTAssertTrue(test.dictionary?["key"] == 1)
+        let test = Test.from(["foo": ["key": 1]])
+        XCTAssertTrue(test?.dictionary?["key"] == 1)
     }
 
     func testDictionaryOfConvertibles() {
@@ -176,8 +176,12 @@ final class ConvertibleValueTests: XCTestCase {
             }
         }
 
-        let test = Test.from(["foo": ["key": "not int"]])!
-        XCTAssertNil(test.dictionary)
+        do {
+            let test = try Test(map: Mapper(JSON: ["foo": ["key": "not int"]]))
+            XCTAssertNil(test.dictionary)
+        } catch {
+            XCTFail("Couldn't create Test")
+        }
     }
 
     func testDictionaryConvertibleSingleInvalid() {

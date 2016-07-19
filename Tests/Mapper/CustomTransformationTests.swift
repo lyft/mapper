@@ -16,8 +16,8 @@ final class CustomTransformationTests: XCTestCase {
             }
         }
 
-        let test = try! Test(map: Mapper(JSON: ["value": 1]))
-        XCTAssertTrue(test.value == 2)
+        let test = try? Test(map: Mapper(JSON: ["value": 1]))
+        XCTAssertTrue(test?.value == 2)
     }
 
     func testCustomTransformationThrows() {
@@ -37,24 +37,24 @@ final class CustomTransformationTests: XCTestCase {
     func testOptionalCustomTransformationExists() {
         struct Test: Mappable {
             let string: String?
-            init(map: Mapper) throws {
+            init(map: Mapper) {
                 string = map.optionalFrom("string", transformation: { $0 as? String })
             }
         }
 
-        let test = try! Test(map: Mapper(JSON: ["string": "hi"]))
+        let test = Test(map: Mapper(JSON: ["string": "hi"]))
         XCTAssertTrue(test.string == "hi")
     }
 
     func testOptionalCustomTransformationDoesNotExist() {
         struct Test: Mappable {
             let string: String?
-            init(map: Mapper) throws {
+            init(map: Mapper) {
                 string = map.optionalFrom("string", transformation: { $0 as? String })
             }
         }
 
-        let test = try! Test(map: Mapper(JSON: [:]))
+        let test = Test(map: Mapper(JSON: [:]))
         XCTAssertNil(test.string)
     }
 
@@ -68,7 +68,11 @@ final class CustomTransformationTests: XCTestCase {
             }
         }
 
-        let test = try! Test(map: Mapper(JSON: [:]))
-        XCTAssertNil(test.string)
+        do {
+            let test = try Test(map: Mapper(JSON: [:]))
+            XCTAssertNil(test.string)
+        } catch {
+            XCTFail("Shouldn't have failed to create Test")
+        }
     }
 }

@@ -14,8 +14,8 @@ final class RawRepresentibleValueTests: XCTestCase {
             case Hearts = "hearts"
         }
 
-        let test = try! Test(map: Mapper(JSON: ["suit": "hearts"]))
-        XCTAssertTrue(test.suit == .Hearts)
+        let test = try? Test(map: Mapper(JSON: ["suit": "hearts"]))
+        XCTAssertTrue(test?.suit == .Hearts)
     }
 
     func testRawRepresentableNumber() {
@@ -30,8 +30,8 @@ final class RawRepresentibleValueTests: XCTestCase {
             case First = 1
         }
 
-        let test = try! Test(map: Mapper(JSON: ["value": 1]))
-        XCTAssertTrue(test.value == .First)
+        let test = try? Test(map: Mapper(JSON: ["value": 1]))
+        XCTAssertTrue(test?.value == .First)
     }
 
     func testMissingRawRepresentableNumber() {
@@ -53,7 +53,7 @@ final class RawRepresentibleValueTests: XCTestCase {
     func testOptionalRawRepresentable() {
         struct Test: Mappable {
             let value: Value?
-            init(map: Mapper) throws {
+            init(map: Mapper) {
                 self.value = map.optionalFrom("value")
             }
         }
@@ -62,14 +62,14 @@ final class RawRepresentibleValueTests: XCTestCase {
             case First = 1
         }
 
-        let test = try! Test(map: Mapper(JSON: [:]))
+        let test = Test(map: Mapper(JSON: [:]))
         XCTAssertNil(test.value)
     }
 
     func testExistingOptionalRawRepresentable() {
         struct Test: Mappable {
             let value: Value?
-            init(map: Mapper) throws {
+            init(map: Mapper) {
                 self.value = map.optionalFrom("value")
             }
         }
@@ -78,14 +78,14 @@ final class RawRepresentibleValueTests: XCTestCase {
             case First = 1
         }
 
-        let test = try! Test(map: Mapper(JSON: ["value": 1]))
+        let test = Test(map: Mapper(JSON: ["value": 1]))
         XCTAssertTrue(test.value == .First)
     }
 
     func testRawRepresentableTypeMismatch() {
         struct Test: Mappable {
             let value: Value?
-            init(map: Mapper) throws {
+            init(map: Mapper) {
                 self.value = map.optionalFrom("value")
             }
         }
@@ -94,14 +94,14 @@ final class RawRepresentibleValueTests: XCTestCase {
             case First = 1
         }
 
-        let test = try! Test(map: Mapper(JSON: ["value": "not an int"]))
+        let test = Test(map: Mapper(JSON: ["value": "not an int"]))
         XCTAssertNil(test.value)
     }
 
     func testRawRepresentableArrayOfKeys() {
         struct Test: Mappable {
             let value: Value?
-            init(map: Mapper) throws {
+            init(map: Mapper) {
                 self.value = map.optionalFrom(["a", "b"])
             }
         }
@@ -110,14 +110,14 @@ final class RawRepresentibleValueTests: XCTestCase {
             case First = "hi"
         }
 
-        let test = try! Test(map: Mapper(JSON: ["a": "nope", "b": "hi"]))
+        let test = Test(map: Mapper(JSON: ["a": "nope", "b": "hi"]))
         XCTAssertTrue(test.value == .First)
     }
 
     func testRawRepresentableArrayOfKeysReturningNil() {
         struct Test: Mappable {
             let value: Value?
-            init(map: Mapper) throws {
+            init(map: Mapper) {
                 self.value = map.optionalFrom(["a", "b"])
             }
         }
@@ -126,7 +126,7 @@ final class RawRepresentibleValueTests: XCTestCase {
             case First = "hi"
         }
 
-        let test = try! Test(map: Mapper(JSON: [:]))
+        let test = Test(map: Mapper(JSON: [:]))
         XCTAssertNil(test.value)
     }
 

@@ -44,11 +44,11 @@ final class TransformTests: XCTestCase {
                 ],
             ]
         ]
-        let test = Test.from(JSON)!
 
-        XCTAssertTrue(test.dictionary.count == 2)
-        XCTAssertTrue(test.dictionary["hi"] == Example(key: "hi", value: 1))
-        XCTAssertTrue(test.dictionary["bye"] == Example(key: "bye", value: 2))
+        let test = Test.from(JSON)
+        XCTAssertTrue(test?.dictionary.count == 2)
+        XCTAssertTrue(test?.dictionary["hi"] == Example(key: "hi", value: 1))
+        XCTAssertTrue(test?.dictionary["bye"] == Example(key: "bye", value: 2))
     }
 
     func testToDictionaryInvalid() {
