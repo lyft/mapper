@@ -26,7 +26,9 @@
 
 ## Bug Fixes
 
-- None
+- Fix `valueForKeyPath` crash by removing it.
+  [Keith Smiley](https://github.com/keith)
+  [#63](https://github.com/lyft/mapper/pull/63)
 
 # 2.1.0
 

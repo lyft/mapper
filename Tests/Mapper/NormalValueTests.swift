@@ -111,4 +111,16 @@ final class NormalValueTests: XCTestCase {
         let test = try? Test(map: Mapper(JSON: ["string": "hi"]))
         XCTAssertEqual(test?.string, "hi")
     }
+
+    func testNestedKeysWithInvalidType() {
+        struct Test: Mappable {
+            let string: String
+            init(map: Mapper) throws {
+                try self.string = map.from("user.phone")
+            }
+        }
+
+        let test = try? Test(map: Mapper(JSON: ["user": "not dictionary"]))
+        XCTAssertNil(test)
+    }
 }

@@ -419,7 +419,7 @@ public struct Mapper {
      - returns: The object for the given field
      */
     private func JSONFromField(field: String) throws -> AnyObject {
-        if let value = field.isEmpty ? self.JSON : self.JSON.valueForKeyPath(field) {
+        if let value = field.isEmpty ? self.JSON : self.JSON.safeValueForKeyPath(field) {
             return value
         }
 
