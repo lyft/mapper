@@ -75,5 +75,4 @@ test-coverage:
 	! grep -C 10 "^\s*0" coverage.txt
 
 test-swiftpm-osx:
-	SWIFT_EXEC="/Applications/Xcode.app/Contents/Developer/Toolchains/Swift_2.3.xctoolchain/usr/bin/swiftc" \
-		swift test
+	swift test
