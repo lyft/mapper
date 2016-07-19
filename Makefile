@@ -20,8 +20,8 @@ install-carthage:
 install-coverage:
 	true
 
-install-oss-osx:
-	curl -sL https://gist.githubusercontent.com/kylef/5c0475ff02b7c7671d2a/raw/b07054552689910f79b3496221f7421a811f9f70/swiftenv-install.sh | bash
+install-swiftpm-osx:
+	true
 
 # Run Tasks
 
@@ -74,10 +74,5 @@ test-coverage:
 	Resources/coverage.sh build
 	! grep -C 10 "^\s*0" coverage.txt
 
-test-oss-osx:
-	git clone https://github.com/apple/swift-package-manager
-	cd swift-package-manager && git checkout 6b8ec91
-	. ~/.swiftenv/init && \
-		swift-package-manager/Utilities/bootstrap && \
-		$(PWD)/swift-package-manager/.build/debug/swift-build && \
-		$(PWD)/swift-package-manager/.build/debug/swift-test
+test-swiftpm-osx:
+	swift build && swift test

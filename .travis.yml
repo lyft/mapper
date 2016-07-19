@@ -13,7 +13,7 @@ matrix:
     - os: osx
       env: ACTION=coverage
     - os: osx
-      env: ACTION=oss-osx
+      env: ACTION=swiftpm-osx
 
 language: objective-c
 osx_image: xcode8
