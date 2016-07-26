@@ -390,7 +390,7 @@ public struct Mapper {
      */
     @warn_unused_result
     public func from<T>(field: String, @noescape transformation: AnyObject? throws -> T) throws -> T {
-        return try transformation(try self.JSONFromField(field))
+        return try transformation(try? self.JSONFromField(field))
     }
 
     /**
