@@ -240,4 +240,114 @@ final class RawRepresentibleValueTests: XCTestCase {
             XCTFail("Expected no errors, got \(error)")
         }
     }
+
+    func testOptionalArrayOfValuesWithMissingKey() {
+        struct Test: Mappable {
+            let values: [Value]?
+            init(map: Mapper) throws {
+                self.values = map.optionalFrom("a")
+            }
+        }
+
+        enum Value: String {
+            case First = "hi"
+        }
+
+        do {
+            let test = try Test(map: Mapper(JSON: [:]))
+            XCTAssertNil(test.values)
+        } catch let error {
+            XCTFail("Expected no errors, got \(error)")
+        }
+    }
+
+    func testOptionalArrayOfValuesInvalidArray() {
+        struct Test: Mappable {
+            let values: [Value]?
+            init(map: Mapper) throws {
+                self.values = map.optionalFrom("a")
+            }
+        }
+
+        enum Value: String {
+            case First = "hi"
+        }
+
+        do {
+            let test = try Test(map: Mapper(JSON: ["a": 1]))
+            XCTAssertNil(test.values)
+        } catch let error {
+            XCTFail("Expected no errors, got \(error)")
+        }
+    }
+
+    func testOptionalArrayOfValuesFailedConvertible() {
+        struct Test: Mappable {
+            let values: [Value]?
+            init(map: Mapper) throws {
+                self.values = map.optionalFrom("a")
+            }
+        }
+
+        enum Value: String {
+            case First = "hi"
+        }
+
+        do {
+            let test = try Test(map: Mapper(JSON: ["a": [1]]))
+            XCTAssertNil(test.values)
+        } catch let error {
+            XCTFail("Expected no errors, got \(error)")
+        }
+    }
+
+    func testOptionalArrayOfValuesFiltersNilsWithoutDefault() {
+        struct Test: Mappable {
+            let values: [Value]?
+            init(map: Mapper) throws {
+                self.values = map.optionalFrom("a")
+            }
+        }
+
+        enum Value: String {
+            case First = "hi"
+        }
+
+        do {
+            let test = try Test(map: Mapper(JSON: ["a": ["hi", "invalid"]]))
+            XCTAssertNotNil(test.values)
+
+            if let values = test.values {
+                XCTAssertEqual(values.count, 1)
+                XCTAssert(values.contains(.First))
+            }
+        } catch let error {
+            XCTFail("Expected no errors, got \(error)")
+        }
+    }
+
+    func testOptionalArrayOfValuesInsertsDefault() {
+        struct Test: Mappable {
+            let values: [Value]?
+            init(map: Mapper) throws {
+                self.values = map.optionalFrom("a", defaultValue: .First)
+            }
+        }
+
+        enum Value: String {
+            case First = "hi"
+        }
+
+        do {
+            let test = try Test(map: Mapper(JSON: ["a": ["invalid"]]))
+            XCTAssertNotNil(test.values)
+
+            if let values = test.values {
+                XCTAssertEqual(values.count, 1)
+                XCTAssert(values.contains(.First))
+            }
+        } catch let error {
+            XCTFail("Expected no errors, got \(error)")
+        }
+    }
 }
