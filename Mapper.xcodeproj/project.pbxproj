@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		75C28C551D6231D200C6D0BA /* NilConvertible.swift in Sources */ = {isa = PBXBuildFile; fileRef = 75C28C541D6231D200C6D0BA /* NilConvertible.swift */; };
 		C201748E1BD5509D00E4FE18 /* Mapper.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C20174831BD5509D00E4FE18 /* Mapper.framework */; };
 		C20586EC1CDEAD9900658A67 /* DefaultConvertible.swift in Sources */ = {isa = PBXBuildFile; fileRef = C20586EB1CDEAD9900658A67 /* DefaultConvertible.swift */; };
 		C2B2A5761D3DE82700F7E7DE /* NSDictionary+Safety.swift in Sources */ = {isa = PBXBuildFile; fileRef = C2B2A5751D3DE82700F7E7DE /* NSDictionary+Safety.swift */; };
@@ -39,6 +40,7 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		75C28C541D6231D200C6D0BA /* NilConvertible.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NilConvertible.swift; sourceTree = "<group>"; };
 		C20174831BD5509D00E4FE18 /* Mapper.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Mapper.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		C201748D1BD5509D00E4FE18 /* MapperTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = MapperTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		C20586EB1CDEAD9900658A67 /* DefaultConvertible.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DefaultConvertible.swift; sourceTree = "<group>"; };
@@ -118,6 +120,7 @@
 		C2C036F21C2B1A0B003FB853 /* Sources */ = {
 			isa = PBXGroup;
 			children = (
+				75C28C541D6231D200C6D0BA /* NilConvertible.swift */,
 				C2C036F31C2B1A0B003FB853 /* Convertible.swift */,
 				C20586EB1CDEAD9900658A67 /* DefaultConvertible.swift */,
 				C2C036F51C2B1A0B003FB853 /* Mappable.swift */,
@@ -236,6 +239,7 @@
 				C2B2A5761D3DE82700F7E7DE /* NSDictionary+Safety.swift in Sources */,
 				C2C036FD1C2B1A0B003FB853 /* Mapper.swift in Sources */,
 				C2C037001C2B1A0B003FB853 /* Transform.swift in Sources */,
+				75C28C551D6231D200C6D0BA /* NilConvertible.swift in Sources */,
 				C2C036FB1C2B1A0B003FB853 /* MapperError.swift in Sources */,
 				C20586EC1CDEAD9900658A67 /* DefaultConvertible.swift in Sources */,
 				C2C036FC1C2B1A0B003FB853 /* Mappable.swift in Sources */,
