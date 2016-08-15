@@ -392,25 +392,6 @@ public struct Mapper {
         return try T.fromMap(try? self.JSONFromField(field))
     }
     
-    /**
-     Get a NilConvertible value from a field in the source data
-     
-     This transparently converts your types that conform to NilConvertible to properties on the Mappable type
-     
-     - parameter field: The field to retrieve from the source data, can be an empty string to return the
-     entire data set
-     
-     - throws: Any error produced by the custom NilConvertible implementation
-     
-     - note: This function is necessary because swift does not coerce the from that returns T to an optional
-     
-     - returns: The value for the given field, if it can be converted to the expected type Optional<T>
-     */
-    @warn_unused_result
-    public func from<T: NilConvertible where T == T.ConvertedType>(field: String) throws -> T? {
-        return try T.fromMap(try? self.JSONFromField(field))
-    }
-    
     // MARK: - Custom Transformation
 
     /**
