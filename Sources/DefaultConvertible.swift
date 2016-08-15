@@ -11,7 +11,7 @@
 public protocol DefaultConvertible: Convertible {}
 
 extension DefaultConvertible {
-    public static func fromMap(value: AnyObject?) throws -> ConvertedType {
+    public static func fromMap(value: AnyObject) throws -> ConvertedType {
         if let object = value as? ConvertedType {
             return object
         }

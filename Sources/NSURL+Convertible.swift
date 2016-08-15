@@ -15,7 +15,7 @@ extension NSURL: Convertible {
      - returns: The created NSURL
      */
     @warn_unused_result
-    public static func fromMap(value: AnyObject?) throws -> NSURL {
+    public static func fromMap(value: AnyObject) throws -> NSURL {
         guard let string = value as? String else {
             throw MapperError.ConvertibleError(value: value, type: String.self)
         }

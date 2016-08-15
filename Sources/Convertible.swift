@@ -10,7 +10,7 @@
 
  // Convertible implementation for custom logic to create `CLLocationCoordinate2D`s from dictionaries
  extension CLLocationCoordinate2D: Convertible {
-     public static func fromMap(value: AnyObject?) throws -> CLLocationCoordinate2D {
+     public static func fromMap(value: AnyObject) throws -> CLLocationCoordinate2D {
          guard let location = value as? NSDictionary,
              let latitude = (location["lat"] ?? location["latitude"]) as? Double,
              let longitude = (location["lng"] ?? location["longitude"]) as? Double else
@@ -40,5 +40,5 @@ public protocol Convertible {
      - returns: The successfully created value from the given input
      */
     @warn_unused_result
-    static func fromMap(value: AnyObject?) throws -> ConvertedType
+    static func fromMap(value: AnyObject) throws -> ConvertedType
 }

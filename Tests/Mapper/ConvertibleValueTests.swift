@@ -2,7 +2,7 @@ import Mapper
 import XCTest
 
 private struct Foo: Convertible {
-    static func fromMap(value: AnyObject?) throws -> Foo {
+    static func fromMap(value: AnyObject) throws -> Foo {
         return Foo()
     }
 }
