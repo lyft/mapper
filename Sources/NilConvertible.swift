@@ -5,8 +5,9 @@ public protocol NilConvertible {
     
     /**
      `fromMap` returns the expected value based off the provided input, this allows you to attempt
-     to cast the value to anything you'd like, and perform any manipulation on it (don't use this as a
-     conversion mechanism, instead see Transform)
+     to cast the value to anything you'd like and perform any manipulation on it (don't use this as a
+     conversion mechanism, instead see Transform). NilConvertible differs from Convertible in that it
+     also lets you handle the nil case yourself.
      
      - parameter value: Any value (probably from the data source's value for the given field) to create
      the expected object with
