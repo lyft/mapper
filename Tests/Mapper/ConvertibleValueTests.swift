@@ -7,6 +7,18 @@ private struct Foo: Convertible {
     }
 }
 
+private enum NilConvertibleEnum: NilConvertible {
+    case NoValue
+    case SomeValue
+    
+    static func fromMap(value: AnyObject?) throws -> NilConvertibleEnum {
+        switch value {
+            case .None: return .NoValue
+            case .Some(_): return .SomeValue
+        }
+    }
+}
+
 final class ConvertibleValueTests: XCTestCase {
     func testCreatingURL() {
         struct Test: Mappable {
@@ -208,5 +220,31 @@ final class ConvertibleValueTests: XCTestCase {
 
         let test = Test.from(["foo": "not a dictionary"])
         XCTAssertNil(test)
+    }
+    
+    func testNilConvertibleWithNilField() {
+        struct Test: Mappable {
+            let enumField: NilConvertibleEnum
+            
+            init(map: Mapper) throws {
+                try self.enumField = map.from("foo")
+            }
+        }
+        
+        let test = Test.from([:])
+        XCTAssert(test?.enumField == .NoValue)
+    }
+    
+    func testNilConvertibleWithNonNilField() {
+        struct Test: Mappable {
+            let enumField: NilConvertibleEnum
+            
+            init(map: Mapper) throws {
+                try self.enumField = map.from("foo")
+            }
+        }
+        
+        let test = Test.from(["foo" : "bar"])
+        XCTAssert(test?.enumField == .SomeValue)
     }
 }
