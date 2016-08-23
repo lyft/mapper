@@ -45,8 +45,8 @@ public extension Transform {
      - returns: A dictionary of [U: T] where the keys U are produced from the passed `key` function and the
                 values T are the objects
      */
-    public static func toDictionary<T, U where T: Mappable, U: Hashable>(key getKey: (T) -> U) ->
-        (object: AnyObject?) throws -> [U: T]
+    public static func toDictionary<T, U>(key getKey: @escaping (T) -> U) ->
+        (_ object: AnyObject?) throws -> [U: T] where T: Mappable, U: Hashable
     {
         return { object in
             guard let objects = object as? [NSDictionary] else {

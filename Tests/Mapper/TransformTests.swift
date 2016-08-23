@@ -45,7 +45,7 @@ final class TransformTests: XCTestCase {
             ]
         ]
 
-        let test = Test.from(JSON)
+        let test = Test.from(JSON as NSDictionary)
         XCTAssertTrue(test?.dictionary.count == 2)
         XCTAssertTrue(test?.dictionary["hi"] == Example(key: "hi", value: 1))
         XCTAssertTrue(test?.dictionary["bye"] == Example(key: "bye", value: 2))
@@ -95,7 +95,7 @@ final class TransformTests: XCTestCase {
             ]
         ]
 
-        let test = try? Test(map: Mapper(JSON: JSON))
+        let test = try? Test(map: Mapper(JSON: JSON as NSDictionary))
         XCTAssertNil(test)
     }
 
