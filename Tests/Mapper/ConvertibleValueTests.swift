@@ -137,7 +137,8 @@ final class ConvertibleValueTests: XCTestCase {
             }
         }
 
-        let test = Test.from(["foo": ["key": 1]])
+        let JSON = ["foo": ["key": 1]]
+        let test = Test.from(JSON as NSDictionary)
         XCTAssertTrue(test?.dictionary["key"] == 1)
     }
 
@@ -164,7 +165,7 @@ final class ConvertibleValueTests: XCTestCase {
         }
 
         let test = Test.from(["foo": ["key": "value"]])
-        XCTAssertTrue(test?.dictionary.count > 0)
+        XCTAssertGreaterThan(test?.dictionary.count ?? 0, 0)
     }
 
     func testOptionalDictionaryConvertibleNil() {

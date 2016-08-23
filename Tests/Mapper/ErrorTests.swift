@@ -59,7 +59,7 @@ final class ErrorTests: XCTestCase {
         } catch MapperError.missingFieldError(let field) {
             XCTAssert(field == "string")
         } catch {
-            XCTFail()
+            XCTFail("Expected only missing field error, got \(error)")
         }
     }
 
