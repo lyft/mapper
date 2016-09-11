@@ -7,7 +7,7 @@ extension NSDictionary {
 
         while keys.count > 0, let currentObject = object {
             let key = keys.remove(at: 0)
-            object = (currentObject as? NSDictionary)?[key]
+            object = (currentObject as? NSDictionary)?[key] as AnyObject
         }
 
         return object
