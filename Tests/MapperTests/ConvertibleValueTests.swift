@@ -2,7 +2,7 @@ import Mapper
 import XCTest
 
 private struct Foo: Convertible {
-    static func fromMap(_ value: AnyObject?) throws -> Foo {
+    static func fromMap(_ value: Any) throws -> Foo {
         return Foo()
     }
 }
@@ -163,8 +163,12 @@ final class ConvertibleValueTests: XCTestCase {
             }
         }
 
-        let test = Test.from(["foo": ["key": "value"]])
-        XCTAssertTrue(test?.dictionary.count > 0)
+        do {
+            let test = try Test(map: Mapper(JSON: ["foo": ["key": "value"]]))
+            XCTAssertTrue(test.dictionary.count > 0)
+        } catch {
+            XCTFail("Failed to create test")
+        }
     }
 
     func testOptionalDictionaryConvertibleNil() {

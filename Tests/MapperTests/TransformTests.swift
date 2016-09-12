@@ -31,7 +31,7 @@ final class TransformTests: XCTestCase {
             }
         }
 
-        let JSON = [
+        let JSON: NSDictionary = [
             "examples":
             [
                 [
@@ -82,7 +82,7 @@ final class TransformTests: XCTestCase {
             }
         }
 
-        let JSON = [
+        let JSON: NSDictionary = [
             "examples":
             [
                 [

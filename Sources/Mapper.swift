@@ -5,7 +5,7 @@ import Foundation
  the Mappable protocol (see `Mappable` for an example).
  */
 public struct Mapper {
-    private let JSON: NSDictionary
+    public let JSON: NSDictionary
 
     /**
      Create a Mapper with a NSDictionary to use as source data
@@ -90,7 +90,7 @@ public struct Mapper {
      - parameter field:        The field to use from the source data
      - parameter defaultValue: The value to use if the rawValue initializer fails
 
-     - throws: MapperError.typeMismatchError when the value for the key is not an array of AnyObject
+     - throws: MapperError.typeMismatchError when the value for the key is not an array of Any
      - throws: Any other error produced by a Convertible implementation
 
      - returns: An array of the RawRepresentable value, with all nils removed
@@ -99,8 +99,8 @@ public struct Mapper {
         [T] where T.RawValue: Convertible, T.RawValue == T.RawValue.ConvertedType
     {
         let value = try self.JSONFromField(field)
-        guard let array = value as? [AnyObject] else {
-            throw MapperError.typeMismatchError(field: field, value: value, type: [AnyObject].self)
+        guard let array = value as? [Any] else {
+            throw MapperError.typeMismatchError(field: field, value: value, type: [Any].self)
         }
 
         let rawValues = try array.map { try T.RawValue.fromMap($0) }
@@ -249,18 +249,18 @@ public struct Mapper {
                         entire data set
 
      - throws: MapperError.missingFieldError if the field doesn't exist
-     - throws: MapperError.typeMismatchError if the field exists but isn't an array of AnyObject
+     - throws: MapperError.typeMismatchError if the field exists but isn't an array of Any
      - throws: Any error produced by the subsequent Convertible implementations
 
      - returns: The value for the given field, if it can be converted to the expected type [T]
      */
     public func from<T: Convertible>(_ field: String) throws -> [T] where T == T.ConvertedType {
         let value = try self.JSONFromField(field)
-        if let JSON = value as? [AnyObject] {
+        if let JSON = value as? [Any] {
             return try JSON.map(T.fromMap)
         }
 
-        throw MapperError.typeMismatchError(field: field, value: value, type: [AnyObject].self)
+        throw MapperError.typeMismatchError(field: field, value: value, type: [Any].self)
     }
 
     /**
@@ -299,7 +299,7 @@ public struct Mapper {
      - parameter field: The field to retrieve from the source data, can be an empty string to return the
                         entire data set
 
-     - throws: MapperError.typeMismatchError if the value for the given field isn't a NSDictionary
+     - throws: MapperError.typeMismatchError if the value for the given field isn't a [AnyHashable: Any]
      - throws: Any error produced by the Convertible implementation of either expected type
 
      - returns: A dictionary where the keys and values are created using their convertible implementations
@@ -308,13 +308,13 @@ public struct Mapper {
         where U == U.ConvertedType, T == T.ConvertedType
     {
         let object = try self.JSONFromField(field)
-        guard let data = object as? NSDictionary else {
-            throw MapperError.typeMismatchError(field: field, value: object, type: NSDictionary.self)
+        guard let data = object as? [AnyHashable: Any] else {
+            throw MapperError.typeMismatchError(field: field, value: object, type: [AnyHashable: Any].self)
         }
 
         var result = [U: T]()
         for (key, value) in data {
-            result[try U.fromMap(key as AnyObject)] = try T.fromMap(value as AnyObject)
+            result[try U.fromMap(key)] = try T.fromMap(value)
         }
 
         return result
@@ -370,7 +370,7 @@ public struct Mapper {
 
      - returns: The value of type T for the given field
      */
-    public func from<T>(_ field: String, transformation: (AnyObject?) throws -> T) throws -> T {
+    public func from<T>(_ field: String, transformation: (Any) throws -> T) throws -> T {
         return try transformation(try self.JSONFromField(field))
     }
 
@@ -384,7 +384,7 @@ public struct Mapper {
      - returns: The value of type T for the given field, if the transformation function doesn't throw
                 otherwise nil
      */
-    public func optionalFrom<T>(_ field: String, transformation: (AnyObject?) throws -> T?) -> T? {
+    public func optionalFrom<T>(_ field: String, transformation: (Any) throws -> T?) -> T? {
         return (try? transformation(try? self.JSONFromField(field))).flatMap { $0 }
     }
 
@@ -401,7 +401,7 @@ public struct Mapper {
 
      - returns: The object for the given field
      */
-    private func JSONFromField(_ field: String) throws -> AnyObject {
+    private func JSONFromField(_ field: String) throws -> Any {
         if let value = field.isEmpty ? self.JSON : self.JSON.safeValue(forKeyPath: field) {
             return value
         }

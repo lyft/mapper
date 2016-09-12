@@ -11,9 +11,9 @@
  - TypeMismatchError:    Thrown when the desired key exists in the JSON, but does not match the expected type
  */
 public enum MapperError: Error {
-    case convertibleError(value: AnyObject?, type: Any.Type)
+    case convertibleError(value: Any?, type: Any.Type)
     case customError(field: String?, message: String)
     case invalidRawValueError(field: String, value: Any, type: Any.Type)
     case missingFieldError(field: String)
-    case typeMismatchError(field: String, value: AnyObject, type: Any.Type)
+    case typeMismatchError(field: String, value: Any, type: Any.Type)
 }

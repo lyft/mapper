@@ -27,11 +27,11 @@ final class RawRepresentibleValueTests: XCTestCase {
         }
 
         enum Value: Int {
-            case First = 1
+            case first = 1
         }
 
         let test = try? Test(map: Mapper(JSON: ["value": 1]))
-        XCTAssertTrue(test?.value == .First)
+        XCTAssertTrue(test?.value == .first)
     }
 
     func testMissingRawRepresentableNumber() {
@@ -43,7 +43,7 @@ final class RawRepresentibleValueTests: XCTestCase {
         }
 
         enum Value: Int {
-            case First = 1
+            case first = 1
         }
 
         let test = try? Test(map: Mapper(JSON: [:]))
@@ -59,7 +59,7 @@ final class RawRepresentibleValueTests: XCTestCase {
         }
 
         enum Value: Int {
-            case First = 1
+            case first = 1
         }
 
         let test = Test(map: Mapper(JSON: [:]))
@@ -75,11 +75,11 @@ final class RawRepresentibleValueTests: XCTestCase {
         }
 
         enum Value: Int {
-            case First = 1
+            case first = 1
         }
 
         let test = Test(map: Mapper(JSON: ["value": 1]))
-        XCTAssertTrue(test.value == .First)
+        XCTAssertTrue(test.value == .first)
     }
 
     func testRawRepresentableTypeMismatch() {
@@ -91,7 +91,7 @@ final class RawRepresentibleValueTests: XCTestCase {
         }
 
         enum Value: Int {
-            case First = 1
+            case first = 1
         }
 
         let test = Test(map: Mapper(JSON: ["value": "not an int"]))
@@ -170,7 +170,7 @@ final class RawRepresentibleValueTests: XCTestCase {
         } catch MapperError.typeMismatchError(let field, let value, let type) {
             XCTAssertEqual(field, "a")
             XCTAssertEqual(value as? Int, 1)
-            XCTAssert(type == [AnyObject].self)
+            XCTAssert(type == [Any].self)
         } catch let error {
             XCTFail("Expected only missing field error, got \(error)")
         }

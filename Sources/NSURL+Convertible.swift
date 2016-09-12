@@ -14,7 +14,7 @@ extension URL: Convertible {
 
      - returns: The created URL
      */
-    public static func fromMap(_ value: AnyObject?) throws -> URL {
+    public static func fromMap(_ value: Any) throws -> URL {
         guard let string = value as? String else {
             throw MapperError.convertibleError(value: value, type: String.self)
         }
