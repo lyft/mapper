@@ -95,8 +95,8 @@ public struct Mapper {
 
      - returns: An array of the RawRepresentable value, with all nils removed
      */
-    public func from<T: RawRepresentable where T.RawValue: Convertible,
-        T.RawValue == T.RawValue.ConvertedType>(_ field: String, defaultValue: T? = nil) throws -> [T]
+    public func from<T: RawRepresentable>(_ field: String, defaultValue: T? = nil) throws ->
+        [T] where T.RawValue: Convertible, T.RawValue == T.RawValue.ConvertedType
     {
         let value = try self.JSONFromField(field)
         guard let array = value as? [AnyObject] else {
@@ -218,7 +218,7 @@ public struct Mapper {
 
      - returns: The value for the given field, if it can be converted to the expected type T
      */
-    public func from<T: Convertible where T == T.ConvertedType>(_ field: String) throws -> T {
+    public func from<T: Convertible>(_ field: String) throws -> T where T == T.ConvertedType {
         return try self.from(field, transformation: T.fromMap)
     }
 
@@ -236,7 +236,7 @@ public struct Mapper {
 
      - returns: The value for the given field, if it can be converted to the expected type Optional<T>
      */
-    public func from<T: Convertible where T == T.ConvertedType>(_ field: String) throws -> T? {
+    public func from<T: Convertible>(_ field: String) throws -> T? where T == T.ConvertedType {
         return try self.from(field, transformation: T.fromMap)
     }
 
@@ -254,7 +254,7 @@ public struct Mapper {
 
      - returns: The value for the given field, if it can be converted to the expected type [T]
      */
-    public func from<T: Convertible where T == T.ConvertedType>(_ field: String) throws -> [T] {
+    public func from<T: Convertible>(_ field: String) throws -> [T] where T == T.ConvertedType {
         let value = try self.JSONFromField(field)
         if let JSON = value as? [AnyObject] {
             return try JSON.map(T.fromMap)
@@ -273,7 +273,7 @@ public struct Mapper {
 
      - returns: The value for the given field, if it can be converted to the expected type T otherwise nil
      */
-    public func optionalFrom<T: Convertible where T == T.ConvertedType>(_ field: String) -> T? {
+    public func optionalFrom<T: Convertible>(_ field: String) -> T? where T == T.ConvertedType {
         return try? self.from(field, transformation: T.fromMap)
     }
 
@@ -287,7 +287,7 @@ public struct Mapper {
 
      - returns: The value for the given field, if it can be converted to the expected type [T]
      */
-    public func optionalFrom<T: Convertible where T == T.ConvertedType>(_ field: String) -> [T]? {
+    public func optionalFrom<T: Convertible>(_ field: String) -> [T]? where T == T.ConvertedType {
         return try? self.from(field)
     }
 
@@ -304,8 +304,8 @@ public struct Mapper {
 
      - returns: A dictionary where the keys and values are created using their convertible implementations
      */
-    public func from<U: Convertible, T: Convertible
-        where U == U.ConvertedType, T == T.ConvertedType>(_ field: String) throws -> [U: T]
+    public func from<U: Convertible, T: Convertible>(_ field: String) throws -> [U: T]
+        where U == U.ConvertedType, T == T.ConvertedType
     {
         let object = try self.JSONFromField(field)
         guard let data = object as? NSDictionary else {
@@ -314,7 +314,7 @@ public struct Mapper {
 
         var result = [U: T]()
         for (key, value) in data {
-            result[try U.fromMap(key)] = try T.fromMap(value)
+            result[try U.fromMap(key as AnyObject)] = try T.fromMap(value as AnyObject)
         }
 
         return result
@@ -331,8 +331,8 @@ public struct Mapper {
      - returns: A dictionary where the keys and values are created using their convertible implementations or
                 nil if anything throws
      */
-    public func optionalFrom<U: Convertible, T: Convertible
-        where U == U.ConvertedType, T == T.ConvertedType>(_ field: String) -> [U: T]?
+    public func optionalFrom<U: Convertible, T: Convertible>(_ field: String) -> [U: T]?
+        where U == U.ConvertedType, T == T.ConvertedType
     {
         return try? self.from(field)
     }
@@ -345,7 +345,7 @@ public struct Mapper {
 
      - returns: The first non-nil value to be produced from the array of fields, or nil if none exist
      */
-    public func optionalFrom<T: Convertible where T == T.ConvertedType>(_ fields: [String]) -> T? {
+    public func optionalFrom<T: Convertible>(_ fields: [String]) -> T? where T == T.ConvertedType {
         for field in fields {
             if let value: T = try? self.from(field) {
                 return value
@@ -370,7 +370,7 @@ public struct Mapper {
 
      - returns: The value of type T for the given field
      */
-    public func from<T>(_ field: String, transformation: @noescape (AnyObject?) throws -> T) throws -> T {
+    public func from<T>(_ field: String, transformation: (AnyObject?) throws -> T) throws -> T {
         return try transformation(try self.JSONFromField(field))
     }
 
@@ -384,7 +384,7 @@ public struct Mapper {
      - returns: The value of type T for the given field, if the transformation function doesn't throw
                 otherwise nil
      */
-    public func optionalFrom<T>(_ field: String, transformation: @noescape (AnyObject?) throws -> T?) -> T? {
+    public func optionalFrom<T>(_ field: String, transformation: (AnyObject?) throws -> T?) -> T? {
         return (try? transformation(try? self.JSONFromField(field))).flatMap { $0 }
     }
 
