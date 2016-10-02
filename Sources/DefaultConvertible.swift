@@ -5,7 +5,7 @@
  JSON by just using `value as? YourType` you should conform to this protocol in order to get the definition of
  that for free.
 
- The reason this is a separate protocol instead of just using a prtocol extension on Convertible is so other
+ The reason this is a separate protocol instead of just using a protocol extension on Convertible is so other
  Consumers of Convertible will still get an error if they don't implement `fromMap`
  */
 public protocol DefaultConvertible: Convertible {}
