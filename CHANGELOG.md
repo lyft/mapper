@@ -2,6 +2,20 @@
 
 ## Breaking
 
+- None
+
+## Enhancements
+
+- None
+
+## Bug Fixes
+
+- None
+
+# 5.0.0
+
+## Breaking
+
 - Swift 3.0 support
   [Keith Smiley](https://github.com/keith)
   [#76](https://github.com/lyft/mapper/pull/76)
