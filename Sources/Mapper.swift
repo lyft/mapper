@@ -5,7 +5,7 @@ import Foundation
  the Mappable protocol (see `Mappable` for an example).
  */
 public struct Mapper {
-    private let JSON: NSDictionary
+    public let JSON: NSDictionary
 
     /**
      Create a Mapper with a NSDictionary to use as source data
