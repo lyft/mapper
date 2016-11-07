@@ -19,10 +19,17 @@ extension URL: Convertible {
             throw MapperError.convertibleError(value: value, type: String.self)
         }
 
-        if let URL = URL(string: string) {
+        // Chinese/Korean/Japanese characters can not be part of an URL.
+        if let URL = URL(string: string.encodeURLComponent) {
             return URL
         }
 
         throw MapperError.customError(field: nil, message: "'\(string)' is not a valid URL")
+    }
+}
+
+extension String {
+    fileprivate var encodeURLComponent: String {
+        return addingPercentEncoding(withAllowedCharacters: .urlQueryAllowed) ?? self
     }
 }
