@@ -12,6 +12,9 @@
 - Test with optimizations
   [Keith Smiley](https://github.com/keith)
   [#92](https://github.com/lyft/mapper/pull/92)
+- Strip down xcodeproj settings
+  [Keith Smiley](https://github.com/keith)
+  [#91](https://github.com/lyft/mapper/pull/91)
 
 ## Bug Fixes
 
