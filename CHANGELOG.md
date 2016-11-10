@@ -9,6 +9,9 @@
 - Add JSONSerialization integration tests
   [Keith Smiley](https://github.com/keith)
   [#76](https://github.com/lyft/mapper/pull/90)
+- Test with optimizations
+  [Keith Smiley](https://github.com/keith)
+  [#92](https://github.com/lyft/mapper/pull/92)
 
 ## Bug Fixes
 
@@ -26,7 +29,6 @@
 - Swift 3.0 support
   [Keith Smiley](https://github.com/keith)
   [#76](https://github.com/lyft/mapper/pull/76)
-
 - Update transformation function to take `Any`
   [Keith Smiley](https://github.com/keith)
   [#76](https://github.com/lyft/mapper/pull/76)
