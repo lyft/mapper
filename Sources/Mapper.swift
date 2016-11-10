@@ -343,7 +343,7 @@ public struct Mapper {
     /// - returns: The value of type T for the given field, if the transformation function doesn't throw
     ///            otherwise nil
     public func optionalFrom<T>(_ field: String, transformation: (Any) throws -> T?) -> T? {
-        return (try? transformation(try? self.JSONFromField(field))).flatMap { $0 }
+        return (try? transformation(try self.JSONFromField(field))).flatMap { $0 }
     }
 
     // MARK: - Private
