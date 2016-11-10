@@ -10,7 +10,9 @@
 
 ## Bug Fixes
 
-- None
+- Fix Xcode 8.1 `Any` -> `Any?` warning
+  [Keith Smiley](https://github.com/keith)
+  [#87](https://github.com/lyft/mapper/pull/87)
 
 # 5.0.0
 
