@@ -13,6 +13,9 @@
 - Fix Xcode 8.1 `Any` -> `Any?` warning
   [Keith Smiley](https://github.com/keith)
   [#87](https://github.com/lyft/mapper/pull/87)
+- Fix `TimeInterval` test
+  [Keith Smiley](https://github.com/keith)
+  [#88](https://github.com/lyft/mapper/pull/88)
 
 # 5.0.0
 
