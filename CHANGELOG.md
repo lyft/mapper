@@ -6,7 +6,9 @@
 
 ## Enhancements
 
-- None
+- Add JSONSerialization integration tests
+  [Keith Smiley](https://github.com/keith)
+  [#76](https://github.com/lyft/mapper/pull/90)
 
 ## Bug Fixes
 
