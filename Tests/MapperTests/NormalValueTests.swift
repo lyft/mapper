@@ -22,8 +22,8 @@ final class NormalValueTests: XCTestCase {
             }
         }
 
-        let test = try? Test(map: Mapper(JSON: ["time": 123]))
-        XCTAssertTrue(test?.string == 123)
+        let test = try? Test(map: Mapper(JSON: ["time": 123.0]))
+        XCTAssertTrue(test?.string == 123.0)
     }
 
     func testMappingMissingKey() {
