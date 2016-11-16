@@ -1,6 +1,6 @@
 Pod::Spec.new do |s|
   s.name                      = "ModelMapper"
-  s.version                   = "5.0.0"
+  s.version                   = "6.0.0"
   s.summary                   = "A JSON deserialization library for Swift"
   s.homepage                  = "https://github.com/lyft/mapper"
   s.license                   = "Apache License, Version 2.0"

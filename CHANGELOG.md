@@ -6,6 +6,22 @@
 
 ## Enhancements
 
+- None
+
+## Bug Fixes
+
+- None
+
+# 6.0.0
+
+## Breaking
+
+- Fix Xcode 8.1 `Any` -> `Any?` warning
+  [Keith Smiley](https://github.com/keith)
+  [#87](https://github.com/lyft/mapper/pull/87)
+
+## Enhancements
+
 - Add JSONSerialization integration tests
   [Keith Smiley](https://github.com/keith)
   [#76](https://github.com/lyft/mapper/pull/90)
@@ -18,9 +34,6 @@
 
 ## Bug Fixes
 
-- Fix Xcode 8.1 `Any` -> `Any?` warning
-  [Keith Smiley](https://github.com/keith)
-  [#87](https://github.com/lyft/mapper/pull/87)
 - Fix `TimeInterval` test
   [Keith Smiley](https://github.com/keith)
   [#88](https://github.com/lyft/mapper/pull/88)
