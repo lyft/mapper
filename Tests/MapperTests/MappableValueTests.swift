@@ -52,7 +52,6 @@ final class MappableValueTests: XCTestCase {
             init(map: Mapper) {}
         }
 
-
         let test = Test(map: Mapper(JSON: [:]))
         XCTAssertNil(test.nest)
     }
