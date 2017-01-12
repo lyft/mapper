@@ -6,7 +6,8 @@
 
 ## Enhancements
 
-- None
+- [Robert Manson](https://github.com/litso)
+- [#98](https://github.com/lyft/mapper/pull/98)
 
 ## Bug Fixes
 

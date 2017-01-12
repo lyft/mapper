@@ -26,6 +26,30 @@ final class NormalValueTests: XCTestCase {
         XCTAssertTrue(test?.string == 123.0)
     }
 
+    func testMappingDoubleFromJSONString() {
+        struct Test: Mappable {
+            let radius: Double
+            init(map: Mapper) throws {
+                try self.radius = map.from("radius")
+            }
+        }
+
+        let test = try? Test(map: Mapper(JSON: ["radius": "3.1415"]))
+        XCTAssertTrue(test?.radius == 3.1415)
+    }
+
+    func testMappingDoubleFromJSONInt() {
+        struct Test: Mappable {
+            let cost: Double
+            init(map: Mapper) throws {
+                try self.cost = map.from("cost")
+            }
+        }
+
+        let test = try? Test(map: Mapper(JSON: ["cost": 200]))
+        XCTAssertTrue(test?.cost == 200)
+    }
+
     func testMappingMissingKey() {
         struct Test: Mappable {
             let string: String
