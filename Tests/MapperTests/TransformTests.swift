@@ -32,8 +32,7 @@ final class TransformTests: XCTestCase {
         }
 
         let JSON: NSDictionary = [
-            "examples":
-            [
+            "examples": [
                 [
                     "string": "hi",
                     "value": 1,
@@ -42,7 +41,7 @@ final class TransformTests: XCTestCase {
                     "string": "bye",
                     "value": 2,
                 ],
-            ]
+            ],
         ]
 
         let test = Test.from(JSON)
@@ -83,16 +82,15 @@ final class TransformTests: XCTestCase {
         }
 
         let JSON: NSDictionary = [
-            "examples":
-            [
+            "examples": [
                 [
                     "string": "hi",
                     "value": 1,
                 ],
                 [
                     "string": "bye",
-                ]
-            ]
+                ],
+            ],
         ]
 
         let test = try? Test(map: Mapper(JSON: JSON))

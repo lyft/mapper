@@ -165,7 +165,7 @@ final class ConvertibleValueTests: XCTestCase {
 
         do {
             let test = try Test(map: Mapper(JSON: ["foo": ["key": "value"]]))
-            XCTAssertTrue(test.dictionary.count > 0)
+            XCTAssertFalse(test.dictionary.isEmpty)
         } catch {
             XCTFail("Failed to create test")
         }
