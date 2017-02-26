@@ -6,3 +6,20 @@ disabled_rules:
   - opening_brace
   - type_body_length
   - valid_docs
+opt_in_rules:
+  - closure_end_indentation
+  - closure_spacing
+  - conditional_returns_on_newline
+  - empty_count
+  - explicit_init
+  - first_where
+  - force_unwrapping
+  - operator_usage_whitespace
+  - overridden_super_call
+  - redundant_nil_coalescing
+  - redundant_optional_initialization
+  - redundant_void_return
+  - sorted_imports
+  - switch_case_on_newline
+trailing_comma:
+  mandatory_comma: true

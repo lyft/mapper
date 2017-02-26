@@ -11,7 +11,7 @@ install-tvOS:
 
 install-lint:
 	brew remove swiftlint --force || true
-	brew install https://raw.githubusercontent.com/Homebrew/homebrew-core/66507c32f683bb7a6f7cf0ec6062b3f0c4844313/Formula/swiftlint.rb
+	brew install https://raw.githubusercontent.com/Homebrew/homebrew-core/8c244102fdd0710bcf223daa03e5868ba388d088/Formula/swiftlint.rb
 
 install-carthage:
 	brew remove carthage --force || true
