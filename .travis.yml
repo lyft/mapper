@@ -5,7 +5,7 @@ matrix:
     - os: osx
       env: ACTION=iOS
     - os: osx
-      env: ACTION=OSX
+      env: ACTION=macOS
     - os: osx
       env: ACTION=tvOS
     - os: osx
@@ -13,10 +13,10 @@ matrix:
     - os: osx
       env: ACTION=coverage
     - os: osx
-      env: ACTION=swiftpm-osx
+      env: ACTION=swiftpm-macOS
 
 language: objective-c
-osx_image: xcode8.1
+osx_image: xcode8.2
 
 script:
   - make install-$ACTION && make test-$ACTION
