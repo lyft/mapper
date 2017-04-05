@@ -10,7 +10,9 @@
 
 ## Bug Fixes
 
-- None
+- Fix implicit `Int` -> other number type conversions
+  [Keith Smiley](https://github.com/keith)
+  [#89](https://github.com/lyft/mapper/pull/89)
 
 # 6.0.0
 

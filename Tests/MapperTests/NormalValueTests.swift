@@ -26,6 +26,42 @@ final class NormalValueTests: XCTestCase {
         XCTAssertTrue(test?.string == 123.0)
     }
 
+    func testImplicitlyMappingDoubleFromInt() {
+        struct Test: Mappable {
+            let double: Double
+            init(map: Mapper) throws {
+                try self.double = map.from("double")
+            }
+        }
+
+        let test = try? Test(map: Mapper(JSON: ["double": 321]))
+        XCTAssertTrue(test?.double == 321)
+    }
+
+    func testImplicitlyMappingFloatFromInt() {
+        struct Test: Mappable {
+            let float: Float
+            init(map: Mapper) throws {
+                try self.float = map.from("float")
+            }
+        }
+
+        let test = try? Test(map: Mapper(JSON: ["float": 789]))
+        XCTAssertTrue(test?.float == 789)
+    }
+
+    func testImplicitlyMappingUIntFromInt() {
+        struct Test: Mappable {
+            let uint: UInt
+            init(map: Mapper) throws {
+                try self.uint = map.from("uint")
+            }
+        }
+
+        let test = try? Test(map: Mapper(JSON: ["uint": 567]))
+        XCTAssertTrue(test?.uint == 567)
+    }
+
     func testMappingMissingKey() {
         struct Test: Mappable {
             let string: String
