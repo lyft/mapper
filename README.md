@@ -1,5 +1,7 @@
 # Mapper
 
+[![Carthage compatible](https://img.shields.io/badge/Carthage-compatible-4BC51D.svg?style=flat)](https://github.com/Carthage/Carthage)
+
 Mapper is a simple Swift library to convert JSON to strongly typed
 objects. One advantage to Mapper over some other libraries is you can
 have immutable properties.
