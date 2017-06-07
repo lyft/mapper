@@ -16,7 +16,7 @@ matrix:
       env: ACTION=swiftpm-macOS
 
 language: objective-c
-osx_image: xcode8.2
+osx_image: xcode9
 
 script:
   - make install-$ACTION && make test-$ACTION
