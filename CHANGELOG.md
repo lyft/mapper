@@ -6,7 +6,9 @@
 
 ## Enhancements
 
-- None
+- Add `@nonobjc` to our `NSDictionary` extension
+  [Keith Smiley](https://github.com/keith)
+  [#107](https://github.com/lyft/mapper/pull/107)
 
 ## Bug Fixes
 
@@ -24,7 +26,7 @@
 
 - Add JSONSerialization integration tests
   [Keith Smiley](https://github.com/keith)
-  [#76](https://github.com/lyft/mapper/pull/90)
+  [#90](https://github.com/lyft/mapper/pull/90)
 - Test with optimizations
   [Keith Smiley](https://github.com/keith)
   [#92](https://github.com/lyft/mapper/pull/92)
