@@ -22,12 +22,12 @@ final class ErrorTests: XCTestCase {
 
     func testInvalidRawValue() {
         enum Suit: String {
-            case Spades = "spades"
+            case spades = "spades"
         }
 
         do {
             let map = Mapper(JSON: ["suit": "hearts"])
-            let _: Suit = try map.from("suit")
+            _ = try map.from("suit") as Suit
             XCTFail()
         } catch MapperError.invalidRawValueError(let field, let value, let type) {
             XCTAssert(field == "suit")
