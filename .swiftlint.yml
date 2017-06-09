@@ -4,6 +4,7 @@ disabled_rules:
   - file_length
   - nesting
   - opening_brace
+  - redundant_string_enum_value
   - type_body_length
   - valid_docs
 opt_in_rules:
