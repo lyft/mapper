@@ -53,7 +53,9 @@
 
 ## Enhancements
 
-- None
+- Remove duplicate `Hashable` protocol conformance
+  [Keith Smiley](https://github.com/keith)
+  [#108](https://github.com/lyft/mapper/pull/108)
 
 ## Bug Fixes
 
