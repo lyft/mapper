@@ -29,8 +29,3 @@ extension NSDictionary: DefaultConvertible {}
 extension NSArray: DefaultConvertible {}
 
 extension String: DefaultConvertible {}
-extension Int: DefaultConvertible {}
-extension UInt: DefaultConvertible {}
-extension Float: DefaultConvertible {}
-extension Double: DefaultConvertible {}
-extension Bool: DefaultConvertible {}
