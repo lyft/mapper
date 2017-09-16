@@ -1,4 +1,14 @@
-# Master
+# master
+
+## Breaking
+
+- None
+
+## Enhancements
+
+- None
+
+# 7.0.0
 
 ## Breaking
 
