@@ -2,7 +2,9 @@
 
 ## Breaking
 
-- None
+- Update for Swift 4
+  [Keith Smiley](https://github.com/keith)
+  [#113](https://github.com/lyft/mapper/pull/113)
 
 ## Enhancements
 
