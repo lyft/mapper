@@ -6,7 +6,9 @@
 
 ## Enhancements
 
-- None
+- Remove call to characters on string
+  [Keith Smiley](https://github.com/keith)
+  [#116](https://github.com/lyft/mapper/pull/116)
 
 # 7.0.0
 
