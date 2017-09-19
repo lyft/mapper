@@ -141,6 +141,19 @@ final class ConvertibleValueTests: XCTestCase {
         XCTAssertTrue(test?.dictionary["key"] == 1)
     }
 
+    func testDictionaryStringConvertible() {
+        struct Test: Mappable {
+            let dictionary: [String: Int]
+
+            init(map: Mapper) throws {
+                try self.dictionary = map.from("foo")
+            }
+        }
+
+        let test = Test.from(["foo": ["key": "1"]])
+        XCTAssertTrue(test?.dictionary["key"] == 1)
+    }
+
     func testOptionalDictionaryConvertible() {
         struct Test: Mappable {
             let dictionary: [String: Int]?
@@ -151,6 +164,19 @@ final class ConvertibleValueTests: XCTestCase {
         }
 
         let test = Test.from(["foo": ["key": 1]])
+        XCTAssertTrue(test?.dictionary?["key"] == 1)
+    }
+
+    func testOptionalDictionaryStringConvertible() {
+        struct Test: Mappable {
+            let dictionary: [String: Int]?
+
+            init(map: Mapper) throws {
+                self.dictionary = map.optionalFrom("foo")
+            }
+        }
+
+        let test = Test.from(["foo": ["key": "1"]])
         XCTAssertTrue(test?.dictionary?["key"] == 1)
     }
 
