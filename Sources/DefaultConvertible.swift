@@ -19,6 +19,31 @@ extension DefaultConvertible {
     }
 }
 
+/// The DefaultDoubleConvertible is used to allow converting from common JSON representations for a `double`
+/// such as `"123.4"` or `123` which would otherwise fail to map from `Any` using the DefaultConvertible
+/// protocol above.
+
+public protocol DefaultDoubleConvertible: Convertible {}
+
+extension DefaultDoubleConvertible {
+    public static func fromMap(_ value: Any) throws -> Double {
+        if let string = value as? String,
+            let doubleValue = NumberFormatter().number(from: string)?.doubleValue {
+            return doubleValue
+        }
+
+        if let intValue = value as? Int {
+            return Double(intValue)
+        }
+
+        if let object = value as? Double {
+            return object
+        }
+
+        throw MapperError.convertibleError(value: value, type: ConvertedType.self)
+    }
+}
+
 // MARK: - Default Conformances
 
 /// These Foundation conformances are acceptable since we already depend on Foundation. No other frameworks
@@ -36,5 +61,5 @@ extension UInt: DefaultConvertible {}
 extension UInt32: DefaultConvertible {}
 extension UInt64: DefaultConvertible {}
 extension Float: DefaultConvertible {}
-extension Double: DefaultConvertible {}
+extension Double: DefaultDoubleConvertible {}
 extension Bool: DefaultConvertible {}
