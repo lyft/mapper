@@ -30,7 +30,11 @@ extension NSArray: DefaultConvertible {}
 
 extension String: DefaultConvertible {}
 extension Int: DefaultConvertible {}
+extension Int32: DefaultConvertible {}
+extension Int64: DefaultConvertible {}
 extension UInt: DefaultConvertible {}
+extension UInt32: DefaultConvertible {}
+extension UInt64: DefaultConvertible {}
 extension Float: DefaultConvertible {}
 extension Double: DefaultConvertible {}
 extension Bool: DefaultConvertible {}
