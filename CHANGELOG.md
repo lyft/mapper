@@ -9,6 +9,9 @@
 - Remove call to characters on string
   [Keith Smiley](https://github.com/keith)
   [#116](https://github.com/lyft/mapper/pull/116)
+- Add Convertible implementations for `U?Int(32|64)`
+  [Daniel Duan](https://github.com/dduan)
+  [#117](https://github.com/lyft/mapper/pull/117)
 
 # 7.0.0
 
