@@ -40,7 +40,7 @@ public extension Mappable {
     /// - returns: An array of the created objects, or nil if creating threw
     public static func from(_ JSON: NSArray) -> [Self]? {
         if let array = JSON as? [NSDictionary] {
-            return try? array.map { try self.init(map: Mapper(JSON: $0)) }
+            return array.flatMap { try? self.init(map: Mapper(JSON: $0)) }
         }
 
         return nil
