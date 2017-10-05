@@ -346,6 +346,24 @@ public struct Mapper {
         return (try? transformation(try self.JSONFromField(field))).flatMap { $0 }
     }
 
+    /// Get an optional typed value from the given fields by using the given transformation
+    ///
+    /// - parameter fields:         The array of fields to retrieve from the source data, can be an empty
+    ///                             string to return the entire data set
+    /// - parameter transformation: The transformation function used to create the expected value
+    ///
+    /// - returns: The value of type T for the given field, if the transformation function doesn't throw
+    ///            otherwise nil
+    public func optionalFrom<T>(_ fields: [String], transformation: (Any) throws -> T?) -> T? {
+        for field in fields {
+            if let value = try? transformation(try self.JSONFromField(field)) {
+                return value
+            }
+        }
+
+        return nil
+    }
+
     // MARK: - Private
 
     /// Get the object for a given field. If an empty string is passed, return the entire data source. This

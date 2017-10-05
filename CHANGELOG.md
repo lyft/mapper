@@ -6,7 +6,9 @@
 
 ## Enhancements
 
-- None
+- Support Array Of Fields For Custom Transformation
+  [Daniel Duan](https://github.com/dduan)
+  [#120](https://github.com/lyft/mapper/pull/120)
 
 # 7.1.0
 
