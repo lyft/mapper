@@ -75,4 +75,64 @@ final class CustomTransformationTests: XCTestCase {
             XCTFail("Shouldn't have failed to create Test")
         }
     }
+
+    func testOptionalCustomTransformationArrayOfKeys() {
+        struct Test: Mappable {
+            let value: Int?
+            init(map: Mapper) throws {
+                value = map.optionalFrom(["a", "b"], transformation: { thing in
+                    if let a = thing as? Int {
+                        return a + 1
+                    }
+                    throw MapperError.customError(field: nil, message: "")
+                })
+            }
+        }
+
+        do {
+            let test = try Test(map: Mapper(JSON: ["a": "##", "b": 1]))
+            XCTAssertEqual(test.value, 2)
+        } catch {
+            XCTFail("Shouldn't have failed to create Test")
+        }
+    }
+
+    func testOptionalCustomTransformationArrayOfKeysFails() {
+        struct Test: Mappable {
+            let value: Int?
+            init(map: Mapper) throws {
+                value = map.optionalFrom(["a", "b"], transformation: { _ in
+                    throw MapperError.customError(field: nil, message: "")
+                })
+            }
+        }
+
+        do {
+            let test = try Test(map: Mapper(JSON: ["a": "##", "b": 1]))
+            XCTAssertNil(test.value)
+        } catch {
+            XCTFail("Shouldn't have failed to create Test")
+        }
+    }
+
+    func testOptionalCustomTransformationArrayOfKeysReturnsNil() {
+        struct Test: Mappable {
+            let value: Int?
+            init(map: Mapper) throws {
+                value = map.optionalFrom(["a", "b"], transformation: { thing in
+                    if let a = thing as? Int {
+                        return a + 1
+                    }
+                    throw MapperError.customError(field: nil, message: "")
+                })
+            }
+        }
+
+        do {
+            let test = try Test(map: Mapper(JSON: [:]))
+            XCTAssertNil(test.value)
+        } catch {
+            XCTFail("Shouldn't have failed to create Test")
+        }
+    }
 }
