@@ -65,7 +65,7 @@ final class ConvertibleValueTests: XCTestCase {
         }
 
         let test = try? Test(map: Mapper(JSON: ["url": "https://google.com?param=in|20:20"]))
-        XCTAssertTrue(test?.URL.host = "google.com")
+        XCTAssertTrue(test?.URL.host == "google.com")
     }
 
     func testOptionalArrayOfConvertibles() {
