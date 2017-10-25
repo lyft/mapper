@@ -56,6 +56,18 @@ final class ConvertibleValueTests: XCTestCase {
         XCTAssertTrue(test?.URLs.count == 2)
     }
 
+    func testSanitizingURL() {
+        struct Test: Mappable {
+            let URL: URL
+            init(map: Mapper) throws {
+                try self.URL = map.from("url")
+            }
+        }
+
+        let test = try? Test(map: Mapper(JSON: ["url": "https://google.com?param=in|20:20"]))
+        XCTAssertTrue(test?.URL.host == "google.com")
+    }
+
     func testOptionalArrayOfConvertibles() {
         struct Test: Mappable {
             let URLs: [URL]?
