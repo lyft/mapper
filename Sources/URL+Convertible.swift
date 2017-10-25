@@ -19,6 +19,12 @@ extension URL: Convertible {
             return url
         }
 
+        // Rescue
+        if let sanitized = string.addingPercentEncoding(withAllowedCharacters: .urlQueryAllowed),
+            let url = URL(string: sanitized) {
+            return url
+        }
+
         throw MapperError.customError(field: nil, message: "'\(string)' is not a valid URL")
     }
 }
