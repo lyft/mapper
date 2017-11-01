@@ -95,6 +95,24 @@ public struct Mapper {
         return rawValues.flatMap { T(rawValue: $0) ?? defaultValue }
     }
 
+    /// Get an optional array of RawRepresentable values from a field in the the source data.
+    ///
+    /// - note: If T.init(rawValue:) fails given the T.RawValue from the array of source data, that value will
+    ///         be replaced by the passed defaultValue, which defaults to nil. The resulting array is
+    ///         flatMapped and all nils are removed. This means that any unrecognized values will be removed
+    ///         or replaced with the default. This ensures backwards compatibility if your source data has
+    ///         keys that your mapping layer doesn't know about yet.
+    ///
+    /// - parameter field:        The field to use from the source data
+    /// - parameter defaultValue: The value to use if the rawValue initializer fails
+    ///
+    /// - returns: An array of the RawRepresentable value, with all nils removed or nil if anything throws
+    public func optionalFrom<T: RawRepresentable>(_ field: String, defaultValue: T? = nil) ->
+        [T]? where T.RawValue: Convertible, T.RawValue == T.RawValue.ConvertedType
+    {
+        return try? self.from(field, defaultValue: defaultValue)
+    }
+
     // MARK: - T: Mappable
 
     /// Get a Mappable value from the given field in the source data

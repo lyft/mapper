@@ -240,4 +240,34 @@ final class RawRepresentibleValueTests: XCTestCase {
             XCTFail("Expected no errors, got \(error)")
         }
     }
+
+    func testOptionalArrayRawValues() {
+        enum Value: String {
+            case first
+        }
+
+        let map = Mapper(JSON: ["values": ["first", "there"]])
+        let values: [Value]? = map.optionalFrom("values")
+        XCTAssertEqual(values ?? [], [.first])
+    }
+
+    func testOptionalArrayRawValuesMissingKey() {
+        enum Value: String {
+            case first
+        }
+
+        let map = Mapper(JSON: [:])
+        let values: [Value]? = map.optionalFrom("values")
+        XCTAssertNil(values)
+    }
+
+    func testOptionalArrayDefaultValues() {
+        enum Value: String {
+            case first
+        }
+
+        let map = Mapper(JSON: ["values": ["invalid"]])
+        let values: [Value]? = map.optionalFrom("values", defaultValue: .first)
+        XCTAssertEqual(values ?? [], [.first])
+    }
 }
