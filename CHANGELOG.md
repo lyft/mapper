@@ -9,6 +9,9 @@
 - Add `optionalFrom` for arrays of `RawRepresentable`s
   [Keith Smiley](https://github.com/keith)
   [#125](https://github.com/lyft/mapper/pull/125)
+- Support non-optional mapping from list of fields
+  [Michael Rebello](https://github.com/rebello95)
+  [#126](https://github.com/lyft/mapper/pull/126)
 
 # 7.2.0
 

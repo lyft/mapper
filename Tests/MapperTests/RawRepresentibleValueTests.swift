@@ -107,10 +107,10 @@ final class RawRepresentibleValueTests: XCTestCase {
         }
 
         enum Value: String {
-            case first = "hi"
+            case first
         }
 
-        let test = Test(map: Mapper(JSON: ["a": "nope", "b": "hi"]))
+        let test = Test(map: Mapper(JSON: ["a": "nope", "b": "first"]))
         XCTAssertTrue(test.value == .first)
     }
 
@@ -123,11 +123,43 @@ final class RawRepresentibleValueTests: XCTestCase {
         }
 
         enum Value: String {
-            case first = "hi"
+            case first
         }
 
         let test = Test(map: Mapper(JSON: [:]))
         XCTAssertNil(test.value)
+    }
+
+    func testRawRepresentibleArrayOfKeysDoesNotThrow() {
+        struct Test: Mappable {
+            let value: Value
+            init(map: Mapper) throws {
+                try self.value = map.from(["a", "b"])
+            }
+        }
+
+        enum Value: String {
+            case first
+        }
+
+        let test = try? Test(map: Mapper(JSON: ["a": 1, "b": "first"]))
+        XCTAssertTrue(test?.value == .first)
+    }
+
+    func testRawRepresentibleArrayOfKeysThrowsWhenMissing() {
+        struct Test: Mappable {
+            let value: Value
+            init(map: Mapper) throws {
+                try self.value = map.from(["a", "b"])
+            }
+        }
+
+        enum Value: String {
+            case first
+        }
+
+        let test = try? Test(map: Mapper(JSON: ["a": 1, "b": 2]))
+        XCTAssertNil(test)
     }
 
     func testArrayOfValuesWithMissingKey() {
@@ -139,7 +171,7 @@ final class RawRepresentibleValueTests: XCTestCase {
         }
 
         enum Value: String {
-            case first = "hi"
+            case first
         }
 
         do {
@@ -161,7 +193,7 @@ final class RawRepresentibleValueTests: XCTestCase {
         }
 
         enum Value: String {
-            case first = "hi"
+            case first
         }
 
         do {
@@ -185,7 +217,7 @@ final class RawRepresentibleValueTests: XCTestCase {
         }
 
         enum Value: String {
-            case first = "hi"
+            case first
         }
 
         do {
@@ -208,11 +240,11 @@ final class RawRepresentibleValueTests: XCTestCase {
         }
 
         enum Value: String {
-            case first = "hi"
+            case first
         }
 
         do {
-            let test = try Test(map: Mapper(JSON: ["a": ["hi", "invalid"]]))
+            let test = try Test(map: Mapper(JSON: ["a": ["first", "invalid"]]))
             XCTAssertEqual(test.values.count, 1)
             XCTAssert(test.values.contains(.first))
         } catch let error {
@@ -222,7 +254,7 @@ final class RawRepresentibleValueTests: XCTestCase {
 
     func testArrayOfValuesInsertsDefault() {
         enum Value: String {
-            case first = "hi"
+            case first
         }
 
         struct Test: Mappable {

@@ -128,6 +128,30 @@ final class ConvertibleValueTests: XCTestCase {
         XCTAssertNil(test.URL)
     }
 
+    func testConvertibleArrayOfKeysDoesNotThrow() {
+        struct Test: Mappable {
+            let string: String
+            init(map: Mapper) throws {
+                try self.string = map.from(["a", "b"])
+            }
+        }
+
+        let test = try? Test(map: Mapper(JSON: ["b": "someValue"]))
+        XCTAssertTrue(test?.string == "someValue")
+    }
+
+    func testConvertibleArrayOfKeysThrowsWhenMissing() {
+        struct Test: Mappable {
+            let string: String
+            init(map: Mapper) throws {
+                try self.string = map.from(["a", "b"])
+            }
+        }
+
+        let test = try? Test(map: Mapper(JSON: [:]))
+        XCTAssertNil(test)
+    }
+
     func testDictionaryConvertible() {
         struct Test: Mappable {
             let dictionary: [String: Int]
