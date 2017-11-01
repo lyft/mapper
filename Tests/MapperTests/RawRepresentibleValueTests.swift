@@ -107,10 +107,10 @@ final class RawRepresentibleValueTests: XCTestCase {
         }
 
         enum Value: String {
-            case first = "hi"
+            case first
         }
 
-        let test = Test(map: Mapper(JSON: ["a": "nope", "b": "hi"]))
+        let test = Test(map: Mapper(JSON: ["a": "nope", "b": "first"]))
         XCTAssertTrue(test.value == .first)
     }
 
@@ -123,7 +123,7 @@ final class RawRepresentibleValueTests: XCTestCase {
         }
 
         enum Value: String {
-            case first = "hi"
+            case first
         }
 
         let test = Test(map: Mapper(JSON: [:]))
@@ -139,10 +139,10 @@ final class RawRepresentibleValueTests: XCTestCase {
         }
 
         enum Value: String {
-            case first = "hi"
+            case first
         }
 
-        let test = try? Test(map: Mapper(JSON: ["a": 1, "b": "hi"]))
+        let test = try? Test(map: Mapper(JSON: ["a": 1, "b": "first"]))
         XCTAssertTrue(test?.value == .first)
     }
 
@@ -155,7 +155,7 @@ final class RawRepresentibleValueTests: XCTestCase {
         }
 
         enum Value: String {
-            case first = "hi"
+            case first
         }
 
         let test = try? Test(map: Mapper(JSON: ["a": 1, "b": 2]))
@@ -171,7 +171,7 @@ final class RawRepresentibleValueTests: XCTestCase {
         }
 
         enum Value: String {
-            case first = "hi"
+            case first
         }
 
         do {
@@ -193,7 +193,7 @@ final class RawRepresentibleValueTests: XCTestCase {
         }
 
         enum Value: String {
-            case first = "hi"
+            case first
         }
 
         do {
@@ -217,7 +217,7 @@ final class RawRepresentibleValueTests: XCTestCase {
         }
 
         enum Value: String {
-            case first = "hi"
+            case first
         }
 
         do {
@@ -240,11 +240,11 @@ final class RawRepresentibleValueTests: XCTestCase {
         }
 
         enum Value: String {
-            case first = "hi"
+            case first
         }
 
         do {
-            let test = try Test(map: Mapper(JSON: ["a": ["hi", "invalid"]]))
+            let test = try Test(map: Mapper(JSON: ["a": ["first", "invalid"]]))
             XCTAssertEqual(test.values.count, 1)
             XCTAssert(test.values.contains(.first))
         } catch let error {
@@ -254,7 +254,7 @@ final class RawRepresentibleValueTests: XCTestCase {
 
     func testArrayOfValuesInsertsDefault() {
         enum Value: String {
-            case first = "hi"
+            case first
         }
 
         struct Test: Mappable {
