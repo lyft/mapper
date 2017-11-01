@@ -130,6 +130,38 @@ final class RawRepresentibleValueTests: XCTestCase {
         XCTAssertNil(test.value)
     }
 
+    func testRawRepresentibleArrayOfKeysDoesNotThrow() {
+        struct Test: Mappable {
+            let value: Value
+            init(map: Mapper) throws {
+                try self.value = map.from(["a", "b"])
+            }
+        }
+
+        enum Value: String {
+            case first = "hi"
+        }
+
+        let test = try? Test(map: Mapper(JSON: ["a": 1, "b": "hi"]))
+        XCTAssertTrue(test?.value == .first)
+    }
+
+    func testRawRepresentibleArrayOfKeysThrowsWhenMissing() {
+        struct Test: Mappable {
+            let value: Value
+            init(map: Mapper) throws {
+                try self.value = map.from(["a", "b"])
+            }
+        }
+
+        enum Value: String {
+            case first = "hi"
+        }
+
+        let test = try? Test(map: Mapper(JSON: ["a": 1, "b": 2]))
+        XCTAssertNil(test)
+    }
+
     func testArrayOfValuesWithMissingKey() {
         struct Test: Mappable {
             let value: [Value]
