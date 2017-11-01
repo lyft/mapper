@@ -6,6 +6,16 @@
 
 ## Enhancements
 
+- None
+
+# 7.3.0
+
+## Breaking
+
+- None
+
+## Enhancements
+
 - Add `optionalFrom` for arrays of `RawRepresentable`s
   [Keith Smiley](https://github.com/keith)
   [#125](https://github.com/lyft/mapper/pull/125)
