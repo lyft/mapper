@@ -6,7 +6,9 @@
 
 ## Enhancements
 
-- None
+- Trim whitespace and newline characters from URL strings
+  [Tim Duhaylungsod](https://github.com/timominous)
+  [#127](https://github.com/lyft/mapper/pull/127)
 
 # 7.3.0
 
