@@ -15,7 +15,7 @@ extension URL: Convertible {
             throw MapperError.convertibleError(value: value, type: String.self)
         }
 
-        if let url = URL(string: string) {
+        if let url = URL(string: string.trimmingCharacters(in: .whitespacesAndNewlines)) {
             return url
         }
 
