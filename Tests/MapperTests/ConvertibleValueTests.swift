@@ -43,7 +43,7 @@ final class ConvertibleValueTests: XCTestCase {
         let test = Test(map: Mapper(JSON: ["url": "##"]))
         XCTAssertNil(test.URL)
     }
-    
+
     func testWhiteSpaceURL() {
         struct Test: Mappable {
             let URL: URL?
@@ -51,7 +51,7 @@ final class ConvertibleValueTests: XCTestCase {
                 self.URL = map.optionalFrom("url")
             }
         }
-        
+
         let test = Test(map: Mapper(JSON: ["url": " https://google.com \n"]))
         XCTAssertTrue(test.URL?.host == "google.com")
     }
