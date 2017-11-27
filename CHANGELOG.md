@@ -10,6 +10,10 @@
   [Tim Duhaylungsod](https://github.com/timominous)
   [#127](https://github.com/lyft/mapper/pull/127)
 
+## Bug Fixes
+
+- Fix the App Store submission issue with Carthage and coverage data described [here](https://github.com/Carthage/Carthage/issues/2056).
+
 # 7.3.0
 
 ## Breaking
