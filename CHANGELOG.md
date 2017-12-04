@@ -6,6 +6,16 @@
 
 ## Enhancements
 
+- None
+
+# 7.4.0
+
+## Breaking
+
+- None
+
+## Enhancements
+
 - Support `from` Array of Fields for Custom Transformation
   [Brett Jones](https://github.com/brodney)
   [#131](https://github.com/lyft/mapper/pull/131)
