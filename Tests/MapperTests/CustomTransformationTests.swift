@@ -76,6 +76,58 @@ final class CustomTransformationTests: XCTestCase {
         }
     }
 
+    func testCustomTransformationArrayOfKeys() {
+        struct Test: Mappable {
+            let value: Int
+            init(map: Mapper) throws {
+                value = try map.from(["a", "b"], transformation: { thing in
+                    if let a = thing as? Int {
+                        return a + 1
+                    }
+                    throw MapperError.customError(field: nil, message: "")
+                })
+            }
+        }
+
+        do {
+            let test = try Test(map: Mapper(JSON: ["a": "##", "b": 1]))
+            XCTAssertEqual(test.value, 2)
+        } catch {
+            XCTFail("Shouldn't have failed to create Test")
+        }
+    }
+
+    func testCustomTransformationArrayOfKeysThrows() {
+        struct Test: Mappable {
+            let value: Int
+            init(map: Mapper) throws {
+                value = try map.from(["a", "b"], transformation: { _ in
+                    throw MapperError.customError(field: nil, message: "")
+                })
+            }
+        }
+
+        let test = try? Test(map: Mapper(JSON: ["a": "##", "b": 1]))
+        XCTAssertNil(test)
+    }
+
+    func testOptionalCustomTransformationEmptyThrows() {
+        struct Test: Mappable {
+            let value: Int
+            init(map: Mapper) throws {
+                value = try map.from(["a", "b"], transformation: { thing in
+                    if let a = thing as? Int {
+                        return a + 1
+                    }
+                    throw MapperError.customError(field: nil, message: "")
+                })
+            }
+        }
+
+        let test = try? Test(map: Mapper(JSON: [:]))
+        XCTAssertNil(test)
+    }
+
     func testOptionalCustomTransformationArrayOfKeys() {
         struct Test: Mappable {
             let value: Int?

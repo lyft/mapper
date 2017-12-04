@@ -389,6 +389,27 @@ public struct Mapper {
         throw MapperError.missingFieldError(field: fields.joined(separator: ", "))
     }
 
+    /// Get a Convertible value from the specified list of fields. This returns the first value produced in
+    /// order based on the array of fields.
+    ///
+    /// - parameter fields:         The array of fields to retrieve from the source data
+    /// - parameter transformation: The transformation function used to create the expected value
+    ///
+    /// - throws: MapperError.missingFieldError if none of the fields have an acceptable value.
+    ///
+    /// - returns: The value of type T for the given field
+    public func from<T: Convertible>(_ fields: [String], transformation: (Any) throws -> T)
+        throws -> T where T == T.ConvertedType
+    {
+        for field in fields {
+            if let value: T = try? self.from(field, transformation: transformation) {
+                return value
+            }
+        }
+
+        throw MapperError.missingFieldError(field: fields.joined(separator: ", "))
+    }
+
     // MARK: - Custom Transformation
 
     /// Get a typed value from the given field by using the given transformation
