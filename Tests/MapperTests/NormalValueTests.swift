@@ -70,8 +70,8 @@ final class NormalValueTests: XCTestCase {
             }
         }
 
-        let JSON = ["a": "b", "c": "d"]
-        let test = try? Test(map: Mapper(JSON: JSON as NSDictionary))
+        let JSON: NSDictionary = ["a": "b", "c": "d"]
+        let test = try? Test(map: Mapper(JSON: JSON))
         let parsedJSON = test?.JSON as? [String: String] ?? [:]
         XCTAssertTrue(parsedJSON == JSON)
     }
@@ -123,4 +123,17 @@ final class NormalValueTests: XCTestCase {
         let test = try? Test(map: Mapper(JSON: ["user": "not dictionary"]))
         XCTAssertNil(test)
     }
+
+    static let allTests = [
+        ("testNestedKeysWithInvalidType", testNestedKeysWithInvalidType),
+        ("testOptionalPropertyWithFrom", testOptionalPropertyWithFrom),
+        ("testPartiallyInvalidArrayOfValues", testPartiallyInvalidArrayOfValues),
+        ("testKeyPath", testKeyPath),
+        ("testEmptyStringJSON", testEmptyStringJSON),
+        ("testArrayOfStrings", testArrayOfStrings),
+        ("testFallbackMissingKey", testFallbackMissingKey),
+        ("testMappingMissingKey", testMappingMissingKey),
+        ("testMappingTimeInterval", testMappingTimeInterval),
+        ("testMappingString", testMappingString),
+    ]
 }

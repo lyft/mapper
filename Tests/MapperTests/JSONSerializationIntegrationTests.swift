@@ -29,4 +29,8 @@ final class JSONSerializationIntegrationTests: XCTestCase {
         let test = dictionary.flatMap { try? Test(map: Mapper(JSON: $0)) }
         XCTAssert(test?.time == 123.0)
     }
+    static let allTests = [
+        ("testDecodingDoubleFromJSON", testDecodingDoubleFromJSON),
+        ("testDecodingNormalJSON", testDecodingNormalJSON),
+    ]
 }

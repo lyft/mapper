@@ -302,4 +302,25 @@ final class RawRepresentibleValueTests: XCTestCase {
         let values: [Value]? = map.optionalFrom("values", defaultValue: .first)
         XCTAssertEqual(values ?? [], [.first])
     }
+
+    static let allTests = [
+        ("testOptionalArrayDefaultValues", testOptionalArrayDefaultValues),
+        ("testOptionalArrayRawValuesMissingKey", testOptionalArrayRawValuesMissingKey),
+        ("testOptionalArrayRawValues", testOptionalArrayRawValues),
+        ("testArrayOfValuesInsertsDefault", testArrayOfValuesInsertsDefault),
+        ("testArrayOfValuesFiltersNilsWithoutDefault", testArrayOfValuesFiltersNilsWithoutDefault),
+        ("testArrayOfValuesFailedConvertible", testArrayOfValuesFailedConvertible),
+        ("testArrayOfValuesInvalidArray", testArrayOfValuesInvalidArray),
+        ("testArrayOfValuesWithMissingKey", testArrayOfValuesWithMissingKey),
+        ("testRawRepresentibleArrayOfKeysThrowsWhenMissing", testRawRepresentibleArrayOfKeysThrowsWhenMissing),
+        ("testRawRepresentibleArrayOfKeysDoesNotThrow", testRawRepresentibleArrayOfKeysDoesNotThrow),
+        ("testRawRepresentableArrayOfKeysReturningNil", testRawRepresentableArrayOfKeysReturningNil),
+        ("testRawRepresentableArrayOfKeys", testRawRepresentableArrayOfKeys),
+        ("testRawRepresentableTypeMismatch", testRawRepresentableTypeMismatch),
+        ("testExistingOptionalRawRepresentable", testExistingOptionalRawRepresentable),
+        ("testOptionalRawRepresentable", testOptionalRawRepresentable),
+        ("testMissingRawRepresentableNumber", testMissingRawRepresentableNumber),
+        ("testRawRepresentableNumber", testRawRepresentableNumber),
+        ("testRawRepresentable", testRawRepresentable),
+    ]
 }

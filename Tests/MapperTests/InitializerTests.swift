@@ -83,4 +83,13 @@ final class InitializerTests: XCTestCase {
         let test = TestExtension.from(["string": "Hi"])
         XCTAssertTrue(test?.string == "Hi")
     }
+
+    static let allTests = [
+        ("testCreatingWithConformanceInExtension", testCreatingWithConformanceInExtension),
+        ("testCreatingFromInvalidArray", testCreatingFromInvalidArray),
+        ("testCreatingFromPartiallyInvalidArrayOfJSON", testCreatingFromPartiallyInvalidArrayOfJSON),
+        ("testCreatingFromArrayOfJSON", testCreatingFromArrayOfJSON),
+        ("testCreatingValidFromJSON", testCreatingValidFromJSON),
+        ("testCreatingInvalidFromJSON", testCreatingInvalidFromJSON),
+    ]
 }

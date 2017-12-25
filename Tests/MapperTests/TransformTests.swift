@@ -108,4 +108,11 @@ final class TransformTests: XCTestCase {
             XCTFail()
         }
     }
+
+    static let allTests = [
+        ("testMissingFieldErrorFromTransformation", testMissingFieldErrorFromTransformation),
+        ("testToDictionaryOneInvalid", testToDictionaryOneInvalid),
+        ("testToDictionaryInvalid", testToDictionaryInvalid),
+        ("testToDictionary", testToDictionary),
+    ]
 }

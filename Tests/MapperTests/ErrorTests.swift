@@ -78,4 +78,12 @@ final class ErrorTests: XCTestCase {
             XCTFail()
         }
     }
+
+    static let allTests = [
+        ("testCustomError", testCustomError),
+        ("testMissingField", testMissingField),
+        ("testConvertibleError", testConvertibleError),
+        ("testInvalidRawValue", testInvalidRawValue),
+        ("testTypeMismatch", testTypeMismatch),
+    ]
 }

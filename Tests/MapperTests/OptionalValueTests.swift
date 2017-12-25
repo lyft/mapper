@@ -77,4 +77,13 @@ final class OptionalValueTests: XCTestCase {
         let test = Test(map: Mapper(JSON: [:]))
         XCTAssertNil(test.string)
     }
+
+    static let allTests = [
+        ("testMappingArrayOfOptionalFieldsReturnsNil", testMappingArrayOfOptionalFieldsReturnsNil),
+        ("testMappingArrayOfOptionalFieldsPicksNonNil", testMappingArrayOfOptionalFieldsPicksNonNil),
+        ("testMappingOptionalExistingArray", testMappingOptionalExistingArray),
+        ("testMappingOptionalArray", testMappingOptionalArray),
+        ("testMappingOptionalValue", testMappingOptionalValue),
+        ("testMappingStringToClass", testMappingStringToClass),
+    ]
 }

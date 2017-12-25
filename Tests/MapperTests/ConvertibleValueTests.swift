@@ -237,4 +237,25 @@ final class ConvertibleValueTests: XCTestCase {
         let test = Test.from(["foo": "not a dictionary"])
         XCTAssertNil(test)
     }
+
+    static let allTests = [
+        ("testDictionaryButInvalidJSON", testDictionaryButInvalidJSON),
+        ("testDictionaryConvertibleSingleInvalid", testDictionaryConvertibleSingleInvalid),
+        ("testOptionalDictionaryConvertibleNil", testOptionalDictionaryConvertibleNil),
+        ("testDictionaryOfConvertibles", testDictionaryOfConvertibles),
+        ("testConvertibleArrayOfKeysThrowsWhenMissing", testConvertibleArrayOfKeysThrowsWhenMissing),
+        ("testDictionaryConvertible", testDictionaryConvertible),
+        ("testConvertibleArrayOfKeysThrowsWhenMissing", testConvertibleArrayOfKeysThrowsWhenMissing),
+        ("testConvertibleArrayOfKeysDoesNotThrow", testConvertibleArrayOfKeysDoesNotThrow),
+        ("testConvertibleArrayOfKeysReturnsNil", testConvertibleArrayOfKeysReturnsNil),
+        ("testConvertibleArrayOfKeys", testConvertibleArrayOfKeys),
+        ("testInvalidArrayOfOptionalConvertibles", testInvalidArrayOfOptionalConvertibles),
+        ("testInvalidArrayOfConvertibles", testInvalidArrayOfConvertibles),
+        ("testExistingOptionalArrayOfConvertibles", testExistingOptionalArrayOfConvertibles),
+        ("testOptionalArrayOfConvertibles", testOptionalArrayOfConvertibles),
+        ("testArrayOfConvertibles", testArrayOfConvertibles),
+        ("testInvalidURL", testInvalidURL),
+        ("testOptionalURL", testOptionalURL),
+        ("testCreatingURL", testCreatingURL),
+    ]
 }

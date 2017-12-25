@@ -207,4 +207,18 @@ final class MappableValueTests: XCTestCase {
         let test = try? Test(map: Mapper(JSON: [:]))
         XCTAssertNil(test)
     }
+
+    static let allTests = [
+        ("testMappableArrayOfKeysThrowsWhenMissing", testMappableArrayOfKeysThrowsWhenMissing),
+        ("testMappableArrayOfKeysDoesNotThrow", testMappableArrayOfKeysDoesNotThrow),
+        ("testMappableArrayOfKeysReturningNil", testMappableArrayOfKeysReturningNil),
+        ("testMappableArrayOfKeys", testMappableArrayOfKeys),
+        ("testInvalidArrayOfOptionalMappables", testInvalidArrayOfOptionalMappables),
+        ("testMalformedArrayOfMappables", testMalformedArrayOfMappables),
+        ("testValidArrayOfOptionalMappables", testValidArrayOfOptionalMappables),
+        ("testInvalidArrayOfMappables", testInvalidArrayOfMappables),
+        ("testOptionalMappable", testOptionalMappable),
+        ("testArrayOfMappables", testArrayOfMappables),
+        ("testNestedMappable", testNestedMappable),
+    ]
 }
