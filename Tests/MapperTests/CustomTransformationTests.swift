@@ -187,4 +187,18 @@ final class CustomTransformationTests: XCTestCase {
             XCTFail("Shouldn't have failed to create Test")
         }
     }
+
+    static let allTests = [
+        ("testOptionalCustomTransformationArrayOfKeysReturnsNil", testOptionalCustomTransformationArrayOfKeysReturnsNil),
+        ("testOptionalCustomTransformationArrayOfKeysFails", testOptionalCustomTransformationArrayOfKeysFails),
+        ("testOptionalCustomTransformationArrayOfKeys", testOptionalCustomTransformationArrayOfKeys),
+        ("testOptionalCustomTransformationEmptyThrows", testOptionalCustomTransformationEmptyThrows),
+        ("testCustomTransformationArrayOfKeysThrows", testCustomTransformationArrayOfKeysThrows),
+        ("testCustomTransformationArrayOfKeys", testCustomTransformationArrayOfKeys),
+        ("testOptionalCustomTransformationThrows", testOptionalCustomTransformationThrows),
+        ("testOptionalCustomTransformationDoesNotExist", testOptionalCustomTransformationDoesNotExist),
+        ("testOptionalCustomTransformationExists", testOptionalCustomTransformationExists),
+        ("testCustomTransformationThrows", testCustomTransformationThrows),
+        ("testCustomTransformation", testCustomTransformation),
+    ]
 }

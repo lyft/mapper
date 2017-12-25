@@ -1,6 +1,8 @@
 # Install Tasks
 
 export HOMEBREW_NO_AUTO_UPDATE = 1
+export SWIFTENV_ROOT := $(HOME)/.swiftenv
+export PATH := $(SWIFTENV_ROOT)/bin:$(SWIFTENV_ROOT)/shims:$(PATH)
 
 install-lint:
 	brew remove swiftlint --force || true
@@ -9,6 +11,10 @@ install-lint:
 install-carthage:
 	brew remove carthage --force || true
 	brew install https://raw.githubusercontent.com/Homebrew/homebrew-core/99f1f4fb87bfd047c7ccd43e58b46b8e44b63167/Formula/carthage.rb
+
+install-swiftpm-linux:
+	git clone --depth 1 https://github.com/kylef/swiftenv.git ~/.swiftenv
+	swiftenv install -s
 
 install-%:
 	true
@@ -73,4 +79,7 @@ test-coverage:
 	! grep -C 10 "^\s*0" coverage.txt
 
 test-swiftpm-macOS:
+	swift test
+
+test-swiftpm-linux:
 	swift test

@@ -1,20 +1,19 @@
 matrix:
   include:
-    - os: osx
-      env: ACTION=lint
-    - os: osx
-      env: ACTION=iOS
-    - os: osx
-      env: ACTION=macOS
-    - os: osx
-      env: ACTION=tvOS
-    - os: osx
-      env: ACTION=carthage
-    - os: osx
-      env: ACTION=coverage
-    - os: osx
-      env: ACTION=swiftpm-macOS
+    - env: ACTION=lint
+    - env: ACTION=iOS
+    - env: ACTION=macOS
+    - env: ACTION=tvOS
+    - env: ACTION=carthage
+    - env: ACTION=coverage
+    - env: ACTION=swiftpm-macOS
+    - env: ACTION=swiftpm-linux
+      os: linux
+      sudo: required
+      dist: trusty
+      language: generic
 
+os: osx
 language: objective-c
 osx_image: xcode9
 
