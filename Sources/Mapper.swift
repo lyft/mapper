@@ -218,6 +218,22 @@ public struct Mapper {
         return nil
     }
 
+    /// Get an optional array of Mappable values from the given fields. This returns the first non-nil value
+    /// produced in order based on the array of fields
+    ///
+    /// - parameter fields: The array of fields to check from the source data.
+    ///
+    /// - returns: The first non-nil value to be produced from the array of fields, or nil if none exist
+    public func optionalFrom<T: Mappable>(_ fields: [String]) -> [T]? {
+        for field in fields {
+            if let value: [T] = try? self.from(field) {
+                return value
+            }
+        }
+
+        return nil
+    }
+
     /// Get a value from the specified list of fields. This returns the first value produced in order based on
     /// the array of fields.
     ///
