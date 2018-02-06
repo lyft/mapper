@@ -88,8 +88,8 @@ final class OptionalValueTests: XCTestCase {
 
         let map = Mapper(JSON: ["key2": [["s": "a"], ["s": "b"], ["s": "c"]]])
         let test: [Test]? = map.optionalFrom(["key1", "key2"])
-        XCTAssertTrue(test!.count == 3)
-        XCTAssertTrue(test![1].string == "b")
+        XCTAssertTrue(test?.count == 3)
+        XCTAssertTrue(test?[1].string == "b")
     }
 
     func testMappingOptionalArrayFromFieldsReturnsNil() {
