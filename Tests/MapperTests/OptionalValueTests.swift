@@ -77,4 +77,31 @@ final class OptionalValueTests: XCTestCase {
         let test = Test(map: Mapper(JSON: [:]))
         XCTAssertNil(test.string)
     }
+
+    func testMappingOptionalArrayFromFields() {
+        struct Test: Mappable {
+            let string: String?
+            init(map: Mapper) {
+                self.string = map.optionalFrom(["s"])
+            }
+        }
+
+        let map = Mapper(JSON: ["key2": [["s": "a"], ["s": "b"], ["s": "c"]]])
+        let test: [Test]? = map.optionalFrom(["key1", "key2"])
+        XCTAssertTrue(test!.count == 3)
+        XCTAssertTrue(test![1].string == "b")
+    }
+
+    func testMappingOptionalArrayFromFieldsReturnsNil() {
+        struct Test: Mappable {
+            let string: String?
+            init(map: Mapper) {
+                self.string = map.optionalFrom(["s"])
+            }
+        }
+
+        let map = Mapper(JSON: ["key3": [["s": "a"], ["s": "b"], ["s": "c"]]])
+        let test: [Test]? = map.optionalFrom(["key1", "key2"])
+        XCTAssertNil(test)
+    }
 }

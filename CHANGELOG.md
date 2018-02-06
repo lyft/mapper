@@ -6,7 +6,9 @@
 
 ## Enhancements
 
-- None
+- Support `optionalFrom` for array of fields to an array of `Mappable`s 
+  [Kris Gellci](https://github.com/kgellci)
+  [#132](https://github.com/lyft/mapper/pull/132)
 
 # 7.4.0
 
