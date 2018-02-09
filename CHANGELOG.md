@@ -6,7 +6,9 @@
 
 ## Enhancements
 
-- None
+- Updated watchOS and macOS deployment target in xcodeproj to match these from podspec
+  [Łukasz Mróz](https://github.com/sunshinejr)
+  [#134](https://github.com/lyft/mapper/pull/134)
 
 # 7.4.0
 
