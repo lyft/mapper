@@ -6,6 +6,16 @@
 
 ## Enhancements
 
+- None
+
+# 7.4.1
+
+## Breaking
+
+- None
+
+## Enhancements
+
 - Updated watchOS and macOS deployment target in xcodeproj to match these from podspec
   [Łukasz Mróz](https://github.com/sunshinejr)
   [#134](https://github.com/lyft/mapper/pull/134)
