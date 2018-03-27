@@ -2,7 +2,9 @@
 
 ## Breaking
 
-- None
+- Update for Swift 4.1 and `compactMap`
+  [Keith Smiley](https://github.com/keith)
+  [#136](https://github.com/lyft/mapper/pull/136)
 
 ## Enhancements
 

@@ -110,7 +110,7 @@ public struct Mapper {
         }
 
         let rawValues = try array.map { try T.RawValue.fromMap($0) }
-        return rawValues.flatMap { T(rawValue: $0) ?? defaultValue }
+        return rawValues.compactMap { T(rawValue: $0) ?? defaultValue }
     }
 
     /// Get an optional array of RawRepresentable values from a field in the the source data.
