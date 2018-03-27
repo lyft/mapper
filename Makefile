@@ -4,11 +4,11 @@ export HOMEBREW_NO_AUTO_UPDATE = 1
 
 install-lint:
 	brew remove swiftlint --force || true
-	brew install https://raw.githubusercontent.com/Homebrew/homebrew-core/99f1f4fb87bfd047c7ccd43e58b46b8e44b63167/Formula/swiftlint.rb
+	brew install https://raw.githubusercontent.com/Homebrew/homebrew-core/af232506f5f1879af77852d6297b1e2a5b040270/Formula/swiftlint.rb
 
 install-carthage:
 	brew remove carthage --force || true
-	brew install https://raw.githubusercontent.com/Homebrew/homebrew-core/99f1f4fb87bfd047c7ccd43e58b46b8e44b63167/Formula/carthage.rb
+	brew install https://raw.githubusercontent.com/Homebrew/homebrew-core/af232506f5f1879af77852d6297b1e2a5b040270/Formula/carthage.rb
 
 install-%:
 	true
@@ -43,7 +43,7 @@ test-tvOS:
 		-project Mapper.xcodeproj \
 		-scheme Mapper \
 		-configuration Release \
-		-destination "name=Apple TV 1080p" \
+		-destination "name=Apple TV,OS=11.0" \
 		test \
 		| xcpretty -ct
 
