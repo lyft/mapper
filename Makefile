@@ -43,7 +43,7 @@ test-tvOS:
 		-project Mapper.xcodeproj \
 		-scheme Mapper \
 		-configuration Release \
-		-destination "name=Apple TV,OS=11.0" \
+		-destination "platform=tvOS Simulator,name=Apple TV,OS=11.0" \
 		test \
 		| xcpretty -ct
 
