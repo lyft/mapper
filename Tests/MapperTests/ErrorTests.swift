@@ -10,13 +10,13 @@ final class ErrorTests: XCTestCase {
         do {
             let map = Mapper(JSON: ["field": 1])
             let _: Test = try map.from("field")
-            XCTFail()
+            XCTFail("Should have thrown")
         } catch MapperError.typeMismatchError(let field, let value, let type) {
             XCTAssert(field == "field")
             XCTAssert(value as? Int == 1)
             XCTAssert(type == NSDictionary.self)
         } catch {
-            XCTFail()
+            XCTFail("Expected typeMismatchError")
         }
     }
 
@@ -28,13 +28,13 @@ final class ErrorTests: XCTestCase {
         do {
             let map = Mapper(JSON: ["suit": "hearts"])
             _ = try map.from("suit") as Suit
-            XCTFail()
+            XCTFail("Should have thrown")
         } catch MapperError.invalidRawValueError(let field, let value, let type) {
             XCTAssert(field == "suit")
             XCTAssert(value as? String == "hearts")
             XCTAssert(type == Suit.self)
         } catch {
-            XCTFail()
+            XCTFail("Expected invalidRawValueError")
         }
     }
 
@@ -42,12 +42,12 @@ final class ErrorTests: XCTestCase {
         do {
             let map = Mapper(JSON: ["url": 1])
             let _: URL = try map.from("url")
-            XCTFail()
+            XCTFail("Should have thrown")
         } catch MapperError.convertibleError(let value, let type) {
             XCTAssert(value as? Int == 1)
             XCTAssert(type == String.self)
         } catch {
-            XCTFail()
+            XCTFail("Expected convertibleError")
         }
     }
 
@@ -55,11 +55,11 @@ final class ErrorTests: XCTestCase {
         do {
             let map = Mapper(JSON: [:])
             let _: String = try map.from("string")
-            XCTFail()
+            XCTFail("Should have thrown")
         } catch MapperError.missingFieldError(let field) {
             XCTAssert(field == "string")
         } catch {
-            XCTFail()
+            XCTFail("Expected missingFieldError")
         }
     }
 
@@ -70,12 +70,12 @@ final class ErrorTests: XCTestCase {
                 throw MapperError.customError(field: "string", message: "hi")
             })
 
-            XCTFail()
+            XCTFail("Should have thrown")
         } catch MapperError.customError(let field, let message) {
             XCTAssert(field == "string")
             XCTAssert(message == "hi")
         } catch {
-            XCTFail()
+            XCTFail("Expected customError")
         }
     }
 }
