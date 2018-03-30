@@ -7,8 +7,8 @@ final class CustomTransformationTests: XCTestCase {
             let value: Int
             init(map: Mapper) throws {
                 value = try map.from("value", transformation: { thing in
-                    if let a = thing as? Int {
-                        return a + 1
+                    if let thing = thing as? Int {
+                        return thing + 1
                     } else {
                         return 0
                     }
@@ -81,8 +81,8 @@ final class CustomTransformationTests: XCTestCase {
             let value: Int
             init(map: Mapper) throws {
                 value = try map.from(["a", "b"], transformation: { thing in
-                    if let a = thing as? Int {
-                        return a + 1
+                    if let thing = thing as? Int {
+                        return thing + 1
                     }
                     throw MapperError.customError(field: nil, message: "")
                 })
@@ -116,8 +116,8 @@ final class CustomTransformationTests: XCTestCase {
             let value: Int
             init(map: Mapper) throws {
                 value = try map.from(["a", "b"], transformation: { thing in
-                    if let a = thing as? Int {
-                        return a + 1
+                    if let thing = thing as? Int {
+                        return thing + 1
                     }
                     throw MapperError.customError(field: nil, message: "")
                 })
@@ -133,8 +133,8 @@ final class CustomTransformationTests: XCTestCase {
             let value: Int?
             init(map: Mapper) throws {
                 value = map.optionalFrom(["a", "b"], transformation: { thing in
-                    if let a = thing as? Int {
-                        return a + 1
+                    if let thing = thing as? Int {
+                        return thing + 1
                     }
                     throw MapperError.customError(field: nil, message: "")
                 })
@@ -172,8 +172,8 @@ final class CustomTransformationTests: XCTestCase {
             let value: Int?
             init(map: Mapper) throws {
                 value = map.optionalFrom(["a", "b"], transformation: { thing in
-                    if let a = thing as? Int {
-                        return a + 1
+                    if let thing = thing as? Int {
+                        return thing + 1
                     }
                     throw MapperError.customError(field: nil, message: "")
                 })
