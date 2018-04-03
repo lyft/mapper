@@ -11,7 +11,7 @@ result="$(xcrun xccov view \
   --only-targets \
   --json \
   "$profdata" \
-  | jq '.[] | select(.name=="Mapper.framework") | .lineCoverage')"
+  | python Resources/get-coverage.py Mapper.framework)"
 
 if [ "$result" -ne "1" ]; then
   echo "Coverage is $result, should be 1"
