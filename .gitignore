@@ -18,7 +18,6 @@
 .LSOverride
 build/
 Carthage/Build
-coverage.txt
 DerivedData
 Icon
 run-tests

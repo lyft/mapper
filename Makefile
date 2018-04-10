@@ -68,9 +68,7 @@ test-coverage:
 		-enableCodeCoverage YES \
 		test \
 		| xcpretty -ct
-	rm -f coverage.txt
 	Resources/coverage.sh build
-	! grep -C 10 "^\s*0" coverage.txt
 
 test-swiftpm-macOS:
 	swift test
