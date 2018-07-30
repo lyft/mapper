@@ -2,7 +2,9 @@
 
 ## Breaking
 
-- None
+- Remove `Float`'s `DefaultConvertible` conformance
+  [Keith Smiley](https://github.com/keith)
+  [#141](https://github.com/lyft/mapper/pull/141)
 
 ## Enhancements
 
