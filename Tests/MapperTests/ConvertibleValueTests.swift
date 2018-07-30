@@ -237,4 +237,22 @@ final class ConvertibleValueTests: XCTestCase {
         let test = Test.from(["foo": "not a dictionary"])
         XCTAssertNil(test)
     }
+
+    func testFloatDirectly() throws {
+        let float: Float = 1.1
+        let value = try Float.fromMap(float)
+        XCTAssertEqual(value, 1.1)
+    }
+
+    func testConvertingFloat() throws {
+        struct Test: Mappable {
+            let float: Float
+            init(map: Mapper) throws {
+                try self.float = map.from("float")
+            }
+        }
+
+        let test = try Test(map: Mapper(JSON: ["float": 1.1]))
+        XCTAssertEqual(test.float, 1.1)
+    }
 }
