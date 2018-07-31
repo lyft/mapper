@@ -6,7 +6,9 @@
 
 ## Enhancements
 
-- None
+- Fix `Float` behavior for some values
+  [Keith Smiley](https://github.com/keith)
+  [#142](https://github.com/lyft/mapper/pull/142)
 
 # 8.0.0
 
