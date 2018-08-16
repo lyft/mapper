@@ -13,7 +13,7 @@ result="$(xcrun xccov view \
   "$profdata" \
   | python Resources/get-coverage.py Mapper.framework)"
 
-if [ "$result" -ne "1" ]; then
+if [ "$result" != "1" ]; then
   echo "Coverage is $result, should be 1"
   exit 1
 fi
