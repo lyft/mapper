@@ -255,4 +255,16 @@ final class ConvertibleValueTests: XCTestCase {
         let test = try Test(map: Mapper(JSON: ["float": 1.1]))
         XCTAssertEqual(test.float, 1.1)
     }
+
+    func testConvertingNonFloat() throws {
+        struct Test: Mappable {
+            let float: Float?
+            init(map: Mapper) {
+                self.float = map.optionalFrom("float")
+            }
+        }
+
+        let test = Test(map: Mapper(JSON: ["float": "not float"]))
+        XCTAssertNil(test.float)
+    }
 }
