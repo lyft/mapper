@@ -5,9 +5,17 @@ matrix:
     - os: osx
       env: ACTION=iOS
     - os: osx
+      env: ACTION=bazel-iOS
+    - os: osx
       env: ACTION=macOS
     - os: osx
+      env: ACTION=bazel-macOS
+    - os: osx
       env: ACTION=tvOS
+    - os: osx
+      env: ACTION=bazel-tvOS
+    - os: osx
+      env: ACTION=bazel-watchOS
     - os: osx
       env: ACTION=carthage
     - os: osx

@@ -16,6 +16,7 @@
 .build/
 .DS_Store
 .LSOverride
+/bazel-*
 build/
 Carthage/Build
 DerivedData
