@@ -273,14 +273,28 @@ final class RawRepresentibleValueTests: XCTestCase {
         }
     }
 
-    func testOptionalArrayRawValues() {
+    func testOptionalArrayOfRawValuesWithUnmappableElement() {
         enum Value: String {
             case first
         }
 
-        let map = Mapper(JSON: ["values": ["first", "there"]])
+        let map = Mapper(JSON: ["values": ["first", "unmappable"]])
         let values: [Value]? = map.optionalFrom("values")
         XCTAssertEqual(values ?? [], [.first])
+    }
+
+    func testArrayOfRawValuesWithUnmappableElement() {
+        enum Value: String {
+            case first
+        }
+
+        let map = Mapper(JSON: ["values": ["first", "unmappable"]])
+        do {
+            let values: [Value] = try map.from("values")
+            XCTAssertEqual(values, [.first])
+        } catch let error {
+            XCTFail("Expected no errors, got \(error)")
+        }
     }
 
     func testOptionalArrayRawValuesMissingKey() {
