@@ -24,7 +24,7 @@ test-iOS:
 		-project Mapper.xcodeproj \
 		-scheme Mapper \
 		-configuration Release \
-		-destination "name=iPhone 7,OS=10.1" \
+		-destination "name=iPhone X,OS=12.0" \
 		test \
 		| xcpretty -ct
 
@@ -43,7 +43,7 @@ test-tvOS:
 		-project Mapper.xcodeproj \
 		-scheme Mapper \
 		-configuration Release \
-		-destination "platform=tvOS Simulator,name=Apple TV,OS=11.0" \
+		-destination "platform=tvOS Simulator,name=Apple TV,OS=12.0" \
 		test \
 		| xcpretty -ct
 
