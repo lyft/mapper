@@ -4,7 +4,7 @@ export HOMEBREW_NO_AUTO_UPDATE = 1
 
 install-lint:
 	brew remove swiftlint --force || true
-	brew install https://raw.githubusercontent.com/Homebrew/homebrew-core/af232506f5f1879af77852d6297b1e2a5b040270/Formula/swiftlint.rb
+	brew install https://raw.githubusercontent.com/Homebrew/homebrew-core/a97c85994a3f714355a20511b4df3a546ae809cf/Formula/swiftlint.rb
 
 install-carthage:
 	brew remove carthage --force || true
