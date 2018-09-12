@@ -8,6 +8,18 @@
 
 - None
 
+# 9.0.0
+
+## Breaking
+
+- Update tooling for Swift 4.2
+  [Keith Smiley](https://github.com/keith)
+  [#148](https://github.com/lyft/mapper/pull/148)
+
+## Enhancements
+
+- None
+
 # 8.1.0
 
 ## Breaking
