@@ -29,4 +29,18 @@ final class JSONSerializationIntegrationTests: XCTestCase {
         let test = dictionary.flatMap { try? Test(map: Mapper(JSON: $0)) }
         XCTAssert(test?.time == 123.0)
     }
+    
+    func testDecodingBooleanFromJSON() {
+        struct Test: Mappable {
+            let boolean: Bool
+            init(map: Mapper) throws {
+                try self.boolean = map.from("boolean")
+            }
+        }
+        
+        let data = "{\"boolean\": 1}".data(using: .utf8)
+        let dictionary = data.flatMap { (try? JSONSerialization.jsonObject(with: $0)) as? NSDictionary }
+        let test = dictionary.flatMap { try? Test(map: Mapper(JSON: $0)) }
+        XCTAssert(test?.boolean == true)
+    }
 }
