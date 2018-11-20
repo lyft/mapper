@@ -1,0 +1,16 @@
+PODS:
+  - ModelMapper/NoConvertibles (9.0.0)
+
+DEPENDENCIES:
+  - ModelMapper/NoConvertibles (from `../../..`)
+
+EXTERNAL SOURCES:
+  ModelMapper:
+    :path: "../../.."
+
+SPEC CHECKSUMS:
+  ModelMapper: 0b32b5238f64cc7522a415e447ad9bef9551a54a
+
+PODFILE CHECKSUM: de949350ee4709bf95318a4eac91a903102bc9e8
+
+COCOAPODS: 1.6.0.beta.2

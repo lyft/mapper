@@ -20,5 +20,6 @@ build/
 Carthage/Build
 DerivedData
 Icon
+Pods
 run-tests
 xcuserdata

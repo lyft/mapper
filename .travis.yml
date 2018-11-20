@@ -14,9 +14,13 @@ matrix:
       env: ACTION=coverage
     - os: osx
       env: ACTION=swiftpm-macOS
+    - os: osx
+      env: ACTION=pods-NormalSpec
+    - os: osx
+      env: ACTION=pods-NoConvertibles
 
 language: objective-c
-osx_image: xcode10
+osx_image: xcode10.1
 
 script:
   - make install-$ACTION && make test-$ACTION
