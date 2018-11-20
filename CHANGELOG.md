@@ -8,6 +8,18 @@
 
 - None
 
+# 9.0.1
+
+## Breaking
+
+- None
+
+## Enhancements
+
+- Add NoConvertibles subspec
+  [Keith Smiley](https://github.com/keith)
+  [#156](https://github.com/lyft/mapper/pull/156)
+
 # 9.0.0
 
 ## Breaking
