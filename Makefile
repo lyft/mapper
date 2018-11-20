@@ -10,6 +10,9 @@ install-carthage:
 	brew remove carthage --force || true
 	brew install https://raw.githubusercontent.com/Homebrew/homebrew-core/af232506f5f1879af77852d6297b1e2a5b040270/Formula/carthage.rb
 
+install-pods-%:
+	bundle install
+
 install-%:
 	true
 
@@ -72,3 +75,12 @@ test-coverage:
 
 test-swiftpm-macOS:
 	swift test
+
+test-pods-%:
+	cd Tests/PodTests/$* && \
+		bundle exec pod install && \
+		xcodebuild \
+		-project $*.xcodeproj \
+		-scheme $* \
+		-destination "name=iPhone X,OS=12.0" \
+		build

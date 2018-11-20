@@ -12,6 +12,15 @@ Pod::Spec.new do |s|
   s.source                    = { :git => "https://github.com/lyft/mapper.git",
                                   :tag => s.version.to_s }
   s.requires_arc              = true
-  s.source_files              = "Sources/**/*.swift"
   s.module_name               = "Mapper"
+  s.default_subspec           = "Core"
+
+  s.subspec "Core" do |core|
+    core.source_files = "Sources/**/*.swift"
+  end
+
+  s.subspec "NoConvertibles" do |noconvertibles|
+    noconvertibles.source_files = "Sources/**/*.swift"
+    noconvertibles.exclude_files = "Sources/**/*+Convertible.swift"
+  end
 end

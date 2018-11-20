@@ -1,0 +1,18 @@
+PODS:
+  - ModelMapper (9.0.0):
+    - ModelMapper/Core (= 9.0.0)
+  - ModelMapper/Core (9.0.0)
+
+DEPENDENCIES:
+  - ModelMapper (from `../../..`)
+
+EXTERNAL SOURCES:
+  ModelMapper:
+    :path: "../../.."
+
+SPEC CHECKSUMS:
+  ModelMapper: 0b32b5238f64cc7522a415e447ad9bef9551a54a
+
+PODFILE CHECKSUM: 82ebcf326ce0224d1a71d69c6935598cb6ac300b
+
+COCOAPODS: 1.6.0.beta.2
