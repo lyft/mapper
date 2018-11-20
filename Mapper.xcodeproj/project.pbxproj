@@ -28,6 +28,7 @@
 		C2C036FE1C2B1A0B003FB853 /* URL+Convertible.swift in Sources */ = {isa = PBXBuildFile; fileRef = C2C036F71C2B1A0B003FB853 /* URL+Convertible.swift */; };
 		C2C036FF1C2B1A0B003FB853 /* Transform+Dictionary.swift in Sources */ = {isa = PBXBuildFile; fileRef = C2C036F81C2B1A0B003FB853 /* Transform+Dictionary.swift */; };
 		C2C037001C2B1A0B003FB853 /* Transform.swift in Sources */ = {isa = PBXBuildFile; fileRef = C2C036F91C2B1A0B003FB853 /* Transform.swift */; };
+		C2F0AE7021A480F300E108C7 /* Defaults+Convertible.swift in Sources */ = {isa = PBXBuildFile; fileRef = C2F0AE6F21A480F300E108C7 /* Defaults+Convertible.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -67,6 +68,7 @@
 		C2C036F71C2B1A0B003FB853 /* URL+Convertible.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "URL+Convertible.swift"; sourceTree = "<group>"; };
 		C2C036F81C2B1A0B003FB853 /* Transform+Dictionary.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "Transform+Dictionary.swift"; sourceTree = "<group>"; };
 		C2C036F91C2B1A0B003FB853 /* Transform.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Transform.swift; sourceTree = "<group>"; };
+		C2F0AE6F21A480F300E108C7 /* Defaults+Convertible.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "Defaults+Convertible.swift"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -141,6 +143,7 @@
 			children = (
 				C2C036F31C2B1A0B003FB853 /* Convertible.swift */,
 				C20586EB1CDEAD9900658A67 /* DefaultConvertible.swift */,
+				C2F0AE6F21A480F300E108C7 /* Defaults+Convertible.swift */,
 				C21F9CCD210FCF5F00761DDC /* Float+Convertible.swift */,
 				C2C036F51C2B1A0B003FB853 /* Mappable.swift */,
 				C2C036F61C2B1A0B003FB853 /* Mapper.swift */,
@@ -247,6 +250,7 @@
 				C2C037001C2B1A0B003FB853 /* Transform.swift in Sources */,
 				C2C036FB1C2B1A0B003FB853 /* MapperError.swift in Sources */,
 				C20586EC1CDEAD9900658A67 /* DefaultConvertible.swift in Sources */,
+				C2F0AE7021A480F300E108C7 /* Defaults+Convertible.swift in Sources */,
 				C2C036FC1C2B1A0B003FB853 /* Mappable.swift in Sources */,
 				C2C036FA1C2B1A0B003FB853 /* Convertible.swift in Sources */,
 			);
