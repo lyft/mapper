@@ -77,10 +77,10 @@ test-swiftpm-macOS:
 	swift test
 
 test-pods-%:
-	cd Tests/PodTests/$* && \
+	cd $(shell pwd)/Tests/PodTests/$* && \
 		bundle exec pod install && \
 		xcodebuild \
 		-project $*.xcodeproj \
 		-scheme $* \
-		-destination "name=iPhone X,OS=12.0" \
-		build
+		-destination "name=iPhone X,OS=12.1" \
+		clean build
