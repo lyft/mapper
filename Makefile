@@ -82,5 +82,5 @@ test-pods-%:
 		xcodebuild \
 		-project $*.xcodeproj \
 		-scheme $* \
-		-destination "name=iPhone X,OS=12.1" \
+		-destination "name=iPhone X,OS=12.0" \
 		clean build
