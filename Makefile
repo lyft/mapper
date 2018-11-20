@@ -80,7 +80,7 @@ test-pods-%:
 	cd $(shell pwd)/Tests/PodTests/$* && \
 		bundle exec pod install && \
 		xcodebuild \
-		-project $*.xcodeproj \
+		-workspace $*.xcworkspace \
 		-scheme $* \
 		-destination "name=iPhone X,OS=12.0" \
 		clean build
