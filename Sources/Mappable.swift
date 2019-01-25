@@ -23,7 +23,7 @@ public protocol Mappable {
     init(map: Mapper) throws
 }
 
-public extension Mappable {
+extension Mappable {
     /// Convenience method for creating Mappable objects from NSDictionaries
     ///
     /// - parameter JSON: The JSON to create the object from

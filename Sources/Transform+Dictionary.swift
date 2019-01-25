@@ -1,6 +1,6 @@
 import Foundation
 
-public extension Transform {
+extension Transform {
     /// A provided transformation function (see Transform and Mapper for uses) in order to create a dictionary
     /// from an array of values. The idea for this is to create a dictionary based on an array of values,
     /// using a custom function to extract the key used in the dictionary
