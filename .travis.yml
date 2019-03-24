@@ -20,7 +20,7 @@ matrix:
       env: ACTION=pods-NoConvertibles
 
 language: objective-c
-osx_image: xcode10.1
+osx_image: xcode10.2
 
 script:
   - make install-$ACTION && make test-$ACTION
