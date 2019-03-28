@@ -1,4 +1,4 @@
-// swift-tools-version:4.2
+// swift-tools-version:5.0
 import PackageDescription
 
 let package = Package(
@@ -9,6 +9,5 @@ let package = Package(
     targets: [
         .target(name: "Mapper", path: "Sources"),
         .testTarget(name: "MapperTests", dependencies: ["Mapper"]),
-    ],
-    swiftLanguageVersions: [.v4, .v4_2]
+    ]
 )
