@@ -8,6 +8,18 @@
 
 - None
 
+# 10.0.0
+
+## Breaking
+
+- Update to Swift 5
+  [Keith Smiley](https://github.com/keith)
+  [#160](https://github.com/lyft/mapper/pull/160)
+
+## Enhancements
+
+- None
+
 # 9.0.1
 
 ## Breaking
