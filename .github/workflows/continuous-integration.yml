@@ -1,0 +1,25 @@
+name: Continuous Integration
+
+on: [push, pull_request]
+
+jobs:
+  macos:
+    name: macOS
+    runs-on: macOS-latest
+    strategy:
+      matrix:
+        action:
+          - lint
+          - iOS
+          - macOS
+          - tvOS
+          - carthage
+          - coverage
+          - macOS
+          - NormalSpec
+          - NoConvertibles
+    - uses: actions/checkout@v1
+    - name: Xcode version
+      run: sudo xcode-select -s /Applications/Xcode_11.1.app
+    - name: Install and Test
+      run: make install-${{ matrix.action }} && make test-${{ matrix.action }}
