@@ -493,11 +493,11 @@ public struct Mapper {
         if keys.count == 1 {
             return dictionary[String(keys[0])]
         } else if keys.count > 1 {
-            let path = keys[1...keys.count-1].joined(separator: ".")
+            let path = keys[1...keys.count - 1].joined(separator: ".")
             let dictionary = dictionary[String(keys[0])] as? [AnyHashable: Any]
 
-            if dictionary != nil {
-                return getValue(from: dictionary!, path: path)
+            if let dictionary = dictionary {
+                return getValue(from: dictionary, path: path)
             }
         }
 
