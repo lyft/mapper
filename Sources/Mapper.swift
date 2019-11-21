@@ -481,7 +481,7 @@ public struct Mapper {
     /// **Example:**
     ///```
     /// let dictionary: [AnyHashable: Any] = ["work": ["company": "Lyft"]]
-    /// let value = getValue(from: dictionary, path: "work")
+    /// let value = getValue(from: dictionary, path: "work.company")
     /// // result: "Lyft"
     ///```
     /// - Parameters:
