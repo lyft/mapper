@@ -64,15 +64,15 @@ final class NormalValueTests: XCTestCase {
 
     func testEmptyStringJSON() {
         struct Test: Mappable {
-            let JSON: NSDictionary
+            let JSON: [String: String]
             init(map: Mapper) throws {
                 try self.JSON = map.from("")
             }
         }
 
         let JSON = ["a": "b", "c": "d"]
-        let test = try? Test(map: Mapper(JSON: JSON as NSDictionary))
-        let parsedJSON = test?.JSON as? [String: String] ?? [:]
+        let test = try? Test(map: Mapper(JSON: JSON))
+        let parsedJSON = test?.JSON ?? [:]
         XCTAssertTrue(parsedJSON == JSON)
     }
 

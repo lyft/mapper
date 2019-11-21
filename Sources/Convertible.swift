@@ -5,12 +5,13 @@
 /// URL's Convertible implementation is provided by default, assuming the passed value
 /// is a String
 ///
-/// Example:
+/// **Example:**
 ///
-/// // Convertible implementation for custom logic to create `CLLocationCoordinate2D`s from dictionaries
+/// Convertible implementation for custom logic to create `CLLocationCoordinate2D`s from dictionaries
+/// ```
 /// extension CLLocationCoordinate2D: Convertible {
 ///     public static func fromMap(value: Any) throws -> CLLocationCoordinate2D {
-///         guard let location = value as? NSDictionary,
+///         guard let location = value as? [AnyHashable: Any],
 ///             let latitude = (location["lat"] ?? location["latitude"]) as? Double,
 ///             let longitude = (location["lng"] ?? location["longitude"]) as? Double else
 ///         {
@@ -20,6 +21,7 @@
 ///         return CLLocationCoordinate2D(latitude: latitude, longitude: longitude)
 ///     }
 /// }
+/// ```
 public protocol Convertible {
     /// This typealias allows us to enforce the returned value is of type Self, without requiring
     /// implementations to return a value using `self.init`

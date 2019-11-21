@@ -13,7 +13,7 @@ extension TestExtension: Mappable {
 
 final class InitializerTests: XCTestCase {
 
-    // MARK: from NSDictionary
+    // MARK: from Dictionary
 
     func testCreatingInvalidFromJSON() {
         struct Test: Mappable {
@@ -39,7 +39,7 @@ final class InitializerTests: XCTestCase {
         XCTAssertTrue(test?.string == "Hi")
     }
 
-    // MARK: from NSArray
+    // MARK: from Array
 
     func testCreatingFromArrayOfJSON() {
         struct Test: Mappable {

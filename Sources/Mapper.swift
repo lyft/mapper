@@ -1,14 +1,14 @@
 import Foundation
 
-/// Mapper creates strongly typed objects from a given NSDictionary based on the mapping provided by
+/// Mapper creates strongly typed objects from a given Dictionary based on the mapping provided by
 /// implementing the Mappable protocol (see `Mappable` for an example).
 public struct Mapper {
-    private let JSON: NSDictionary
+    private let JSON: [AnyHashable: Any]
 
-    /// Create a Mapper with a NSDictionary to use as source data
+    /// Create a Mapper with a Dictionary to use as source data
     ///
     /// - parameter JSON: The dictionary to use for the data
-    public init(JSON: NSDictionary) {
+    public init(JSON: [AnyHashable: Any]) {
         self.JSON = JSON
     }
 
@@ -141,39 +141,39 @@ public struct Mapper {
     ///                    entire data set
     ///
     /// - throws: MapperError.missingFieldError if the field doesn't exist
-    /// - throws: MapperError.typeMismatchError if the field exists but isn't an NSDictionary
+    /// - throws: MapperError.typeMismatchError if the field exists but isn't an Dictionary
     ///
     /// - returns: The value for the given field, if it can be converted to the expected type T
     public func from<T: Mappable>(_ field: String) throws -> T {
         let value = try self.JSONFromField(field)
-        if let JSON = value as? NSDictionary {
+        if let JSON = value as? [AnyHashable: Any] {
             return try T(map: Mapper(JSON: JSON))
         }
 
-        throw MapperError.typeMismatchError(field: field, value: value, type: NSDictionary.self)
+        throw MapperError.typeMismatchError(field: field, value: value, type: [AnyHashable: Any].self)
     }
 
     /// Get an array of Mappable values from the given field in the source data
     ///
     /// This allows you to transparently have nested arrays of Mappable values
     ///
-    /// - note: If any value in the array of NSDictionaries is invalid, this method throws
+    /// - note: If any value in the array of Dictionaries is invalid, this method throws
     ///
     /// - parameter field: The field to retrieve from the source data, can be an empty string to return the
     ///                    entire data set
     ///
     /// - throws: MapperError.missingFieldError if the field doesn't exist
-    /// - throws: MapperError.typeMismatchError if the field exists but isn't an array of NSDictionarys
+    /// - throws: MapperError.typeMismatchError if the field exists but isn't an array of Dictionarys
     /// - throws: Any errors produced by the subsequent Mappable initializers
     ///
     /// - returns: The value for the given field, if it can be converted to the expected type [T]
     public func from<T: Mappable>(_ field: String) throws -> [T] {
         let value = try self.JSONFromField(field)
-        if let JSON = value as? [NSDictionary] {
+        if let JSON = value as? [[AnyHashable: Any]] {
             return try JSON.map { try T(map: Mapper(JSON: $0)) }
         }
 
-        throw MapperError.typeMismatchError(field: field, value: value, type: [NSDictionary].self)
+        throw MapperError.typeMismatchError(field: field, value: value, type: [[AnyHashable: Any]].self)
     }
 
     /// Get an optional Mappable value from the given field in the source data
@@ -192,7 +192,7 @@ public struct Mapper {
     ///
     /// This allows you to transparently have nested arrays of Mappable values
     ///
-    /// - note: If any value in the provided array of NSDictionaries is invalid, this method returns nil
+    /// - note: If any value in the provided array of Dictionaries is invalid, this method returns nil
     ///
     /// - parameter field: The field to retrieve from the source data, can be an empty string to return the
     ///                    entire data set
@@ -469,10 +469,38 @@ public struct Mapper {
     ///
     /// - returns: The object for the given field
     private func JSONFromField(_ field: String) throws -> Any {
-        if let value = field.isEmpty ? self.JSON : self.JSON.safeValue(forKeyPath: field) {
+        if let value = field.isEmpty ? self.JSON : getValue(from: self.JSON, path: field) {
             return value
         }
 
         throw MapperError.missingFieldError(field: field)
+    }
+
+    /// Get the object for a given dictionary and path.
+    ///
+    /// **Example:**
+    ///```
+    /// let dictionary: [AnyHashable: Any] = ["work": ["company": "Lyft"]]
+    /// let value = getValue(from: dictionary, path: "work")
+    /// // result: "Lyft"
+    ///```
+    /// - Parameters:
+    ///   - dictionary: Dictionary for search the object
+    ///   - path: Object path
+    private func getValue(from dictionary: [AnyHashable: Any], path: String) -> Any? {
+        let keys = path.components(separatedBy: ".")
+
+        if keys.count == 1 {
+            return dictionary[String(keys[0])]
+        } else if keys.count > 1 {
+            let path = keys[1...keys.count-1].joined(separator: ".")
+            let dictionary = dictionary[String(keys[0])] as? [AnyHashable: Any]
+
+            if dictionary != nil {
+                return getValue(from: dictionary!, path: path)
+            }
+        }
+
+        return nil
     }
 }

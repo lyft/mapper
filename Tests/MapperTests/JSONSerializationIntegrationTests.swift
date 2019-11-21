@@ -11,7 +11,7 @@ final class JSONSerializationIntegrationTests: XCTestCase {
         }
 
         let data = "{\"string\": \"hi\"}".data(using: .utf8)
-        let dictionary = data.flatMap { (try? JSONSerialization.jsonObject(with: $0)) as? NSDictionary }
+        let dictionary = data.flatMap { (try? JSONSerialization.jsonObject(with: $0)) as? [AnyHashable: Any] }
         let test = dictionary.flatMap { try? Test(map: Mapper(JSON: $0)) }
         XCTAssert(test?.string == "hi")
     }
@@ -25,7 +25,7 @@ final class JSONSerializationIntegrationTests: XCTestCase {
         }
 
         let data = "{\"time\": 123}".data(using: .utf8)
-        let dictionary = data.flatMap { (try? JSONSerialization.jsonObject(with: $0)) as? NSDictionary }
+        let dictionary = data.flatMap { (try? JSONSerialization.jsonObject(with: $0)) as? [AnyHashable: Any] }
         let test = dictionary.flatMap { try? Test(map: Mapper(JSON: $0)) }
         XCTAssert(test?.time == 123.0)
     }

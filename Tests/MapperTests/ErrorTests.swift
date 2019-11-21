@@ -14,7 +14,7 @@ final class ErrorTests: XCTestCase {
         } catch MapperError.typeMismatchError(let field, let value, let type) {
             XCTAssert(field == "field")
             XCTAssert(value as? Int == 1)
-            XCTAssert(type == NSDictionary.self)
+            XCTAssert(type == [AnyHashable: Any].self)
         } catch {
             XCTFail("Expected typeMismatchError")
         }
