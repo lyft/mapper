@@ -8,7 +8,7 @@
 
 - Change NSArray and NSDictionary to Swift literal dictionary and array
   [John Lima](https://github.com/thejohnlima)
-  [#80](https://github.com/lyft/mapper/pull/80)
+  [#163](https://github.com/lyft/mapper/pull/163)
 
 # 10.0.0
 
