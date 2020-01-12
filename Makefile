@@ -27,7 +27,7 @@ test-iOS:
 		-project Mapper.xcodeproj \
 		-scheme Mapper \
 		-configuration Release \
-		-destination "name=iPhone X,OS=13.3" \
+		-destination "name=iPhone 11 Pro Max" \
 		test \
 		| xcpretty -ct
 
@@ -46,7 +46,7 @@ test-tvOS:
 		-project Mapper.xcodeproj \
 		-scheme Mapper \
 		-configuration Release \
-		-destination "platform=tvOS Simulator,name=Apple TV,OS=13.3" \
+		-destination "name=Apple TV 4K" \
 		test \
 		| xcpretty -ct
 
@@ -83,5 +83,5 @@ test-pods-%:
 		xcodebuild \
 		-workspace $*.xcworkspace \
 		-scheme $* \
-		-destination "name=iPhone X,OS=13.3" \
+		-destination "name=iPhone 11 Pro Max" \
 		clean build
