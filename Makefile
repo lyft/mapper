@@ -63,6 +63,7 @@ test-carthage:
 	ls Carthage/build/watchOS/Mapper.framework
 
 test-coverage:
+	find build -name "*.xcresult" -exec rm -rf "{}" \; || true
 	set -o pipefail && \
 		xcodebuild \
 		-project Mapper.xcodeproj \
