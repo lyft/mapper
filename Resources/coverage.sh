@@ -5,12 +5,13 @@ set -o pipefail
 set -u
 
 coverage_dir="$1"
-profdata="$(find "$coverage_dir" -name "*.xccovreport")"
+result_bundle="$(find "$coverage_dir" -name "*.xcresult")"
 
 result="$(xcrun xccov view \
+  --report \
   --only-targets \
   --json \
-  "$profdata" \
+  "$result_bundle" \
   | python Resources/get-coverage.py Mapper.framework)"
 
 if [ "$result" != "1" ]; then
