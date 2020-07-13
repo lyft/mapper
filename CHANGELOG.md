@@ -6,7 +6,9 @@
 
 ## Enhancements
 
-- None
+- Fix Swift 5.3 linker error
+  [#168](https://github.com/lyft/mapper/pull/168)
+  [#169](https://github.com/lyft/mapper/pull/169)
 
 # 10.0.0
 
